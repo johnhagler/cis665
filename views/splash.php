@@ -24,13 +24,10 @@
     </div>
     <div class="nine columns">
         <div id="featured">
-            <img src="http://placehold.it/700x200" alt="feature 1" data-caption="captionOne">
-            <img src="http://placehold.it/700x200" alt="feature 2" data-caption="captionTwo">
-            <img src="http://placehold.it/700x200" alt="feature 3" data-caption="captionThree">
+            <img src="images/cliffWater.png" alt="feature 1">
+            <img src="images/pointSky.png" alt="feature 2">
+            <img src="images/rockClimbWomanSky.png" alt="feature 3">
 
-            <span class="orbit-caption" id="captionOne">Here is a caption...</span>
-            <span class="orbit-caption" id="captionTwo">Here is a caption2...</span>
-            <span class="orbit-caption" id="captionThree">Here is a caption3...</span>
         </div>
 
         <div class="row">
@@ -44,6 +41,11 @@
     </div>
 
 <script type="text/javascript">
-	$("#featured").orbit();
+	$("#featured").orbit({
+        captions: true,
+        advanceSpeed: 6000,
+        bullets: true,
+        directionalNav: false
+    });
 </script>
 
