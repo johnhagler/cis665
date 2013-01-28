@@ -7,11 +7,18 @@ All requests are routed through index.php on the root folder.  This requires the
 
 
 #Data Requirements
+
 ##Home
+
 ###Unsecured
+
 ###Secured
+
 * New climbs in your area
 * My stats summary
+
 ##FindIt
+
 ###Unsecured
+
 * Initial search
