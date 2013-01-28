@@ -1,2 +1,3 @@
-cis665
+CIS665 - PHP Project
 ======
+*
