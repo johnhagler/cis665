@@ -10,12 +10,12 @@ All requests are routed through index.php on the root folder.  This requires the
 
 ##Home
 
-###Unsecured
+*  Unsecured
 
-###Secured
+*  Secured
 
-*  New climbs in your area
-*  My stats summary
+  *  New climbs in your area
+  *  My stats summary
 
 ##FindIt
 
