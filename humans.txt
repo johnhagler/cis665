@@ -5,5 +5,5 @@ Anna Chernyavskaya
 /* SITE */     
 Last update: 2013/01/27     
 Standards: HTML5, CSS3,
-Components: Modernizr, jQuery, Zurb Foundation 
+Components: Modernizr, jQuery, Zurb Foundation, Underscore.js, Handlebars.js
 Software: Github, Sublime Text 2
