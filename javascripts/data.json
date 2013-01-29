@@ -1,0 +1,59 @@
+var data = {
+    "columns": [
+        {
+            "title": "Area",
+            "name": "Area",
+            "sortStyle": "alpha",
+        },
+        {
+            "title": "Crag",
+            "name": "crag",
+            "sortStyle": "alpha"
+        },
+        {
+            "title": "Route",
+            "name": "route",
+            "sortStyle": "alpha"
+        },
+        {
+            "title": "Stone Type",
+            "name": "stoneType",
+            "sortStyle": "alpha"
+        },
+        {
+            "title": "Approach Time",
+            "name": "approachTime",
+            "sortStyle": "numeric"
+        }
+    ],
+    "rows": [
+        {
+            "area": "Central Oregon",
+            "crag": "Smith Rock",
+            "route": "Route One",
+            "stoneType": "Sandstone",
+            "approachTime": 30
+        },
+        {
+            "area": "Central Oregon",
+            "crag": "Smith Rock",
+            "route": "Route Two",
+            "stoneType": "Sandstone",
+            "approachTime": 20
+        },
+        {
+            "area": "Central Oregon",
+            "crag": "Black Rock",
+            "route": "Route A",
+            "stoneType": "Sandstone",
+            "approachTime": 37
+        },
+        {
+            "area": "Central Oregon",
+            "crag": "Black Rock",
+            "route": "Route B",
+            "stoneType": "Limestone",
+            "approachTime": 8
+        }
+    ]
+}
