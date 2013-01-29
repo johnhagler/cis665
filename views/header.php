@@ -46,10 +46,15 @@ if (isset($user)) {
     <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
+    <link rel="stylesheet" href="stylesheets/general_foundicons.css">
 
     <script src="javascripts/modernizr.foundation.js"></script>
     <script src="javascripts/foundation.min.js"></script>
     <script src="javascripts/app.js"></script>
+    <script src="javascripts/utils.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.2/handlebars.min.js"></script>
 
 </head>
 <body>
