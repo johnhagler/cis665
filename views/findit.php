@@ -17,21 +17,45 @@
 	</div>
 </div>
 
+
+<div id="planRouteModal" class="reveal-modal medium">
+  <h2>Sweet, when do you want to do it?</h2>
+  <form action="javascript: $('#planRouteModal').trigger('reveal:close');">
+      <select name="" id="">
+          <option value="">Day Trip - 1/13/2013</option>
+          <option value="">Hang out with buddies - 2/26/2013</option>
+          <option value="">Only new routes - 3/13/2013</option>
+      </select>
+      <input type="submit" class="button button medium radius" value="PlanIt!">
+  </form>
+</div>
+
 <?php include 'listRoutesTemplates.php'; ?>
-<script type="text/javascript" src="javascripts/data.json"></script>
+
+
+
 <script type="text/javascript">
 
-    var rowsTmpl = Handlebars.compile($("#rows").html());
-    var colsTmpl = Handlebars.compile($("#cols").html());
+    var data = {};
+    var rowsTmpl;
+    var colsTmpl;
+    $.getJSON('models/data.php', function(json) {
+        data = json;
+        
+    
+        rowsTmpl = Handlebars.compile($("#rows").html());
+        colsTmpl = Handlebars.compile($("#cols").html());
 
-    $('#routes').append(colsTmpl(data));
-    $('#routes').append(rowsTmpl(data));
+        $('#routes').append(colsTmpl(data));
+        $('#routes').append(rowsTmpl(data));
 
-    $("#routes th a[data-sortby]").click(function (){
-
-        sortTable(this);
+        $("#routes th a[data-sortby]").click(function (){
+            sortTable(this);
+        });
+        addPlanHandler();
 
     });
+    
 
     function sortTable(name) {
         var sortby = "";
@@ -58,6 +82,15 @@
         $("#routes tr>td").parent().remove();
 
         $("#routes").append(rowsTmpl(data));
+        addPlanHandler();
+    }
 
+    function addPlanHandler() {
+        $("a[data-action=planit]").click(function () {
+            var id = $(this).data("route-id");
+            $(this).addClass("success").html("Planned!");
+            $("#planRouteModal").reveal();
+            return false;
+        });
     }
 </script>

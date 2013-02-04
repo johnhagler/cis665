@@ -1,8 +1,8 @@
 <?php
 
 require 'load.php';
-require 'models/model.php';
 require 'controller.php';
+require 'models/user.php';
 
 new Controller();
 

@@ -22,7 +22,7 @@ if ($file_name == 'findit.php') {
 }
 
 $login = 'login';
-if (isset($user)) {
+if (isset($_SESSION['user'])) {
     $login = 'logout';
 }
 
@@ -52,7 +52,7 @@ if (isset($user)) {
     <script src="javascripts/foundation.min.js"></script>
     <script src="javascripts/app.js"></script>
     <script src="javascripts/utils.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    
     <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.2/handlebars.min.js"></script>
 
@@ -74,7 +74,7 @@ if (isset($user)) {
                     </ul>
                         <ul class="right">
                         <li class="divider"></li>
-                        <li><a href="#"  id="<?=$login?>"><?=ucwords($login) ?></a></li>
+                        <li><a href="?q=<?=$login ?>"  id="<?=$login ?>"><?=ucwords($login) ?></a></li>
                         <li class="<?=$signup ?>"><a href="?q=signup">Sign up</a></li>
                     </ul>
                 </section>

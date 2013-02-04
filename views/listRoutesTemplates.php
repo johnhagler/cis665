@@ -1,11 +1,11 @@
 <script id="cols" type="text/x-handlebars-template">
 <tr>
-{{#columns}}
+{{#cols}}
     <th><a href="#" 
     		data-sortby="{{name}}" 
     		data-sort-style="{{sortStyle}}"
     		class="">{{title}}</a></th>
-{{/columns}}
+{{/cols}}
 </tr>
 </script>
 
@@ -17,6 +17,10 @@
     <td>{{route}}</td>
     <td>{{stoneType}}</td>
     <td class="text-center">{{approachTime}}</td>
+    <td><a href="#" 
+            data-route-id="{{routeId}}" 
+            data-action="planit"
+            class="button tiny radius">PlanIt!</a></td>
 </tr>
 {{/rows}}
 </script>

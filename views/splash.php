@@ -1,6 +1,11 @@
+<?php
+$user = $_SESSION['user'];
+?>
+
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Welcome!</h1>
+        <h2 class="subheader"><small><?=$user->first_name ?> <?=$user->last_name ?></small></h2>
 	</div>
 </div>
 
