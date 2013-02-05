@@ -62,7 +62,10 @@ class Controller {
 
 		} else if ($q == 'signup') {
 			$this->signup();
-
+		} else if ($q == 'check_user') {
+			$this->check_user();
+		} else if ($q == 'q') {
+			$this->testReflect();
 		}
 
 	}
@@ -107,6 +110,26 @@ class Controller {
 	function signup() {
 		$this->load->view('signup.php', $data);
 
+	}
+
+	function check_user() {
+		$user_id = $_REQUEST['user_id'];
+
+
+		if ($user_id == 'abc') {
+			$json = array ('unique'=>false);
+		} else {
+			$json = array ('unique'=>true);
+		}
+		header('Content-type: application/json');
+		echo json_encode($json);
+	}
+
+	function testReflect() {
+		$usr = new User();
+		$this->load->populate($usr);
+		echo json_encode($usr);
+		
 	}
 
 
