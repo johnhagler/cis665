@@ -112,26 +112,21 @@ class Controller {
 
 	}
 
+	//move this method to user.php
 	function check_user() {
-		$user_id = $_REQUEST['user_id'];
 
+		$usr = new User();
+		$this->load->populate($usr);
 
-		if ($user_id == 'abc') {
+		if ($usr->user_id == 'abc') {
 			$json = array ('unique'=>false);
 		} else {
 			$json = array ('unique'=>true);
 		}
+
 		header('Content-type: application/json');
 		echo json_encode($json);
 	}
-
-	function testReflect() {
-		$usr = new User();
-		$this->load->populate($usr);
-		echo json_encode($usr);
-		
-	}
-
 
 }
 
