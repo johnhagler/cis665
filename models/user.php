@@ -2,7 +2,7 @@
 
 class User {
 
-	public $userID;
+	public $user_id;
 	public $first_name;
 	public $last_name;
 
@@ -10,13 +10,13 @@ class User {
 
 	}
 
-	public function get_user_info ($userID) {
+	public function get_user_info ($user_id) {
 
 		//create a new user object
 		$user = new User();
 
 		//fill out the user details (from DB)
-		$user->userID = $userID;
+		$user->user_id = $user_id;
 		$user->first_name = 'John';
 		$user->last_name = 'Hagler';
 
@@ -37,7 +37,7 @@ class User {
 
 		$result;
 
-		$userID = $_REQUEST['user'];	
+		$user_id = $_REQUEST['user'];	
 
 		//Query the DB to see if the user exists
 
@@ -53,7 +53,7 @@ class User {
 			
 
 			//get a filled out user object
-			$user = $this->get_user_info($userID);
+			$user = $this->get_user_info($user_id);
 			
 			$_SESSION['user'] = $user;
 
