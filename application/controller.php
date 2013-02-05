@@ -1,12 +1,15 @@
 <?php
 
+require_once 'application/load.php';
+require_once 'models/user.php';
+
 class Controller {
-	public $load;
+
 	public $user;
 
 	function __construct() {
 
-		$this->load = new Load();
+
 		$this->user = new User();
 
 		session_start();
@@ -35,7 +38,7 @@ class Controller {
 			if ($success) {
 				$q = $_REQUEST['forward'];
 			} else {
-				$this->load->view('login.php');
+				Load::view('login.php');
 			}
 			
 
@@ -88,27 +91,27 @@ class Controller {
 	}
 
 	function home() {
-		$this->load->view('splash.php', $data);
+		Load::view('splash.php', $data);
 
 	}
 
 	function findit() {
-		$this->load->view('findit.php', $data);
+		Load::view('findit.php', $data);
 
 	}
 
 	function planit() {
-		$this->load->view('planit.php', $data);
+		Load::view('planit.php', $data);
 
 	}
 
 	function climbit() {
-		$this->load->view('climbit.php', $data);
+		Load::view('climbit.php', $data);
 
 	}
 
 	function signup() {
-		$this->load->view('signup.php', $data);
+		Load::view('signup.php', $data);
 
 	}
 
@@ -116,7 +119,7 @@ class Controller {
 	function check_user() {
 
 		$usr = new User();
-		$this->load->populate($usr);
+		$usr->populate();
 
 		if ($usr->user_id == 'abc') {
 			$json = array ('unique'=>false);

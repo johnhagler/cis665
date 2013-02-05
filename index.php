@@ -1,5 +1,7 @@
 <?php
 ini_set( 'display_errors', true );
 
-require 'application/core.php';
+require_once 'application/controller.php';
+new Controller();
+
 ?>

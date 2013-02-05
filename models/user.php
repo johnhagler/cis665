@@ -1,6 +1,8 @@
 <?php
 
-class User {
+require_once 'base.php';
+
+class User extends BaseModel {
 
 	public $user_id;
 	public $first_name;
