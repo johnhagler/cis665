@@ -69,9 +69,8 @@ class Controller {
 
 	
 	function login() {
-		$user = new User();
 
-		$authenticated = $user->login();
+		$authenticated = $this->user->login();
 
 		// if the authentication attempt is unsuccessful, to to the full login page
 		return $authenticated;

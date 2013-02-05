@@ -10,10 +10,18 @@ class User {
 
 	}
 
-	public function user_info () {
+	public function get_user_info ($userID) {
 
+		//create a new user object
+		$user = new User();
 
-		
+		//fill out the user details (from DB)
+		$user->userID = $userID;
+		$user->first_name = 'John';
+		$user->last_name = 'Hagler';
+
+		return $user;
+				
 	}
 
 	public function isAuthenticated() {
@@ -24,11 +32,12 @@ class User {
 		}
 	}
 
+
 	public function login() {
 
 		$result;
 
-		$user = $_REQUEST['user'];	
+		$userID = $_REQUEST['user'];	
 
 		//Query the DB to see if the user exists
 
@@ -42,14 +51,11 @@ class User {
 			
 			//if the hashes match, then set the seesion var
 			
-			$this->user_info();
-			$user_obj = new User();
-			$user_obj->first_name = 'John';
-			$user_obj->last_name = 'Hagler';
 
-			$_SESSION['user'] = $user_obj;	
-
+			//get a filled out user object
+			$user = $this->get_user_info($userID);
 			
+			$_SESSION['user'] = $user;
 
 			$result = true;	
 		} else {
