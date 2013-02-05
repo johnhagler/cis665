@@ -6,6 +6,4 @@ require 'models/user.php';
 
 new Controller();
 
-
-
 ?>
