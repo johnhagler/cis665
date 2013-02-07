@@ -1,32 +1,33 @@
 <?php
-$user = $_SESSION['user'];
+$user = (isset($_SESSION['user'])) ? $_SESSION['user'] : new User() ;
+
 ?>
 
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Hello!</h1>
-        <h2 class="subheader left"><small><?=$user->first_name ?> <?=$user->last_name ?></small></h2>
-        <h3 class="subheading right"><small><?=$user->userID ?></small></h3>
+        <h2 class="subheader left"><small><?= $user->first_name ?> <?= $user->last_name ?></small></h2>
+        <h3 class="subheading right"><small><?= $user->user_id ?></small></h3>
 	</div>
 </div>
 
 
 <div class="row">
     <div class="three columns">
-        <h4>New Routes in your area</h4>
-        <ul class="disc">
-            <li>New Route 1</li>
-            <li>New Route 2</li>
-            <li>New Route 3</li>
-        </ul>
-        <hr>
-        <h4>Popular climbs near you</h4>
-        <ul class="disc">
-            <li>Popular Climb 1</li>
-            <li>Popular Climb 2</li>
-            <li>Popular Climb 3</li>
-        </ul>
-
+        <script id="routes-template" type="text/x-handlebars-template">
+            <ul class="disc">
+            {{#routes}}
+                <li>
+                    <h5 style="margin:0 0 -8px 0;"><a href="#">{{route}}</a></h5>
+                    <p style="margin:0;">{{area}}, {{crag}}</p>
+                </li>
+            {{/routes}}
+            </ul>
+        </script>
+        <h4>New Routes</h4>
+        <div id="new-routes"></div>
+        <h4>Popular Routes</h4>
+        <div id="popular-routes"></div>
     </div>
     <div class="nine columns">
         <div id="featured">
@@ -45,6 +46,17 @@ $user = $_SESSION['user'];
             </div>
         </div>
     </div>
+<script type="text/javascript">
+    tmpl = Handlebars.compile($("#routes-template").html());
+
+    $.getJSON('models/data.php?q=newRoutes', function(json) {
+        $('#new-routes').after(tmpl(json));
+    });
+    $.getJSON('models/data.php?q=popularRoutes', function(json) {
+        $('#popular-routes').after(tmpl(json));
+    });
+
+</script>
 
 <script type="text/javascript">
 	$("#featured").orbit({

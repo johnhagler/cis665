@@ -41,7 +41,7 @@ if (isset($_SESSION['user'])) {
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title><?=$title ?></title>
+    <title><?= $title ?></title>
 
     <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="stylesheets/foundation.min.css">

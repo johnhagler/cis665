@@ -30,7 +30,7 @@
   </form>
 </div>
 
-<?php include 'listRoutesTemplates.php'; ?>
+<?php include 'templates/listRoutes.php'; ?>
 
 
 
@@ -39,7 +39,7 @@
     var data = {};
     var rowsTmpl;
     var colsTmpl;
-    $.getJSON('models/data.php', function(json) {
+    $.getJSON('models/data.php?q=listRoutes', function(json) {
         data = json;
         
     

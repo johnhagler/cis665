@@ -16,7 +16,8 @@ class Controller {
 		
 		$secured = array('planit','climbit');
 		
-		$q = $_REQUEST['q'];
+		$q = (isset($_REQUEST['q'])) ? $_REQUEST['q'] : '';
+		
 
 		if ( $this->user->isAuthenticated() ) {
 			//cool beans...
@@ -25,18 +26,21 @@ class Controller {
 			
 			if (in_array($q, $secured)) {
 				//unauthenticated user requesting a secured page
-				//route them to the signup page
-				$this->signup();
+				$this->unauthorized();
 				return;
 			} 
 
 		} 
 
 		if ($q == 'login') {
+
 			$success = $this->login();
 
 			if ($success) {
 				$q = $_REQUEST['forward'];
+				if ($q == 'logout') {
+					$q = 'home';
+				}
 			} else {
 				Load::view('login.php');
 			}
@@ -91,28 +95,32 @@ class Controller {
 	}
 
 	function home() {
-		Load::view('splash.php', $data);
+		Load::view('splash.php');
 
 	}
 
 	function findit() {
-		Load::view('findit.php', $data);
+		Load::view('findit.php');
 
 	}
 
 	function planit() {
-		Load::view('planit.php', $data);
+		Load::view('planit.php');
 
 	}
 
 	function climbit() {
-		Load::view('climbit.php', $data);
+		Load::view('climbit.php');
 
 	}
 
 	function signup() {
-		Load::view('signup.php', $data);
+		Load::view('signup.php');
 
+	}
+
+	function unauthorized() {
+		Load::view('unauthorized.php');
 	}
 
 	//move this method to user.php
