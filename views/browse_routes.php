@@ -91,7 +91,7 @@
 <div class="row">
 	<div class="six mobile-four columns">
 		<ul class="button-group twelve even two-up">
-			<li><a href="#" data-slider="a" class="button secondary disabled">
+			<li><a href="#" class="button secondary disabled back-panel">
 				<i class="foundicon-left-arrow"></i>
 			</a></li>			
 		</ul>
@@ -104,151 +104,25 @@
 			
 			<section id="section-1">
 				<h2>Area</h2>
-				<table class="ten">
-					<tr>
-						<th>Area</th>
-						<th>State</th>
-						<th>Stone Type</th>
-						<th>Col 1</th>
-						<th>Col 2</th>
-					</tr>
-					<tr>
-						<td><a href="#">Central Oregon</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Northern Cali</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Central Cali</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				<?php include 'templates/browse_list_areas.php'; ?>
+				<table class="ten" id="list-areas"></table>
 			</section>
 
 			<section id="section-2" class="">
 				<h2>Crag</h2>
-				<table class="ten">
-					<tr>
-						<th>Crag</th>
-						<th>Location</th>
-						<th>Approach Time</th>
-						<th>Col 2</th>
-						<th>Col 3</th>
-					</tr>
-					<tr>
-						<td><a href="#">Blackrock</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Redrock</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Flatrock</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				<?php include 'templates/browse_list_crags.php'; ?>
+				<table class="ten" id="list-crags"></table>
 			</section>
 
 			<section id="section-3" class="">
 				<h2>Routes</h2>
-				<table class="ten">
-					<tr>
-						<th>Route</th>
-						<th>Difficulty</th>
-						<th>Fun Factor</th>
-						<th>Col 1</th>
-						<th>Col 2</th>
-					</tr>
-					<tr>
-						<td><a href="#">Route A</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Route B</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#">Route C</a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				<?php include 'templates/browse_list_routes.php'; ?>
+				<table class="ten" id="list-routes"></table>
 			</section>
 
 			<section id="section-4" class="">
-				<h2>Route Details</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia officiis accusantium reprehenderit ducimus autem reiciendis aliquid et officia blanditiis quo sapiente maiores omnis enim. Tempora enim aliquam reiciendis animi aspernatur!</p>
+				<?php include 'templates/browse_route_details.php'; ?>
+				<div id="route-details"></div>
 			</section>
 
 		</div>
@@ -258,7 +132,7 @@
 <div class="row">
 	<div class="six mobile-four columns">
 		<ul class="button-group even two-up">
-			<li><a href="#" data-slider="a" class="button secondary disabled" >
+			<li><a href="#" class="button secondary disabled back-panel">
 				<i class="foundicon-left-arrow"></i>
 			</a></li>
 		</ul>
@@ -266,40 +140,82 @@
 </div>
 
 <script type="text/javascript">
+	var areaTmpl = Handlebars.compile($("#list-areas-template").html());
+	var cragTmpl = Handlebars.compile($("#list-crags-template").html());
+	var routeTmpl = Handlebars.compile($("#list-routes-template").html());
+	var detailTmpl = Handlebars.compile($("#route-details-template").html());
+
+
+	$.getJSON('models/data.php?q=list_areas', function(json) {
+		$('#list-areas').html(areaTmpl(json));
+		$('#section-1 a').click(function(){
+			showNextPanel($(this));
+		});
+	});
 	
-	function showNextPanel(section) {
-		console.log('showNext');
-		var s = $('#panels').attr('class');
-		var num = Number(s.substring(8,s.length)) + 1;
+	
+
+	function showNextPanel(elem) {
+
+		var request = elem.html();
 		
+		var s = $('#panels').attr('class');		
+		var num = Number(s.substring(8,s.length)) + 1;
+
+		if (num == 2) {
+				//get crags
+				$.getJSON('models/data.php?q=list_crags&area=' + request, function(json) {
+					$('#list-crags').html(cragTmpl(json));
+					$('#section-2 a').click(function(){
+						showNextPanel($(this));
+					});
+				});
+			}
+		if (num == 3) {
+			//get routes
+			$.getJSON('models/data.php?q=list_routes&crag=' + request, function(json) {
+				$('#list-routes').html(routeTmpl(json));
+				$('#section-3 a').click(function(){
+					showNextPanel($(this));
+				});
+			});
+		}
+		if (num == 4) {
+			//get routes
+			$.getJSON('models/data.php?q=list_route_details&route=' + request, function(json) {
+				$('#route-details').html(detailTmpl(json));
+			});
+		}
+
+
+		//adjust button state
 		if (num > 1) {
 			$('li a').removeClass('secondary').removeClass('disabled');
 		}
-		console.log(num);
+		
 		$('#panels').attr('class','section-' + num);
 
 	}
 
 	function showPreviousPanel(section) {
-		console.log('showPrevious')
+		
 		var s = $('#panels').attr('class');
 		var num = Number(s.substring(8,s.length)) - 1;
+
 		if (num == 1) {
 			$('li a').addClass('secondary').addClass('disabled');
 		}
 		if (num >= 1) {
 			$('#panels').attr('class','section-' + num);
+			console.log(num);
 		}
 		return false;
 
 	}
 
 
-	$('li a').click(showPreviousPanel);
-	
-
-	$('section a').click(showNextPanel);
-
+	$('a.back-panel').click(showPreviousPanel);
 
 
 </script>
+

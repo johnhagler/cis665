@@ -13,6 +13,119 @@ if ($q == 'popularRoutes') {
 if ($q == 'newRoutes') {
 	newRoutes();
 }
+if ($q == 'list_areas') {
+	list_areas();
+}
+if ($q == 'list_crags') {
+	list_crags_by_area($_REQUEST['area']);
+}
+if ($q == 'list_routes') {
+	list_routes_by_crag($_REQUEST['crag']);
+}
+
+if ($q == 'list_route_details') {
+	list_route_details($_REQUEST['route']);
+}
+
+function list_areas() {
+	$data = array ('areas'=>
+		array(
+			array(
+				'name'=>'Central Oregon'
+				),
+			array(
+				'name'=>'Northern Cali'
+				),
+			array(
+				'name'=>'Central Cali'
+				),
+			)
+		);
+	header('Content-type: application/json');
+	echo json_encode($data);
+}
+
+function list_crags_by_area($area) {
+	if ($area == 'Central Oregon') {
+		$data = array ('crags'=>
+		array(
+			array(
+				'name'=>'Stein\'s Piller'
+				),
+			array(
+				'name'=>'Dry Creek Canyon'
+				),
+			array(
+				'name'=>'Smith Rock'
+				),
+			)
+		);
+	}
+
+	if ($area == 'Northern Cali') {
+		$data = array ('crags'=>
+		array(
+			array(
+				'name'=>'Sea Crag'
+				),
+			array(
+				'name'=>'Castle Rock'
+				),
+			array(
+				'name'=>'Bidwell Park'
+				),
+			)
+		);
+	}
+
+	if ($area == 'Central Cali') {
+		$data = array ('crags'=>
+		array(
+			array(
+				'name'=>'Cabrillo Peak'
+				),
+			array(
+				'name'=>'Pirates Cove'
+				),
+			array(
+				'name'=>'Twin Rocks'
+				),
+			)
+		);
+	}
+	
+	header('Content-type: application/json');
+	echo json_encode($data);
+}
+
+function list_routes_by_crag($crag) {
+	
+	$data = array ('routes'=>
+	array(
+		array(
+			'name'=>'Route A' . rand(1,9)
+			),
+		array(
+			'name'=>'Route B' . rand(1,9)
+			),
+		array(
+			'name'=>'Route C' . rand(1,9)
+			),
+		)
+	);
+	
+	
+	header('Content-type: application/json');
+	echo json_encode($data);
+}
+
+function list_route_details($route) {
+	$data = array ('name'=>$route);
+	
+	header('Content-type: application/json');
+	echo json_encode($data);
+}
+
 
 function popularRoutes() {
 	$data = array ( 'routes' =>
