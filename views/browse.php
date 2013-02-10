@@ -26,51 +26,51 @@
 		position: relative;
 	}
 	#panels.section-1 #section-2 {
-		margin-left:100%; 
+		margin-left:150%; 
 	}
 	#panels.section-1 #section-3 {
-		margin-left:200%; 
+		margin-left:250%; 
 	}
 	#panels.section-1 #section-4 {
-		margin-left:300%; 
+		margin-left:350%; 
 	}
 
 	#panels.section-2 #section-1 {
-		margin-left:-100%; 
+		margin-left:-150%; 
 	}
 	#panels.section-2 #section-2  {
 		margin-left:0; 
 		position: relative;
 	}
 	#panels.section-2 #section-3 {
-		margin-left:100%; 
+		margin-left:150%; 
 	}
 	#panels.section-2 #section-4 {
-		margin-left:200%; 
+		margin-left:250%; 
 	}
 
 	#panels.section-3 #section-1 {
-		margin-left:-200%; 
+		margin-left:-250%; 
 	}
 	#panels.section-3 #section-2  {
-		margin-left:-100%; 
+		margin-left:-150%; 
 	}
 	#panels.section-3 #section-3 {
 		margin-left:0; 
 		position: relative;
 	}
 	#panels.section-3 #section-4 {
-		margin-left:100%; 
+		margin-left:150%; 
 	}
 
 	#panels.section-4 #section-1 {
-		margin-left:-300%; 
+		margin-left:-350%; 
 	}
 	#panels.section-4 #section-2  {
-		margin-left:-200%; 
+		margin-left:-250%; 
 	}
 	#panels.section-4 #section-3 {
-		margin-left:-100%; 
+		margin-left:-150%; 
 	}
 	#panels.section-4 #section-4 {
 		margin-left:0; 
@@ -83,8 +83,14 @@
 <div class="row">
 	<div class="twelve colums panel radius">
 		<h1>FindIt!</h1>
-		<p>Find an amazing new route to summit!</p>
 	</div>
+</div>
+
+<div class="row" style="margin-bottom:14px;">
+    <div class="twelve columns">
+        <span class="label round secondary"><a href="?q=search" style="color:#666;">Search</a></span>
+        <span class="label round">Browse</span>
+    </div>
 </div>
 
 
@@ -93,7 +99,7 @@
 		<ul class="button-group twelve even two-up">
 			<li><a href="#" class="button secondary disabled back-panel">
 				<i class="foundicon-left-arrow"></i>
-			</a></li>			
+			</a></li>
 		</ul>
 	</div>
 </div>

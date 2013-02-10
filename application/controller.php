@@ -60,9 +60,12 @@ class Controller {
 
 		} else if ($q == 'findit') {
 			$this->findit();
+		
+		} else if ($q == 'search') {
+			$this->search();
 
 		} else if ($q == 'browse') {
-			$this->browse_routes();
+			$this->browse();
 
 		} else if ($q == 'planit') {
 			$this->planit();
@@ -107,8 +110,13 @@ class Controller {
 
 	}
 
-	function browse_routes() {
-		Load::view('browse_routes.php');
+	function search() {
+		Load::view('search.php');
+
+	}
+
+	function browse() {
+		Load::view('browse.php');
 
 	}
 

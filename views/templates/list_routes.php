@@ -1,3 +1,4 @@
+
 <script id="cols" type="text/x-handlebars-template">
 <tr>
 {{#cols}}
