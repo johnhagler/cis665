@@ -1,31 +1,109 @@
 <?php
+require_once 'user.php';
+require_once 'area.php';
+require_once 'crag.php';
+require_once 'route.php';
+
+class Data {
+
+	
+	public $servername;
+	public $username;
+	public $password;
+	public $database_name;
+
+
+	public function __construct() {
+		// define connection parameters
+		$this->servername = '?';
+		$this->username = 'climber';
+		$this->password = 'secret';
+		
+		$this->database_name = 'CLIMBITDB';
+
+	}
+
+
+	public function run($sql) {
+
+		$link = mssql_connect($servername, $username, $password);
+
+		if (!$link || mssql_select_db($database_name, $link)) {
+		    die('Something went wrong while connecting to MSSQL');
+		}
+
+		$statement = mssql_query($sql);
+		$result = mssql_fetch_array($statement);
+
+		mssql_free_result($statement);
+
+		mssql_close($link);
+
+	}
+
+	public function load($results, $class) {
+		$objects = array();
+
+
+		foreach($results as $result) {
+			$class_name = get_class($class);
+						
+			if ($class_name == 'User') {
+				$object = new User();	
+			}
+			if ($class_name == 'Area') {
+				$object = new Area();	
+			}
+			if ($class_name == 'Crag') {
+				$object = new Crag();	
+			}
+			if ($class_name == 'Route') {
+				$object = new Route();	
+			}
+			
+			foreach (BaseModel::getClassProperties($class) as $prop) {
+
+				try {
+					$name = $prop->getName();
+					$value = $result[$name];
+					$prop->setValue($object,$value);
+				} catch (Exception $e) {
+					
+				}
+			
+			}
+			
+			array_push($objects, $object);
+		}
+
+		if (count($objects) == 1) {
+			return $objects[0];
+		} else {
+			return $objects;	
+		}
+		
+
+	}
 
 
 
-$q = $_REQUEST['q'];
-
-if ($q == 'listRoutes') {
-	listRoutes();
-}
-if ($q == 'popularRoutes') {
-	popularRoutes();
-}
-if ($q == 'newRoutes') {
-	newRoutes();
-}
-if ($q == 'list_areas') {
-	list_areas();
-}
-if ($q == 'list_crags') {
-	list_crags_by_area($_REQUEST['area']);
-}
-if ($q == 'list_routes') {
-	list_routes_by_crag($_REQUEST['crag']);
 }
 
-if ($q == 'list_route_details') {
-	list_route_details($_REQUEST['route']);
+//Defined error handler to allow error to pass
+set_error_handler('exceptions_error_handler');
+
+function exceptions_error_handler($severity, $message, $filename, $lineno) {
+  if (error_reporting() == 0) {
+    return;
+  }
+  if (error_reporting() & $severity) {
+    //throw new ErrorException($message, 0, $severity, $filename, $lineno);
+  }
 }
+
+
+
+
 
 function list_areas() {
 	$data = array ('areas'=>
@@ -127,7 +205,7 @@ function list_route_details($route) {
 }
 
 
-function popularRoutes() {
+function popular_routes() {
 	$data = array ( 'routes' =>
 		array (
 			array(
@@ -150,7 +228,7 @@ function popularRoutes() {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
-function newRoutes() {
+function new_routes() {
 	$data = array ( 'routes' =>
 		array (
 			array(
@@ -174,7 +252,7 @@ function newRoutes() {
 	echo json_encode($data);
 }
 
-function listRoutes() {
+function list_routes() {
 
 	$data = array (
 		'cols' => 
@@ -205,7 +283,7 @@ function listRoutes() {
 					'sortStyle' => 'numeric'
 				)
 			),
-		rows =>
+		'rows' =>
 			array (
 				array (
 					'area' => 'Central Oregon',

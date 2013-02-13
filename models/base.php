@@ -2,6 +2,7 @@
 
 class BaseModel {
 
+
 	public function populate() {
 		
 		foreach (BaseModel::getClassProperties($this) as $prop) {
@@ -14,7 +15,7 @@ class BaseModel {
 	}
 
 
-	private static function getClassProperties($className, $types='public') { 
+	public static function getClassProperties($className, $types='public') { 
 	    $ref = new ReflectionClass($className); 
 	    $props = $ref->getProperties(); 
 	    $props_arr = array(); 

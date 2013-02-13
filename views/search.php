@@ -57,7 +57,7 @@
     var data = {};
     var rowsTmpl;
     var colsTmpl;
-    $.getJSON('models/data.php?q=listRoutes', function(json) {
+    $.getJSON('?q=list_routes', function(json) {
         data = json;
         
     

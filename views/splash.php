@@ -6,8 +6,8 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : new User() ;
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Hello!</h1>
-        <h2 class="subheader left"><small><?= $user->first_name ?> <?= $user->last_name ?></small></h2>
-        <h3 class="subheading right"><small><?= $user->user_id ?></small></h3>
+        <h2 class="subheader left"><small><?php echo $user->first_name ?> <?php echo $user->last_name ?></small></h2>
+        <h3 class="subheading right"><small><?php echo $user->user_id ?></small></h3>
 	</div>
 </div>
 
@@ -49,10 +49,10 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : new User() ;
 <script type="text/javascript">
     tmpl = Handlebars.compile($("#routes-template").html());
 
-    $.getJSON('models/data.php?q=newRoutes', function(json) {
+    $.getJSON('?q=new_routes', function(json) {
         $('#new-routes').after(tmpl(json));
     });
-    $.getJSON('models/data.php?q=popularRoutes', function(json) {
+    $.getJSON('?q=popular_routes', function(json) {
         $('#popular-routes').after(tmpl(json));
     });
 

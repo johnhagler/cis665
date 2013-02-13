@@ -1,7 +1,9 @@
 <?php
 
 require_once 'application/load.php';
+require_once 'models/db.php';
 require_once 'models/user.php';
+
 
 class Controller {
 
@@ -75,11 +77,26 @@ class Controller {
 
 		} else if ($q == 'signup') {
 			$this->signup();
+
 		} else if ($q == 'check_user') {
 			$this->check_user();
-		} else if ($q == 'q') {
-			$this->testReflect();
-		}
+
+		} else if($q == 'new_routes') {
+			new_routes();
+		} else if($q == 'popular_routes') {
+			popular_routes();
+		} else if($q == 'list_routes') {
+			list_routes();
+		} else if($q == 'list_areas') {
+			list_areas();
+		} else if($q == 'list_crags_by_area') {
+			list_crags_by_area($_REQUEST['area']);
+		} else if($q == 'list_routes_by_crag') {
+			list_routes_by_crag($_REQUEST['crag']);
+		} else if($q == 'list_route_details') {
+			list_route_details($_REQUEST['route']);
+		} 
+
 
 	}
 

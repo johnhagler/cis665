@@ -152,7 +152,7 @@
 	var detailTmpl = Handlebars.compile($("#route-details-template").html());
 
 
-	$.getJSON('models/data.php?q=list_areas', function(json) {
+	$.getJSON('?q=list_areas', function(json) {
 		$('#list-areas').html(areaTmpl(json));
 		$('#section-1 a').click(function(){
 			showNextPanel($(this));
@@ -170,7 +170,7 @@
 
 		if (num == 2) {
 				//get crags
-				$.getJSON('models/data.php?q=list_crags&area=' + request, function(json) {
+				$.getJSON('?q=list_crags_by_area&area=' + request, function(json) {
 					$('#list-crags').html(cragTmpl(json));
 					$('#section-2 a').click(function(){
 						showNextPanel($(this));
@@ -179,7 +179,7 @@
 			}
 		if (num == 3) {
 			//get routes
-			$.getJSON('models/data.php?q=list_routes&crag=' + request, function(json) {
+			$.getJSON('?q=list_routes_by_crag&crag=' + request, function(json) {
 				$('#list-routes').html(routeTmpl(json));
 				$('#section-3 a').click(function(){
 					showNextPanel($(this));
@@ -188,7 +188,7 @@
 		}
 		if (num == 4) {
 			//get routes
-			$.getJSON('models/data.php?q=list_route_details&route=' + request, function(json) {
+			$.getJSON('?q=list_route_details&route=' + request, function(json) {
 				$('#route-details').html(detailTmpl(json));
 			});
 		}

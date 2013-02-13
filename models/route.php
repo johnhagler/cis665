@@ -1,8 +1,8 @@
 <?php
 
-class Route extends BaseModel {
-	
+require_once 'crag.php';
 
+class Route extends Crag {
 	
 	function __construct() {
 
