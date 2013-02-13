@@ -7,6 +7,9 @@ class User extends BaseModel {
 	public $user_id;
 	public $first_name;
 	public $last_name;
+	public $user_city;
+	public $user_state;
+	
 
 	function __construct() {
 
