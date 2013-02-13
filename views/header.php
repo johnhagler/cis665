@@ -13,8 +13,6 @@ $signup = '';
 
 if ($file_name == 'findit.php') {
   $findit = 'active';
-} else if ($file_name == 'planit.php') {
-  $planit = 'active';
 } else if ($file_name == 'climbit.php') {
   $climbit = 'active';
 } else if ($file_name == 'signup.php') {
@@ -41,7 +39,7 @@ if (isset($_SESSION['user'])) {
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title><?= $title ?></title>
+    <title><?php echo  $title ?></title>
 
     <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
@@ -68,14 +66,13 @@ if (isset($_SESSION['user'])) {
                 <section>
                     <ul class="left">
                         <li class="divider"></li>
-                        <li class="<?=$findit ?>"><a href="?q=findit">FindIt</a></li>
-                        <li class="<?=$planit ?>"><a href="?q=planit">PlanIt</a></li>
-                        <li class="<?=$climbit ?>"><a href="?q=climbit">ClimbIt</a></li>
+                        <li class="<?php echo $findit ?>"><a href="?q=findit">FindIt</a></li>
+                        <li class="<?php echo $climbit ?>"><a href="?q=climbit">ClimbIt</a></li>
                     </ul>
                         <ul class="right">
                         <li class="divider"></li>
-                        <li><a href="?q=<?=$login ?>"  id="<?=$login ?>"><?=ucwords($login) ?></a></li>
-                        <li class="<?=$signup ?>"><a href="?q=signup">Sign up</a></li>
+                        <li><a href="?q=<?php echo $login ?>"  id="<?php echo $login ?>"><?php echo ucwords($login) ?></a></li>
+                        <li class="<?php echo $signup ?>"><a href="?q=signup">Sign up</a></li>
                     </ul>
                 </section>
             </nav>
