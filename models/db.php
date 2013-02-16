@@ -15,11 +15,11 @@ class Data {
 
 	public function __construct() {
 		// define connection parameters
-		$this->servername = '?';
+		$this->servername = 'bussql2012-cis';
 		$this->username = 'climber';
 		$this->password = 'secret';
 		
-		$this->database_name = 'CLIMBITDB';
+		$this->database_name = 'ClimbItDB';
 
 	}
 

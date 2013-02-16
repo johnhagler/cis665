@@ -82,7 +82,7 @@
 
 <div class="row">
 	<div class="twelve colums panel radius">
-		<h1>FindIt!</h1>
+		<h1>Find a Route</h1>
 	</div>
 </div>
 

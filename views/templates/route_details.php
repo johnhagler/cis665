@@ -11,7 +11,7 @@
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis enim ea saepe assumenda incidunt deleniti placeat ab quisquam reprehenderit dolore quia dolor obcaecati mollitia soluta culpa voluptas autem quaerat voluptate.</p>
 
 		<div class="text-center">
-			<a href="#" class="button button-large radius">PlanIt</a>
+			<a href="#" class="button button-large radius">Log Attempt</a>
 		</div>
 
 		<table>

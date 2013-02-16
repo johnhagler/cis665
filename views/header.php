@@ -6,7 +6,6 @@ if (!isset($title)) {
 
 //setup nav highlighting based on current view file
 $findit = '';
-$planit = '';
 $climbit = '';
 $signup = '';
 
@@ -66,8 +65,8 @@ if (isset($_SESSION['user'])) {
                 <section>
                     <ul class="left">
                         <li class="divider"></li>
-                        <li class="<?php echo $findit ?>"><a href="?q=findit">FindIt</a></li>
-                        <li class="<?php echo $climbit ?>"><a href="?q=climbit">ClimbIt</a></li>
+                        <li class="<?php echo $findit ?>"><a href="?q=findit">Find a Route</a></li>
+                        <li class="<?php echo $climbit ?>"><a href="?q=climbit">My Climbs</a></li>
                     </ul>
                         <ul class="right">
                         <li class="divider"></li>
