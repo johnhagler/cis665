@@ -15,13 +15,9 @@
 <tr>
     <td>{{area}}</td>
     <td>{{crag}}</td>
-    <td>{{route}}</td>
     <td>{{stoneType}}</td>
+    <td><a href="#route-details">{{route}}<a href="#"></td>
     <td class="text-center">{{approachTime}}</td>
-    <td><a href="#" 
-            data-route-id="{{routeId}}" 
-            data-action="planit"
-            class="button tiny radius">PlanIt!</a></td>
 </tr>
 {{/rows}}
 </script>

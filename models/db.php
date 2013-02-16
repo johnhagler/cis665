@@ -268,13 +268,13 @@ function list_routes() {
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'route',
-					'title' => 'Route',
+					'name' => 'stoneType',
+					'title' => 'Stone Type',
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'stoneType',
-					'title' => 'Stone Type',
+					'name' => 'route',
+					'title' => 'Route',
 					'sortStyle' => 'alpha'
 				),
 				array(

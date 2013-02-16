@@ -17,7 +17,7 @@
 				<div class="ten mobile-three columns">
 					<div class="row">
 						<div class="four columns">
-							<input type="text" name="first_name" placeholder="First name">
+							<input type="text" name="first_name" placeholder="First name" autofocus>
 						</div>
 						<div class="four columns end">
 							<input type="text" name="last_name" placeholder="Last name">
@@ -32,7 +32,7 @@
 			      <label class="right inline">Email:</label>
 			    </div>
 			    <div id="email" class="ten mobile-three columns">
-			      <input type="email" name="user_id" class="eight" autofocus />
+			      <input type="email" name="user_id" class="eight" />
 			      <small style="display:none" class="error eight"></small>
 			    </div>
 			 </div>

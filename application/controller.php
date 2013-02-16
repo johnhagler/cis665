@@ -66,6 +66,9 @@ class Controller {
 		} else if ($q == 'search') {
 			$this->search();
 
+		} else if ($q == 'route_details') {
+			$this->route_details();
+
 		} else if ($q == 'browse') {
 			$this->browse();
 
@@ -130,6 +133,10 @@ class Controller {
 	function search() {
 		Load::view('search.php');
 
+	}
+
+	function route_details() {
+		Load::view('route_details.php');
 	}
 
 	function browse() {

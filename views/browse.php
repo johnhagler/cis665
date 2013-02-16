@@ -127,7 +127,7 @@
 			</section>
 
 			<section id="section-4" class="">
-				<?php include 'templates/browse_route_details.php'; ?>
+				<?php include 'templates/route_details.php'; ?>
 				<div id="route-details"></div>
 			</section>
 

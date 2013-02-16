@@ -12,6 +12,7 @@
 </div>
 
 <div class="row">
+
 	<div class="three columns">
 		<h3>Search</h3>
         <form action="#">
@@ -27,28 +28,43 @@
 	</div>
 
 	<div class="nine columns">
-		
+		<?php include 'templates/list_routes.php'; ?>
 		<table id="routes" class="twelve" style="margin-top:14px;">
-			
 		</table>
-
 	</div>
+
 </div>
 
 
-<div id="planRouteModal" class="reveal-modal medium">
-  <h2>Sweet, when do you want to do it?</h2>
-  <form action="javascript: $('#planRouteModal').trigger('reveal:close');">
-      <select name="" id="">
-          <option value="">Day Trip - 1/13/2013</option>
-          <option value="">Hang out with buddies - 2/26/2013</option>
-          <option value="">Only new routes - 3/13/2013</option>
-      </select>
-      <input type="submit" class="button button medium radius" value="PlanIt!">
-  </form>
-</div>
+<?php include 'templates/route_details.php'; ?>
 
-<?php include 'templates/list_routes.php'; ?>
+<div class="row">
+    <div class="twelve columns">
+        <div id="route-details"></div>      
+    </div>
+</div>
+    
+
+<script>
+  $(window).load(function() {
+    $("#route-details").joyride({
+      /* Options will go here */
+    });
+  });
+</script>
+
+
+
+<script>
+    var detailTmpl = Handlebars.compile($("#route-details-template").html());
+    function showRouteDetails(route) {
+        $.getJSON('?q=list_route_details&route=' + route, function(json) {
+            $('#route-details').html(detailTmpl(json));
+        });
+    }
+</script>
+
+
 
 
 
@@ -70,7 +86,10 @@
         $("#routes th a[data-sortby]").click(function (){
             sortTable(this);
         });
-        addPlanHandler();
+        
+        $("#routes td a").click(function (){
+            showRouteDetails($(this).html());
+        });
 
     });
     
@@ -100,15 +119,12 @@
         $("#routes tr>td").parent().remove();
 
         $("#routes").append(rowsTmpl(data));
-        addPlanHandler();
+
+        $("#routes td a").click(function (){
+            showRouteDetails($(this).html());
+        });
+        
     }
 
-    function addPlanHandler() {
-        $("a[data-action=planit]").click(function () {
-            var id = $(this).data("route-id");
-            $(this).addClass("success").html("Planned!");
-            $("#planRouteModal").reveal();
-            return false;
-        });
-    }
+
 </script>
