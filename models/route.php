@@ -21,7 +21,7 @@ class Route extends Crag {
 
 	}
 
-	public function list_routes {
+	public function list_routes() {
 
 	}
 

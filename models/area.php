@@ -17,7 +17,7 @@ class Area extends BaseModel {
 	}
 
 
-	public function list_areas {
+	public function list_areas() {
 
 		
 	}

@@ -15,7 +15,7 @@ class Crag extends Area {
 	function __construct() {
 
 	}
-	public function list_crags {
+	public function list_crags() {
 
 		
 	}
