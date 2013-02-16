@@ -15,9 +15,9 @@ class Data {
 
 	public function __construct() {
 		// define connection parameters
-		$this->servername = 'bussql2012-cis';
-		$this->username = 'climber';
-		$this->password = 'secret';
+		$this->servername = 'localhost:8889';
+		$this->username = 'root';
+		$this->password = 'root';
 		
 		$this->database_name = 'ClimbItDB';
 
@@ -26,18 +26,20 @@ class Data {
 
 	public function run($sql) {
 
-		$link = mssql_connect($servername, $username, $password);
+		$link = mysql_connect('localhost', 'root', 'root');
 
-		if (!$link || mssql_select_db($database_name, $link)) {
-		    die('Something went wrong while connecting to MSSQL');
+
+
+		if (!$link || mysql_select_db($database_name, $link)) {
+		    die('Something went wrong while connecting to mysql');
 		}
 
-		$statement = mssql_query($sql);
-		$result = mssql_fetch_array($statement);
+		$statement = mysql_query($sql);
+		$result = mysql_fetch_array($statement);
 
-		mssql_free_result($statement);
+		mysql_free_result($statement);
 
-		mssql_close($link);
+		mysql_close($link);
 
 	}
 
@@ -84,10 +86,10 @@ class Data {
 		
 
 	}
-
-
-
 }
+
+$db = new Data();
+$db->run('select * from user');
 
 //Defined error handler to allow error to pass
 set_error_handler('exceptions_error_handler');
