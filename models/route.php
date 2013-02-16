@@ -1,11 +1,10 @@
 <?php
 
-<<<<<<< HEAD
 require_once 'crag.php';
-=======
-require_once 'base.php';
 
-class Route extends BaseModel {
+
+class Route extends Crag {
+
 	
 	public $route_id; 
 	public $route_name;
@@ -17,9 +16,6 @@ class Route extends BaseModel {
 	public $grade;
 	public $route_rating;
 
->>>>>>> Updates to user.php, route.php, New area.php, crag.php
-
-class Route extends Crag {
 	
 	function __construct() {
 
