@@ -26,20 +26,42 @@ class Data {
 
 	public function run($sql) {
 
+		
+
 		$link = mysql_connect('localhost', 'root', 'root');
 
-
-
-		if (!$link || mysql_select_db($database_name, $link)) {
-		    die('Something went wrong while connecting to mysql');
+		if (!$link) {
+		    die('Not connected : ' . mysql_error());
 		}
 
-		$statement = mysql_query($sql);
-		$result = mysql_fetch_array($statement);
 
-		mysql_free_result($statement);
+
+
+		// make foo the current db
+		$db_selected = mysql_select_db('ClimbItDB', $link);
+		if (!$db_selected) {
+		    die ('Can\'t use foo : ' . mysql_error());
+		}
+
+		$results = mysql_query($sql);
+
+
+		if (($error = mysql_error()) != '') {
+			return $error;
+			echo $error;
+		}
+		echo mysql_error();
+
+		$rows = array();
+		while ($row = mysql_fetch_assoc($results)) {
+		    array_push($rows, $row);
+		}
+
+		mysql_free_result($results);
 
 		mysql_close($link);
+
+		return $rows;
 
 	}
 
@@ -88,8 +110,6 @@ class Data {
 	}
 }
 
-$db = new Data();
-$db->run('select * from user');
 
 //Defined error handler to allow error to pass
 set_error_handler('exceptions_error_handler');

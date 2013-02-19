@@ -55,21 +55,33 @@
 
 
 <script type="text/javascript">
+	
+	var submit = true;
+	
+	$("form#signup").submit(function (){
+		return submit;
+	});
+
 	$("input[name=user_id]").change(function(){
 		var user_id = $(this).val();
 
-		$.getJSON('?q=check_user&user_id=' + user_id, function(user) {
+		$.getJSON('?q=user_check_unique&user_id=' + user_id, function(user) {
 
 			if (!user.unique) {
 				$("#email input").addClass("error");
 				$("#email small").html(user_id + ' is already being used').show();
-				
+				$("#signup input[type=submit]").prop('disabled',true);
+				submit = false;
 			} else {
 				$("#email input").removeClass("error");
 				$("#email small").html('').hide();
+				$("#signup input[type=submit]").prop('disabled',false);
+				submit = true;
 			}
 
 	    });
 
 	});
+
+	
 </script>

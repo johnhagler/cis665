@@ -17,13 +17,21 @@ class User extends BaseModel {
 
 	public function get_user_info ($user_id) {
 
-		//create a new user object
 		$user = new User();
 
-		//fill out the user details (from DB)
-		$user->user_id = $user_id;
-		$user->first_name = 'John';
-		$user->last_name = 'Hagler';
+		$db = new Data();
+		$sql = "select * from `User` where `UserID` = '" . $user_id . "'";
+		$results = $db->run($sql);
+
+
+		if (count($results) > 0) {
+			$result = $results[0];
+			
+			$user->user_id = $result['UserID'];
+			$user->first_name = $result['FirstName'];
+			$user->last_name = $result['LastName'];
+		}
+
 
 		return $user;
 				
@@ -37,6 +45,25 @@ class User extends BaseModel {
 		}
 	}
 
+	public function check_unique() {
+		$this->populate();
+
+		$db = new Data();
+		$sql = "select * from `User` where `UserID` = '" . $this->user_id . "'";
+		$results = $db->run($sql);
+
+
+		if (count($results) > 0) {
+			$json = array ('unique'=>false);
+		} else {
+			$json = array ('unique'=>true);
+		}
+		
+
+		header('Content-type: application/json');
+		echo json_encode($json);
+	}
+
 
 	public function login() {
 
@@ -44,19 +71,22 @@ class User extends BaseModel {
 
 		$user_id = $_REQUEST['user'];	
 
-		//Query the DB to see if the user exists
+		$db = new Data();
+		$sql = "select * from `User` where `UserID` = '" . $user_id . "'";
+		$result = $db->run($sql);
 
-		//if there is a record returned, get the password hash
 
-
-		$hashed_password = 'pspSeBAWey.NM';
-
+		if (count($result) > 0) {
+			$hashed_password = $result[0]['Password'];
+		} else {
+			return false;
+		}
 		
 		if (crypt($_REQUEST['password'], $hashed_password) == $hashed_password) {
 			
 			//if the hashes match, then set the seesion var
 			
-
+			
 			//get a filled out user object
 			$user = $this->get_user_info($user_id);
 			
@@ -73,6 +103,7 @@ class User extends BaseModel {
 	public function logout() {
 		$_SESSION['user'] = null;
 	}
+
 
 }
 

@@ -81,8 +81,8 @@ class Controller {
 		} else if ($q == 'signup') {
 			$this->signup();
 
-		} else if ($q == 'check_user') {
-			$this->check_user();
+		} else if ($q == 'user_check_unique') {
+			$this->user_check_unique();
 
 		} else if($q == 'new_routes') {
 			new_routes();
@@ -164,19 +164,11 @@ class Controller {
 	}
 
 	//move this method to user.php
-	function check_user() {
+	function user_check_unique() {
 
-		$usr = new User();
-		$usr->populate();
+		$user = new User();
+		$user->check_unique();
 
-		if ($usr->user_id == 'abc') {
-			$json = array ('unique'=>false);
-		} else {
-			$json = array ('unique'=>true);
-		}
-
-		header('Content-type: application/json');
-		echo json_encode($json);
 	}
 
 }
