@@ -7,8 +7,12 @@ class User extends BaseModel {
 	public $user_id;
 	public $first_name;
 	public $last_name;
+	public $password;
 	public $user_city;
 	public $user_state;
+
+	public $submit;
+
 	
 
 	function __construct() {
@@ -82,7 +86,7 @@ class User extends BaseModel {
 			return false;
 		}
 		
-		if (crypt($_REQUEST['password'], $hashed_password) == $hashed_password) {
+		if (md5($_REQUEST['password']) == $hashed_password) {
 			
 			//if the hashes match, then set the seesion var
 			
@@ -102,6 +106,24 @@ class User extends BaseModel {
 
 	public function logout() {
 		$_SESSION['user'] = null;
+	}
+
+	public function create_new() {
+
+		$hashed_password = md5($this->password);
+		
+		$sql = "insert into `User` values ('" 
+			. $this->user_id . "','" 
+			. $this->first_name . "','" 
+			. $this->last_name . "','"
+			. $hashed_password . "'"
+			.")";
+
+		$db = new Data();
+		$db->run($sql);
+
+		$_SESSION['user'] = $this;
+
 	}
 
 

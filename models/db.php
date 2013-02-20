@@ -45,11 +45,13 @@ class Data {
 
 		$results = mysql_query($sql);
 
+		echo mysql_error();
 
 		if (($error = mysql_error()) != '') {
 			return $error;
 			echo $error;
 		}
+
 		echo mysql_error();
 
 		$rows = array();

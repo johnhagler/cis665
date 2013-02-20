@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="twelve columns">
-		<form id="signup" action="?">
+		<form id="signup" action="?q=signup" method="post">
 			<input type="hidden" name="q" value="signup">
 			<div class="row">
 				<div class="two mobile-one columns">

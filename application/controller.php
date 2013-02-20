@@ -155,7 +155,19 @@ class Controller {
 	}
 
 	function signup() {
-		Load::view('signup.php');
+		$user = new User();
+		$user->populate();
+
+		if ($user->submit != '') {
+			$user->create_new();
+			Load::view('splash.php');	
+
+		} else {
+			Load::view('signup.php');	
+			
+		}
+		
+		
 
 	}
 

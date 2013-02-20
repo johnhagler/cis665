@@ -71,7 +71,10 @@ if (isset($_SESSION['user'])) {
                         <ul class="right">
                         <li class="divider"></li>
                         <li><a href="?q=<?php echo $login ?>"  id="<?php echo $login ?>"><?php echo ucwords($login) ?></a></li>
+                        <?php if (!isset($_SESSION['user'])) { ?> 
                         <li class="<?php echo $signup ?>"><a href="?q=signup">Sign up</a></li>
+                        <?php } ?>
+
                     </ul>
                 </section>
             </nav>
