@@ -3,6 +3,7 @@
 require_once 'application/load.php';
 require_once 'models/db.php';
 require_once 'models/user.php';
+require_once 'models/attempt.php';
 
 
 class Controller {
@@ -53,8 +54,6 @@ class Controller {
 			$q = 'home';
 		}
 
-		
-
 
 
 		if ($q == '' || $q == 'home') {
@@ -72,11 +71,14 @@ class Controller {
 		} else if ($q == 'browse') {
 			$this->browse();
 
-		} else if ($q == 'planit') {
-			$this->planit();
+		} else if ($q == 'attempt') {
+			$this->attempt();
+
+		} else if ($q == 'log_attempt') {
+			$this->log_attempt();
 
 		} else if ($q == 'climbit') {
-			$this->climbit();
+			$this->myclimbs();
 
 		} else if ($q == 'signup') {
 			$this->signup();
@@ -98,6 +100,8 @@ class Controller {
 			list_routes_by_crag($_REQUEST['crag']);
 		} else if($q == 'list_route_details') {
 			list_route_details($_REQUEST['route']);
+		} else if($q == 'echo') {
+			echo json_encode($_REQUEST);
 		} 
 
 
@@ -144,13 +148,23 @@ class Controller {
 
 	}
 
-	function planit() {
-		Load::view('planit.php');
+	function attempt() {
+		Load::view('attempt.php');
 
 	}
 
-	function climbit() {
-		Load::view('climbit.php');
+	function log_attempt() {
+
+		$attempt = new Attempt();
+		$attempt->populate();
+		$attempt->log();
+
+		Load::view('myclimbs.php');
+
+	}
+
+	function myclimbs() {
+		Load::view('myclimbs.php');
 
 	}
 

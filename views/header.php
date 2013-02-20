@@ -22,6 +22,7 @@ $login = 'login';
 if (isset($_SESSION['user'])) {
     $login = 'logout';
 }
+$user_id = $_SESSION['user']->user_id;
 
  ?>
 

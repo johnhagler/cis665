@@ -31,11 +31,15 @@ foreach($drops as $drop) {
 	$db->run(list_file_contents($drop));
 }
 
+sleep(5);
+
 echo 'Creating tables' . PHP_EOL;
 foreach($creates as $create) {
 	echo '     ' . $create . PHP_EOL;
 	$db->run(list_file_contents($create));
 }
+
+sleep(5);
 
 echo 'Inserting records' . PHP_EOL;
 foreach($inserts as $insert) {
