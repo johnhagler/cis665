@@ -59,6 +59,8 @@ class Controller {
 		if ($q == '' || $q == 'home') {
 			$this->home();	
 
+		} else if ($q == 'user_details') {
+			$this->user_details();
 		} else if ($q == 'findit') {
 			$this->findit();
 		
@@ -129,6 +131,22 @@ class Controller {
 
 	}
 
+	function user_details() {
+		$json;
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$user->get_user_info($user->user_id);
+			$json = json_encode($user);
+		} else {
+			$json = null;
+		}
+		
+		
+		
+		header('Content-type: application/json');
+		echo $json;
+	}
+
 	function findit() {
 		Load::view('findit.php');
 
@@ -157,9 +175,13 @@ class Controller {
 
 		$attempt = new Attempt();
 		$attempt->populate();
-		$attempt->log();
 
-		Load::view('myclimbs.php');
+		if (isset($attempt->status)) {
+			$attempt->log();
+			Load::view('myclimbs.php');
+		} else {
+			Load::view('attempt.php');
+		}
 
 	}
 

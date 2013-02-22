@@ -1,20 +1,24 @@
-<?php include 'templates/route_details.php'; ?>
+<div id="target"></div>
 
 <div class="row">
 	<div class="twelve columns">
 		<div id="route-details"></div>		
 	</div>
 </div>
-	
-
-
-<?php 
-$route = $_REQUEST['route'];
-?>
 
 <script>
-	var detailTmpl = Handlebars.compile($("#route-details-template").html());
-	$.getJSON('?q=list_route_details&route=<?=$route ?>', function(json) {
-		$('#route-details').html(detailTmpl(json));
+
+(function(){
+	var vars = getUrlParams();
+
+	$.getJSON('?q=list_route_details&route=' + vars.route, function(json) {
+
+		$.get('views/templates/route_details.html', function(data) {
+			var detailTmpl = Handlebars.compile(data);
+			$('#route-details').html(detailTmpl(json));
+		});
+
 	});
+})();
+	
 </script>

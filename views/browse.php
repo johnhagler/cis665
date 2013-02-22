@@ -110,24 +110,20 @@
 			
 			<section id="section-1">
 				<h2>Area</h2>
-				<?php include 'templates/browse_list_areas.php'; ?>
 				<table class="ten" id="list-areas"></table>
 			</section>
 
 			<section id="section-2" class="">
 				<h2>Crag</h2>
-				<?php include 'templates/browse_list_crags.php'; ?>
 				<table class="ten" id="list-crags"></table>
 			</section>
 
 			<section id="section-3" class="">
 				<h2>Routes</h2>
-				<?php include 'templates/browse_list_routes.php'; ?>
 				<table class="ten" id="list-routes"></table>
 			</section>
 
 			<section id="section-4" class="">
-				<?php include 'templates/route_details.php'; ?>
 				<div id="route-details"></div>
 			</section>
 
@@ -146,18 +142,77 @@
 </div>
 
 <script type="text/javascript">
-	var areaTmpl = Handlebars.compile($("#list-areas-template").html());
-	var cragTmpl = Handlebars.compile($("#list-crags-template").html());
-	var routeTmpl = Handlebars.compile($("#list-routes-template").html());
-	var detailTmpl = Handlebars.compile($("#route-details-template").html());
+
+	var areaTmpl;
+	var cragTmpl;
+	var routeTmpl;
+	var detailTmpl;
 
 
-	$.getJSON('?q=list_areas', function(json) {
-		$('#list-areas').html(areaTmpl(json));
-		$('#section-1 a').click(function(){
-			showNextPanel($(this));
-		});
+	var areas = $.get('views/templates/browse_list_areas.html', function(data) {
+	 	areaTmpl = Handlebars.compile(data);
 	});
+
+	var crags = areas.pipe(
+		
+		function(){
+			return (
+				
+				$.get('views/templates/browse_list_crags.html', function(data) {
+			 		cragTmpl = Handlebars.compile(data);
+				})
+				
+			);
+		}
+	);
+
+
+	var routes = crags.pipe(
+		
+		function() {
+			return (
+
+				$.get('views/templates/browse_list_routes.html', function(data) {
+				 	routeTmpl = Handlebars.compile(data);
+				})
+			
+			);
+		}
+	);
+
+	var routeDetails = routes.pipe(
+		
+		function(){
+			return (
+
+				$.get('views/templates/route_details.html', function(data) {
+					detailTmpl = Handlebars.compile(data);
+					
+				})
+
+			);
+		}
+	);
+
+
+
+
+	routeDetails.pipe(
+		
+		function () {
+
+			return (
+				$.getJSON('?q=list_areas', function(json) {
+					$('#list-areas').html(areaTmpl(json));
+					$('#section-1 a').click(function(){
+						showNextPanel($(this));
+					});
+				})
+			);
+		}
+
+	
+	);
 	
 	
 

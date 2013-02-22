@@ -12,7 +12,8 @@ class Attempt extends BaseModel {
 	public $status;
 
 	public function __construct() {
-
+		$user = $_SESSION['user'];
+		$this->user_id = $user->user_id;
 	}
 
 	public function parse_date_time() {

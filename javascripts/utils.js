@@ -34,3 +34,22 @@ var number_comparator = function (param_name) {
         };
     }
 }
+
+function getUrlParams(){
+        var obj = {};
+        var url = location.href.split("?");
+
+        if (url.length > 1) {
+            var hash = url[1],
+            split = hash.split('&');
+
+            
+            for(var i = 0; i < split.length; i++){
+                var kv = split[i].split('=');
+                obj[kv[0]] = decodeURIComponent(kv[1] ? kv[1].replace(/\+/g, ' ') : kv[1]);
+            }
+        }
+        
+        return obj;
+        
+    };

@@ -1,20 +1,14 @@
-<?php
-$user = (isset($_SESSION['user'])) ? $_SESSION['user'] : new User() ;
-
-?>
-
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Hello!</h1>
-        <h2 class="subheader left"><small><?php echo $user->first_name ?> <?php echo $user->last_name ?></small></h2>
-        <h3 class="subheading right"><small><?php echo $user->user_id ?></small></h3>
+        <h2 class="subheader left"><small id="user_name"></small></h2>
+        <h3 class="subheading right"><small id="user_id"></small></h3>
 	</div>
 </div>
 
 
 <div class="row">
     <div class="three columns">
-        <?php include 'templates/route_splash.php'; ?>
         <h4>New Routes</h4>
         <div id="new-routes"></div>
         <h4>Popular Routes</h4>
@@ -37,19 +31,40 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : new User() ;
             </div>
         </div>
     </div>
-<script type="text/javascript">
-    tmpl = Handlebars.compile($("#routes-template").html());
 
-    $.getJSON('?q=new_routes', function(json) {
-        $('#new-routes').after(tmpl(json));
-    });
-    $.getJSON('?q=popular_routes', function(json) {
-        $('#popular-routes').after(tmpl(json));
-    });
 
-</script>
+
 
 <script type="text/javascript">
+
+    //load the templates for the new and popular routes
+    var tmpl;
+    var loadTmpl = $.get('views/templates/route_splash.html', function(data) {
+        tmpl = Handlebars.compile(data);
+    });
+
+    // pipe over and load the data for new and popular routes
+    loadTmpl.pipe(
+        function() {
+            $.getJSON('?q=new_routes', function(json) {
+                $('#new-routes').after(tmpl(json));
+            });
+            $.getJSON('?q=popular_routes', function(json) {
+                $('#popular-routes').after(tmpl(json));
+            });
+        }
+    );
+
+    
+    //get user info
+    $.getJSON('?q=user_details', function(user) {
+        if (user) {
+            $('#user_name').html(user.first_name + ' ' + user.last_name);
+            $('#user_id').html(user.user_id);
+        }
+    });
+
+    //setup image carosel
 	$("#featured").orbit({
         captions: true,
         advanceSpeed: 6000,

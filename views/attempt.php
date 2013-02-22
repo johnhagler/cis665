@@ -6,15 +6,14 @@
 
 <div class="row">
 	<div class="twelve columns">
-		<h2>Route B</h2>
-		<h3 class="subheader"><small>Central Oregon, Smith Rock</small></h3>
+		<h2 id="route-name"></h2>
+		<h3 class="subheader"><small id="location">Central Oregon, Smith Rock</small></h3>
 	</div>
 </div>
 <form id="attempt-form" action="?" method="post">
 	<input type="hidden" name="q" value="log_attempt">
 	<input type="hidden" id="status" name="status" value="" >
-	<input type="hidden" id="route_id" name="route_id" value="123" >
-	<input type="hidden" id="user_id" name="user_id" value="<?=$user_id ?>" >
+	<input type="hidden" id="route_id" name="route_id" value="" >
 
 	<div class="row">
 		<div class="twleve columns">
@@ -77,5 +76,19 @@
 		delayedSubmit();
 	});
 
+
 	
-</script>
+
+	(function(){
+		vars = getUrlParams();	
+		$.getJSON('?q=list_route_details&route=' + vars.route_id, function(json) {
+			console.log(json);
+			$('#route-name').html(json.name);
+			$('#location').html(json.area + ', ' + json.crag);
+			$("input[name=route_id]").val(json.route_id);
+		});
+
+	})();
+
+
+</script>	
