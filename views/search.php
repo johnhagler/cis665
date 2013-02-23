@@ -45,18 +45,14 @@
 </div>
     
 
+
 <script>
-  $(window).load(function() {
-    $("#route-details").joyride({
-      /* Options will go here */
+    var detailTmpl;
+    $.get('views/templates/route_details.html', function(data) {
+        detailTmpl = Handlebars.compile(data);
     });
-  });
-</script>
 
 
-
-<script>
-    var detailTmpl = Handlebars.compile($("#route-details-template").html());
     function showRouteDetails(route) {
         $.getJSON('?q=list_route_details&route=' + route, function(json) {
             $('#route-details').html(detailTmpl(json));
@@ -73,25 +69,45 @@
     var data = {};
     var rowsTmpl;
     var colsTmpl;
-    $.getJSON('?q=list_routes', function(json) {
-        data = json;
-        
     
-        rowsTmpl = Handlebars.compile($("#rows").html());
-        colsTmpl = Handlebars.compile($("#cols").html());
-
-        $('#routes').append(colsTmpl(data));
-        $('#routes').append(rowsTmpl(data));
-
-        $("#routes th a[data-sortby]").click(function (){
-            sortTable(this);
-        });
-        
-        $("#routes td a").click(function (){
-            showRouteDetails($(this).html());
-        });
-
+    var loadColsTmpl = $.get('views/templates/list_routes_cols.html', function(data) {
+        colsTmpl = Handlebars.compile(data);
     });
+
+    var loadRowsTmpl = loadColsTmpl.pipe(
+        function () {
+            return (
+                $.get('views/templates/list_routes_rows.html', function(data) {
+                    rowsTmpl = Handlebars.compile(data);
+                })
+            );
+        }
+    );
+
+
+    loadRowsTmpl.pipe(
+        function () {
+            $.getJSON('?q=list_routes', function(json) {
+                data = json;
+
+
+                $('#routes').append(colsTmpl(data));
+                $('#routes').append(rowsTmpl(data));
+
+                $("#routes th a[data-sortby]").click(function (){
+                    sortTable(this);
+                });
+                
+                $("#routes td a").click(function (){
+                    showRouteDetails($(this).html());
+                });
+
+            });
+        }
+    );
+
+
+    
     
 
     function sortTable(name) {

@@ -15,16 +15,17 @@ class Data {
 
 	public function __construct() {
 		// define connection parameters
+		
 		$this->servername = 'localhost:8889';
 		$this->username = 'root';
 		$this->password = 'root';
 		
 		$this->database_name = 'ClimbItDB';
-
+		
 	}
 
 
-	public function run($sql) {
+	public function runMySql($sql) {
 
 		
 
@@ -63,8 +64,14 @@ class Data {
 
 		mysql_close($link);
 
-		return $rows;
 
+		return json_encode($rows);
+		
+		
+	}
+
+	public function run($sql) {
+		return $this->run_remote_query($sql);
 	}
 
 	public function load($results, $class) {
@@ -110,22 +117,34 @@ class Data {
 		
 
 	}
+
+	function run_remote_query($sql) {
+
+
+		$url = "http://www.business.colostate.edu/john.l.hagler11/db.php";
+		// create a new cURL resource
+		$ch = curl_init($url);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    	curl_setopt($ch, CURLOPT_POSTFIELDS, array("sql"=>$sql));
+
+
+		$content = curl_exec($ch);
+
+		
+
+		// close cURL resource, and free up system resources
+		curl_close($ch);
+		//print_r($content);
+		return json_decode($content,true);
+
+	}
+
+
+
 }
-
-
-//Defined error handler to allow error to pass
-set_error_handler('exceptions_error_handler');
-
-function exceptions_error_handler($severity, $message, $filename, $lineno) {
-  if (error_reporting() == 0) {
-    return;
-  }
-  if (error_reporting() & $severity) {
-    //throw new ErrorException($message, 0, $severity, $filename, $lineno);
-  }
-}
-
-
 
 
 
@@ -354,5 +373,9 @@ function list_routes() {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
+
+
+
+
 
 ?>

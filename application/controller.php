@@ -104,6 +104,10 @@ class Controller {
 			list_route_details($_REQUEST['route']);
 		} else if($q == 'echo') {
 			echo json_encode($_REQUEST);
+		} else if($q == 'remote') {
+			$db = new Data();
+			echo $db->remote($_REQUEST['sql']);
+
 		} 
 
 

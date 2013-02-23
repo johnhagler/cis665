@@ -8,8 +8,6 @@ class User extends BaseModel {
 	public $first_name;
 	public $last_name;
 	public $password;
-	public $user_city;
-	public $user_state;
 
 	public $submit;
 
@@ -24,7 +22,7 @@ class User extends BaseModel {
 		$user = new User();
 
 		$db = new Data();
-		$sql = "select * from `User` where `UserID` = '" . $user_id . "'";
+		$sql = "select * from [User] where [UserID] = '" . $user_id . "'";
 		$results = $db->run($sql);
 
 
@@ -50,12 +48,14 @@ class User extends BaseModel {
 	}
 
 	public function check_unique() {
+		
+
 		$this->populate();
 
 		$db = new Data();
-		$sql = "select * from `User` where `UserID` = '" . $this->user_id . "'";
+		$sql = "select * from [User] where [UserID] = '" . $this->user_id . "'";
 		$results = $db->run($sql);
-
+		
 
 		if (count($results) > 0) {
 			$json = array ('unique'=>false);
@@ -63,7 +63,6 @@ class User extends BaseModel {
 			$json = array ('unique'=>true);
 		}
 		
-
 		header('Content-type: application/json');
 		echo json_encode($json);
 	}
@@ -76,12 +75,12 @@ class User extends BaseModel {
 		$user_id = $_REQUEST['user'];	
 
 		$db = new Data();
-		$sql = "select * from `User` where `UserID` = '" . $user_id . "'";
+		$sql = "select * from [User] where [UserID] = '" . $user_id . "'";
 		$result = $db->run($sql);
 
 
 		if (count($result) > 0) {
-			$hashed_password = $result[0]['Password'];
+			$hashed_password = $result[0]['password'];
 		} else {
 			return false;
 		}
@@ -112,7 +111,7 @@ class User extends BaseModel {
 
 		$hashed_password = md5($this->password);
 		
-		$sql = "insert into `User` values ('" 
+		$sql = "insert into [User] values ('" 
 			. $this->user_id . "','" 
 			. $this->first_name . "','" 
 			. $this->last_name . "','"

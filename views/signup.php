@@ -56,6 +56,10 @@
 
 <script type="text/javascript">
 	
+$(document).ready(function() {
+  $.ajaxSetup({ cache: false });
+});
+	
 	var submit = true;
 	
 	$("form#signup").submit(function (){

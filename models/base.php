@@ -8,8 +8,12 @@ class BaseModel {
 		
 		foreach (BaseModel::getClassProperties($this) as $prop) {
 			$name = $prop->getName();
-			$value = $_REQUEST[$name];
-			$this->{$name} = $value;
+
+			if(isset($_REQUEST[$name])) {
+				$value = $_REQUEST[$name];
+				$this->{$name} = $value;
+			}
+					
 
 		}
 
