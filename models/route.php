@@ -10,11 +10,10 @@ class Route extends Crag {
 	public $route_name;
 	public $route_descr;
 	public $route_type;
-	public $location_lat;
-	public $location_lon;
 	public $pitches;
 	public $grade;
-	public $route_rating;
+	public $height;
+	public $add_date;
 
 	
 	function __construct() {
