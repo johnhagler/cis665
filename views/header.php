@@ -1,9 +1,5 @@
 <?php 
 
-if (!isset($title)) {
-    $title = 'ClimbIt!';
-}
-
 //setup nav highlighting based on current view file
 $findit = '';
 $climbit = '';
@@ -40,7 +36,7 @@ if (isset($_SESSION['user'])) {
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title><?php echo  $title ?></title>
+    <title>ClimbIt!</title>
 
     <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
