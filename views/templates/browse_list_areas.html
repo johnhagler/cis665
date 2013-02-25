@@ -1,16 +1,16 @@
 <tr>
 	<th>Area</th>
-	<th>Col 1</th>
-	<th>Col 2</th>
-	<th>Col 3</th>
-	<th>Col 4</th>
+	<th>Description</th>
+	<th>City</th>
+	<th>State</th>
+	<th>Approach Time</th>
 </tr>
 {{#areas}}
 <tr>
-	<td><a href='#'>{{name}}</a></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
+	<td><a href='#' data-id="{{areaId}}" >{{name}}</a></td>
+	<td>{{descr}}</td>
+	<td>{{city}}</td>
+	<td>{{state}}</td>
+	<td>{{approachTime}}</td>
 </tr>
 {{/areas}}

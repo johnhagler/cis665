@@ -110,7 +110,7 @@
 			
 			<section id="section-1">
 				<h2>Area</h2>
-				<table class="ten" id="list-areas"></table>
+				<table class="twelve" id="list-areas"></table>
 			</section>
 
 			<section id="section-2" class="">
@@ -218,14 +218,14 @@
 
 	function showNextPanel(elem) {
 
-		var request = elem.html();
+		var request = elem.data('id');
 		
 		var s = $('#panels').attr('class');		
 		var num = Number(s.substring(8,s.length)) + 1;
 
 		if (num == 2) {
 				//get crags
-				$.getJSON('?q=list_crags_by_area&area=' + request, function(json) {
+				$.getJSON('?q=list_crags_by_area&areaId=' + request, function(json) {
 					$('#list-crags').html(cragTmpl(json));
 					$('#section-2 a').click(function(){
 						showNextPanel($(this));
@@ -234,7 +234,7 @@
 			}
 		if (num == 3) {
 			//get routes
-			$.getJSON('?q=list_routes_by_crag&crag=' + request, function(json) {
+			$.getJSON('?q=list_routes_by_crag&cragId=' + request, function(json) {
 				$('#list-routes').html(routeTmpl(json));
 				$('#section-3 a').click(function(){
 					showNextPanel($(this));
@@ -243,7 +243,7 @@
 		}
 		if (num == 4) {
 			//get routes
-			$.getJSON('?q=list_route_details&route=' + request, function(json) {
+			$.getJSON('?q=list_route_details&routeId=' + request, function(json) {
 				$('#route-details').html(detailTmpl(json));
 			});
 		}

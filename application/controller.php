@@ -66,13 +66,14 @@ class Controller {
 		
 		} else if ($q == 'search') {
 			$this->search();
-
+		
 		} else if ($q == 'route_details') {
 			$this->route_details();
 
 		} else if ($q == 'browse') {
 			$this->browse();
-
+		} else if ($q == 'list_areas') {
+			$this->list_areas();
 		} else if ($q == 'attempt') {
 			$this->attempt();
 
@@ -94,8 +95,6 @@ class Controller {
 			popular_routes();
 		} else if($q == 'list_routes') {
 			list_routes();
-		} else if($q == 'list_areas') {
-			list_areas();
 		} else if($q == 'list_crags_by_area') {
 			list_crags_by_area($_REQUEST['area']);
 		} else if($q == 'list_routes_by_crag') {
@@ -158,6 +157,12 @@ class Controller {
 
 	function search() {
 		Load::view('search.php');
+
+	}
+
+	function list_areas() {
+		$area = new Area();
+		$area->list_areas();
 
 	}
 
