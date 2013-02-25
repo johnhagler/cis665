@@ -80,7 +80,7 @@ class User extends BaseModel {
 
 
 		if (count($result) > 0) {
-			$hashed_password = $result[0]['password'];
+			$hashed_password = $result[0]['Password'];
 		} else {
 			return false;
 		}
