@@ -11,7 +11,7 @@
 (function(){
 	var vars = getUrlParams();
 
-	$.getJSON('?q=list_route_details&route=' + vars.route, function(json) {
+	$.getJSON('?q=list_route_details&routeId=' + vars.route, function(json) {
 
 		$.get('views/templates/route_details.html', function(data) {
 			var detailTmpl = Handlebars.compile(data);

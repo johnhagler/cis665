@@ -1,16 +1,18 @@
+<!--This template is used to define fields displayed for Route List-->
+
 <tr>
-	<th>Route</th>
-	<th>Col 1</th>
-	<th>Col 2</th>
-	<th>Col 3</th>
-	<th>Col 4</th>
+	<th>Route Name</th>
+	<th>Grade</th>
+	<th>Pitches</th>
+	<th>Height</th>
+	<th>Rating</th>
 </tr>
 {{#routes}}
 <tr>
-	<td><a href='#'>{{name}}</a></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
+	<td><a href='#' data-id="{{routeId}}" >{{routeName}}</a></td> <!--display route names as hyperlinks-->
+	<td>{{grade}}</td>
+	<td>{{pitches}}</td>
+	<td>{{height}}</td>
+	<td>{{rating}}</td>
 </tr>
 {{/routes}}

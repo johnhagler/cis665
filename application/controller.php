@@ -1,9 +1,13 @@
+
 <?php
 
 require_once 'application/load.php';
 require_once 'models/db.php';
 require_once 'models/user.php';
 require_once 'models/attempt.php';
+require_once 'models/crag.php';
+require_once 'models/area.php';
+require_once 'models/route.php';
 
 
 class Controller {
@@ -74,6 +78,7 @@ class Controller {
 			$this->browse();
 		} else if ($q == 'list_areas') {
 			$this->list_areas();
+
 		} else if ($q == 'attempt') {
 			$this->attempt();
 
@@ -95,12 +100,15 @@ class Controller {
 			popular_routes();
 		} else if($q == 'list_routes') {
 			list_routes();
-		} else if($q == 'list_crags_by_area') {
-			list_crags_by_area($_REQUEST['area']);
+		} else if($q == 'list_crags_by_area') { 
+			$crag = new Crag();
+			$crag -> list_crags_by_area($_REQUEST['areaId']);
 		} else if($q == 'list_routes_by_crag') {
-			list_routes_by_crag($_REQUEST['crag']);
+			$route = new Route();
+			$route -> list_routes_by_crag($_REQUEST['cragId']);
 		} else if($q == 'list_route_details') {
-			list_route_details($_REQUEST['route']);
+			$route = new Route();
+			$route -> list_route_details($_REQUEST['routeId']);
 		} else if($q == 'echo') {
 			echo json_encode($_REQUEST);
 		} else if($q == 'remote') {
@@ -165,6 +173,9 @@ class Controller {
 		$area->list_areas();
 
 	}
+
+
+
 
 	function route_details() {
 		Load::view('route_details.php');

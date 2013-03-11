@@ -1,9 +1,8 @@
 
 
-
 <div class="row">
 	<div class="twelve columns">
-		<h1>List Areas</h1>
+		<h1>List Crags</h1>
 	</div>
 </div>
 
@@ -14,13 +13,13 @@
 			
 		<table>
 			<tr>
-				<th>Area Name</th>
+				<th>Crag Name</th>
 			</tr>
 			<?php
 				foreach($data as $row) {
 			?>
 			<tr>
-				<td><?=$row['AreaName'] ?></td>
+				<td><?=$row['CragName'] ?></td>
 			</tr>
 			<?php } ?>
 		</table>
@@ -29,5 +28,11 @@
 
 	</div>
 </div>
+
+
+
+
+
+
 
 

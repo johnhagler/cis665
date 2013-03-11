@@ -148,6 +148,8 @@ class Data {
 
 
 
+/*
+	
 function list_areas() {
 	$data = array ('areas'=>
 		array(
@@ -165,6 +167,8 @@ function list_areas() {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
+
+
 
 function list_crags_by_area($area) {
 	if ($area == 'Central Oregon') {
@@ -197,7 +201,7 @@ function list_crags_by_area($area) {
 				),
 			)
 		);
-	}
+	} 
 
 	if ($area == 'Central Cali') {
 		$data = array ('crags'=>
@@ -219,6 +223,8 @@ function list_crags_by_area($area) {
 	echo json_encode($data);
 }
 
+
+
 function list_routes_by_crag($crag) {
 	
 	$data = array ('routes'=>
@@ -239,6 +245,9 @@ function list_routes_by_crag($crag) {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
+
+
+
 
 function list_route_details($route) {
 	$data = array ('name'=>$route);
@@ -294,6 +303,8 @@ function new_routes() {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
+
+
 
 function list_routes() {
 
@@ -375,7 +386,7 @@ function list_routes() {
 }
 
 
-
+*/
 
 
 ?>

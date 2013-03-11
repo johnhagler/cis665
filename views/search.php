@@ -13,6 +13,8 @@
 
 <div class="row">
 
+
+<!--GENERAL SEARCH
 	<div class="three columns">
 		<h3>Search</h3>
         <form action="#">
@@ -26,6 +28,47 @@
             </div>
         </form>
 	</div>
+-->
+
+
+<!--Search Routes by Multiple Criteria-->
+    <div class="three columns">
+        <h3>Search Routes</h3>
+
+        <form action="search_results.php" method="post" name="search_routes_multi" id="search_routes_multi">
+
+            <div class="row collapse">
+
+                <div class="nine mobile-three columns">
+                    <label for ="route_name">Route Name</label>
+                    <input type="text" name="route_name" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="area">Area</label>
+                    <input type="text" name="area" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="crag">Crag</label>
+                    <input type="text" name="crag" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="route_grade">Route Grade</label>
+                    <input type="text" name="route_grade" />
+                </div>
+                <div class="three mobile-one columns">
+                    <a class="button expand postfix">Search</a>            
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
 
 	<div class="nine columns">
 		<?php include 'templates/list_routes.php'; ?>
@@ -34,7 +77,7 @@
 	</div>
 
 </div>
-
+-->
 
 <?php include 'templates/route_details.php'; ?>
 
@@ -54,7 +97,7 @@
 
 
     function showRouteDetails(route) {
-        $.getJSON('?q=list_route_details&route=' + route, function(json) {
+        $.getJSON('?q=list_route_details&routeId=' + route, function(json) {
             $('#route-details').html(detailTmpl(json));
         });
     }

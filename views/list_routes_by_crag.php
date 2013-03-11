@@ -1,33 +1,27 @@
 
 
-
 <div class="row">
 	<div class="twelve columns">
-		<h1>List Areas</h1>
+		<h1>List Routes by Crag</h1>
 	</div>
 </div>
 
 
-
 <div class="row">
 	<div class="twelve columns">
-			
+
 		<table>
 			<tr>
-				<th>Area Name</th>
+				<th> Route Name</th>
 			</tr>
+
 			<?php
 				foreach($data as $row) {
 			?>
 			<tr>
-				<td><?=$row['AreaName'] ?></td>
+				<td><?=$row['RouteName'] ?></td>
 			</tr>
 			<?php } ?>
 		</table>
-
-
-
 	</div>
-</div>
-
-
+</div>	
