@@ -1,5 +1,15 @@
 <?php
 
+
+/* CIS665 - PHP Project - ClimbIt Application
+*	Team: John Hagler, Anna Chernyavskaya
+* 	Date: March 24, 2013
+*	Purpose: user.php class - contains methods related to User access 
+* 	Uses: base.php
+*	Extends: BaseModel
+*/
+
+
 require_once 'base.php';
 
 class User extends BaseModel {
@@ -8,14 +18,12 @@ class User extends BaseModel {
 	public $first_name;
 	public $last_name;
 	public $password;
-
 	public $submit;
 
-	
 
 	function __construct() {
-
 	}
+
 
 	public function get_user_info ($user_id) {
 
@@ -37,7 +45,8 @@ class User extends BaseModel {
 
 		return $user;
 				
-	}
+	}//end of get_user_info() method
+
 
 	public function isAuthenticated() {
 		if( isset($_SESSION['user']) ) {
@@ -65,7 +74,9 @@ class User extends BaseModel {
 		
 		header('Content-type: application/json');
 		echo json_encode($json);
-	}
+
+	}//end of check_unique() method
+
 
 
 	public function login() {
@@ -101,11 +112,14 @@ class User extends BaseModel {
 		}
 
 		return $result;
-	}
+
+	}// end of login() method
+
 
 	public function logout() {
 		$_SESSION['user'] = null;
-	}
+	}//end of logout() method
+
 
 	public function create_new() {
 
@@ -123,9 +137,9 @@ class User extends BaseModel {
 
 		$_SESSION['user'] = $this;
 
-	}
+	}//end of create_new() method
 
 
-}
+}//end of User Class
 
 ?>

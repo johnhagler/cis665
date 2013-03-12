@@ -1,5 +1,15 @@
 <?php 
 
+
+/* CIS665 - PHP Project - ClimbIt Application
+*	Team: John Hagler, Anna Chernyavskaya
+* 	Date: March 24, 2013
+*	Purpose: remote_data.php class - contains methods to setup cURL connection 
+* 	Uses: 
+*	Extends: 
+*/
+
+
 class RemoteData {
 
 

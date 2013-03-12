@@ -70,6 +70,18 @@ class Controller {
 		
 		} else if ($q == 'search') {
 			$this->search();
+
+		} else if ($q == 'search_routes') { //search page - display of routes by user's multi-criteria input
+
+      		$route = isset($_REQUEST['route']) ? $_REQUEST['route'] : '';
+      		$area = isset($_REQUEST['area']) ? $_REQUEST['area'] : '';
+			$crag = isset($_REQUEST['crag']) ? $_REQUEST['crag'] : '';
+			$grade = isset($_REQUEST['grade']) ? $_REQUEST['grade'] : '';
+			$rating = isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '';
+
+			$r = new Route();
+			$r->search_routes_multi($route, $area, $crag, $grade, $rating);	
+
 		
 		} else if ($q == 'route_details') {
 			$this->route_details();
@@ -96,9 +108,12 @@ class Controller {
 
 		} else if($q == 'new_routes') {
 			new_routes();
+
 		} else if($q == 'popular_routes') {
 			popular_routes();
+
 		} else if($q == 'list_routes') {
+<<<<<<< HEAD
 			list_routes();
 		} else if($q == 'list_crags_by_area') { 
 			$crag = new Crag();
@@ -109,8 +124,26 @@ class Controller {
 		} else if($q == 'list_route_details') {
 			$route = new Route();
 			$route -> list_route_details($_REQUEST['routeId']);
+=======
+			$route = new Route();
+			$route -> list_routes();
+
+		} else if($q == 'list_crags_by_area') { //browse page - second panel - listing of routes by area
+			$crag = new Crag();
+			$crag -> list_crags_by_area($_REQUEST['areaId']);
+
+		} else if($q == 'list_routes_by_crag') {//browse page - third panel - listing of routes by crag
+			$route = new Route();
+			$route -> list_routes_by_crag($_REQUEST['cragId']);
+
+		} else if($q == 'list_route_details') { //browse page - forth pane - listing of route details by routeid
+			$route = new Route();
+			$route -> list_route_details($_REQUEST['routeId']);
+
+>>>>>>> mass commit
 		} else if($q == 'echo') {
 			echo json_encode($_REQUEST);
+
 		} else if($q == 'remote') {
 			$db = new Data();
 			echo $db->remote($_REQUEST['sql']);
@@ -163,7 +196,8 @@ class Controller {
 
 	}
 
-	function search() {
+
+	function search() { 
 		Load::view('search.php');
 
 	}
@@ -175,11 +209,20 @@ class Controller {
 	}
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> mass commit
 	function route_details() {
 		Load::view('route_details.php');
 	}
+
+/*
+	function list_route_details() {
+		Load::view('route_details.php');
+	} */
+
 
 	function browse() {
 		Load::view('browse.php');

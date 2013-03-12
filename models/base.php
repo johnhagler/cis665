@@ -1,6 +1,14 @@
 <?php 
 
 
+/* CIS665 - PHP Project - ClimbIt Application
+*	Team: John Hagler, Anna Chernyavskaya
+* 	Date: March 24, 2013
+*	Purpose: base.php class - contains common methods and properties used throughout the application
+* 	Uses: none
+*/
+
+
 class BaseModel {
 
 
@@ -12,12 +20,10 @@ class BaseModel {
 			if(isset($_REQUEST[$name])) {
 				$value = $_REQUEST[$name];
 				$this->{$name} = $value;
-			}
-					
+			}//end if clause					
+		}//end of foreach loop
+	}//end of populate method
 
-		}
-
-	}
 
 
 	public static function getClassProperties($className, $types='public') { 
@@ -40,8 +46,8 @@ class BaseModel {
 	            $props_arr = array_merge($parent_props_arr, $props_arr); 
 	    } 
 	    return $props_arr; 
-	}
+	}//end of getClassProperties method
 	
-}
+}//end of class
 
 ?>

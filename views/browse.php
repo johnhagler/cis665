@@ -109,12 +109,12 @@
 		<div class="twelve columns">
 			
 			<section id="section-1">
-				<h2>Area</h2>
+				<h2>Areas</h2>
 				<table class="twelve" id="list-areas"></table>
 			</section>
 
 			<section id="section-2" class="">
-				<h2>Crag</h2>
+				<h2>Crags </h2>
 				<table class="ten" id="list-crags"></table>
 			</section>
 

@@ -1,3 +1,4 @@
+
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Find a Route</h1>
@@ -14,19 +15,54 @@
 <div class="row">
 
 
+<<<<<<< HEAD
 <!--GENERAL SEARCH
 	<div class="three columns">
 		<h3>Search</h3>
         <form action="#">
+=======
+<!--Search Routes by Multiple Criteria-->
+<section>
+    <div class="three columns">
+        <h3>Search Routes</h3>
+
+        <form action="?q=search_routes" method="post" name="search" id="search">
+
+>>>>>>> mass commit
             <div class="row collapse">
-              <div class="nine mobile-three columns">
-                <input type="text" />
-              </div>
-              <div class="three mobile-one columns">
-                <a class="button expand postfix">Search</a>
-              </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="name">Route</label>
+                    <input type="text" name="route" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="area">Area</label>
+                    <input type="text" name="area" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="crag">Crag</label>
+                    <input type="text" name="crag" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="grade">Grade</label>
+                    <input type="text" name="grade" />
+                </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="rating">Rating</label>
+                    <input type="text" name="rating" />
+                </div>
+
+                <div class="three mobile-one columns">
+                  <a class="button expand postfix">Search</a>       
+                    <input type="submit" name="search" value="Search"/>   
+                </div>
             </div>
         </form>
+<<<<<<< HEAD
 	</div>
 -->
 
@@ -66,26 +102,37 @@
     </div>
 
 
+=======
+    </div>
+</section>
+
+      
+>>>>>>> mass commit
 
 
 
 
-	<div class="nine columns">
-		<?php include 'templates/list_routes.php'; ?>
-		<table id="routes" class="twelve" style="margin-top:14px;">
-		</table>
-	</div>
 
+<<<<<<< HEAD
 </div>
 -->
+=======
 
-<?php include 'templates/route_details.php'; ?>
+>>>>>>> mass commit
+
+    <div class="nine columns">
+        <table id="routes" class="twelve" style="margin-top:14px;">
+        </table>
+    </div>
+
+</div>
 
 <div class="row">
     <div class="twelve columns">
         <div id="route-details"></div>      
     </div>
 </div>
+    
     
 
 
@@ -109,6 +156,14 @@
 
 <script type="text/javascript">
 
+    $("form#search").submit(function (){
+        var param = $(this).serialize();
+        getRouteData(param);
+        return false;
+    });
+
+
+
     var data = {};
     var rowsTmpl;
     var colsTmpl;
@@ -128,12 +183,12 @@
     );
 
 
-    loadRowsTmpl.pipe(
-        function () {
-            $.getJSON('?q=list_routes', function(json) {
+    
+    function getRouteData (param) {
+            $.getJSON('?q=search_routes&' + param, function(json) {
                 data = json;
 
-
+            $('#routes').html('');
                 $('#routes').append(colsTmpl(data));
                 $('#routes').append(rowsTmpl(data));
 
@@ -147,8 +202,6 @@
 
             });
         }
-    );
-
 
     
     
