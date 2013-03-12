@@ -106,10 +106,12 @@ class Controller {
 			$this->user_check_unique();
 
 		} else if($q == 'new_routes') {
-			new_routes();
+			$route = new Route();
+			$route->new_routes();
 
 		} else if($q == 'popular_routes') {
-			popular_routes();
+			$route = new Route();
+			$route->popular_routes();
 
 		} else if($q == 'list_routes') {
 			$route = new Route();
