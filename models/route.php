@@ -1,10 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-require_once 'crag.php';
-require_once 'db.php';
-require_once 'base.php';
-=======
 
 /* CIS665 - PHP Project - ClimbIt Application
 *	Team: John Hagler, Anna Chernyavskaya
@@ -17,7 +12,6 @@ require_once 'base.php';
 
 require_once 'crag.php'; //contains parent class 
 require_once 'db.php'; //contains sql connection methods
->>>>>>> mass commit
 
 
 class Route extends Crag {
@@ -37,22 +31,13 @@ class Route extends Crag {
 	}
 
 
-<<<<<<< HEAD
-	//method to produce a listing of all routes by crag name
-	public function list_routes_by_crag($crag) {
-=======
 	//method to produce a listing of all routes by crag name (uses crag id as parameter)
 	function list_routes_by_crag($crag) {
->>>>>>> mass commit
 
 		//execute sql query on the DB to get route data
 		$sql = "select *
 				from Route
-<<<<<<< HEAD
-				";
-=======
 				where cragId = $crag";
->>>>>>> mass commit
 
 
 		$db = new Data(); //create connection object
@@ -68,26 +53,16 @@ class Route extends Crag {
 			$route = array (
 				'routeId' => $result['RouteID'],
 				'routeName' => $result['RouteName'],
-<<<<<<< HEAD
-=======
 				'routeDescr' => $result['RouteDescr'],
->>>>>>> mass commit
 				'grade' => $result['Grade'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
 				'addDate' => $result['AddDate']
 				);
-<<<<<<< HEAD
-		}//close foreach loop
-
-
-		array_push($routes, $route);//stack the array
-=======
 
 			array_push($routes, $route);//stack the array
 
 		}//close foreach loop
->>>>>>> mass commit
 
 		$data = array('routes' => $routes); //assign "routes" array to a $data object
 
@@ -98,41 +73,6 @@ class Route extends Crag {
 
 
 
-<<<<<<< HEAD
-
-
-	//method to list all details about the route by route name
-	function list_route_details($route) {
-
-		//execute sql query on the database
-		$sql = "select DISTINCT a.RouteName,a.RouteDescr, a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate
-				from Route a, Crag b, Area c
-				where a.CragID = b.CragID
-				and b.AreaID = c.AreaID
-				order by a.AddDate";
-
-		$db = new Data();//create new data/connect object
-
-		return $results = $db->run($sql); //execute query and assign results to a $results object
-
-	}//end of list_route_detailed method
-
-
-
-	//method to search routes by multiple criteria
-	function search_routes_multi ($route_name, $area, $crag, $grade, $rating) {
-
-
-		$sql = "select c.AreaName, b.CragName, a.RouteName,a.Grade, a.Pitches, a.Height, a.Rating
-				from Route a, Crag b, Area c
-				where a.CragID = b.CragID
-				and b.AreaID = c.AreaID";
-
-
-		if ($route_name != '')
-		{
-			$sql .= "and a.RouteName like '%$route_name%'";
-=======
 	//#################################################################################################
 	//###################################  NEED TO COMPLETE ###########################################
 
@@ -225,36 +165,20 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 		if ($route != '')
 		{
 			$sql .= " and a.RouteName like '%$route%'";
->>>>>>> mass commit
 		}//end of routeName if clause
 
 		if ($area != '')
 		{
-<<<<<<< HEAD
-			$sql .= "and c.AreaName like '%$area%'";
-=======
 			$sql .= " and c.AreaName like '%$area%'";
->>>>>>> mass commit
 		}//end of area if clause
 
 		if ($crag != '')
 		{
-<<<<<<< HEAD
-			$sql .= "and b.CragName like '%$crag%'";
-=======
 			$sql .= " and b.CragName like '%$crag%'";
->>>>>>> mass commit
 		}//end of crag if clause
 
 		if ($grade != '')
 		{
-<<<<<<< HEAD
-			$sql .= "and a.Grade like '%$grade%'";
-		}//end of grade if clause
-
-
-		$sql .= "order by a.RouteName, b.CragName, C.AreaName"; 
-=======
 			$sql .= " and a.Grade like '%$grade%'";
 		}//end of grade if clause
 
@@ -266,16 +190,10 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 
 		$sql .= " order by a.RouteName, b.CragName, C.AreaName"; 
 
->>>>>>> mass commit
 
 
 		$db = new Data(); //create connection object
 
-<<<<<<< HEAD
-		return $data = $db->run($sql); //execute the sql query and assign the results of the query to 'results' variable
-
-
-=======
 
 		$result = $db -> run($sql);//execute the sql query and assign the results of the query to 'results' variable
 
@@ -338,7 +256,6 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 		header('Content-type: application/json'); //designate the content to be in JSON format
 		echo json_encode($data); //display route details data in JSON format
 
->>>>>>> mass commit
 	}//end of "search_routes_multi" method
 
 
@@ -364,12 +281,8 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 
 
 
-<<<<<<< HEAD
-	//method to search routes by route name
-=======
 
 	//method to search routes by route name  
->>>>>>> mass commit
 	function search_routes_by_grade($grade) {
 
 		$sql = "select c.AreaName, b.CragName, a.RouteName,a.Grade, a.Pitches, a.Height, a.Rating
@@ -387,30 +300,6 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 
 
 
-<<<<<<< HEAD
-
-	//method to search routes by route name
-	function search_routes_by_grange($grade1, $grade2) {
-
-		$sql = "select c.AreaName, b.CragName, a.RouteName,a.Grade, a.Pitches, a.Height, a.Rating
-				from Route a, Crag b, Area c
-				where a.CragID = b.CragID
-				and b.AreaID = c.AreaID
-				and a.Grade between '%$grade1%' and '%$grade2%'    
-				Order By a.Grade, a.RouteName";
-				//NEED TO UPDATE GRADE RANGE TO CONVERT
-
-		$db = new Data();//
-
-		return $results = $db->run($sql);
-
-	}//end of search_routes_by_name method
-
-
-
-
-=======
->>>>>>> mass commit
 
 }//end of Route class
 

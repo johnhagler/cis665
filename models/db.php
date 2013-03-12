@@ -162,10 +162,6 @@ class Data {
 
 
 /*
-<<<<<<< HEAD
-	
-=======
->>>>>>> mass commit
 function list_areas() {
 	$data = array ('areas'=>
 		array(
@@ -261,9 +257,6 @@ function list_routes_by_crag($crag) {
 	header('Content-type: application/json');
 	echo json_encode($data);
 }
-
-
-
 
 function list_route_details($route) {
 	$data = array ('name'=>$route);
@@ -401,13 +394,8 @@ function list_routes() {
 	echo json_encode($data);
 }
 
-<<<<<<< HEAD
-
-*/
-=======
 */
 
->>>>>>> mass commit
 
 
 ?>

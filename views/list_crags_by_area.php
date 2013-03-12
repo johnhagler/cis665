@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-
-=======
 <!--
->>>>>>> mass commit
 
 <div class="row">
 	<div class="twelve columns">
@@ -28,11 +24,7 @@
 			<?php } ?>
 		</table>
 	</div>
-<<<<<<< HEAD
-</div>	
-=======
 </div>
 
 -->	
->>>>>>> mass commit
 

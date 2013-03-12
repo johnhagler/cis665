@@ -1,4 +1,3 @@
-
 <?php
 
 require_once 'application/load.php';
@@ -113,18 +112,6 @@ class Controller {
 			popular_routes();
 
 		} else if($q == 'list_routes') {
-<<<<<<< HEAD
-			list_routes();
-		} else if($q == 'list_crags_by_area') { 
-			$crag = new Crag();
-			$crag -> list_crags_by_area($_REQUEST['areaId']);
-		} else if($q == 'list_routes_by_crag') {
-			$route = new Route();
-			$route -> list_routes_by_crag($_REQUEST['cragId']);
-		} else if($q == 'list_route_details') {
-			$route = new Route();
-			$route -> list_route_details($_REQUEST['routeId']);
-=======
 			$route = new Route();
 			$route -> list_routes();
 
@@ -140,7 +127,6 @@ class Controller {
 			$route = new Route();
 			$route -> list_route_details($_REQUEST['routeId']);
 
->>>>>>> mass commit
 		} else if($q == 'echo') {
 			echo json_encode($_REQUEST);
 
@@ -209,11 +195,6 @@ class Controller {
 	}
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> mass commit
 	function route_details() {
 		Load::view('route_details.php');
 	}

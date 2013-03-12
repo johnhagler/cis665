@@ -15,12 +15,6 @@
 <div class="row">
 
 
-<<<<<<< HEAD
-<!--GENERAL SEARCH
-	<div class="three columns">
-		<h3>Search</h3>
-        <form action="#">
-=======
 <!--Search Routes by Multiple Criteria-->
 <section>
     <div class="three columns">
@@ -28,7 +22,6 @@
 
         <form action="?q=search_routes" method="post" name="search" id="search">
 
->>>>>>> mass commit
             <div class="row collapse">
 
                 <div class="nine mobile-three columns">
@@ -62,63 +55,16 @@
                 </div>
             </div>
         </form>
-<<<<<<< HEAD
-	</div>
--->
-
-
-<!--Search Routes by Multiple Criteria-->
-    <div class="three columns">
-        <h3>Search Routes</h3>
-
-        <form action="search_results.php" method="post" name="search_routes_multi" id="search_routes_multi">
-
-            <div class="row collapse">
-
-                <div class="nine mobile-three columns">
-                    <label for ="route_name">Route Name</label>
-                    <input type="text" name="route_name" />
-                </div>
-
-                <div class="nine mobile-three columns">
-                    <label for ="area">Area</label>
-                    <input type="text" name="area" />
-                </div>
-
-                <div class="nine mobile-three columns">
-                    <label for ="crag">Crag</label>
-                    <input type="text" name="crag" />
-                </div>
-
-                <div class="nine mobile-three columns">
-                    <label for ="route_grade">Route Grade</label>
-                    <input type="text" name="route_grade" />
-                </div>
-                <div class="three mobile-one columns">
-                    <a class="button expand postfix">Search</a>            
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-=======
     </div>
 </section>
 
       
->>>>>>> mass commit
 
 
 
 
 
-<<<<<<< HEAD
-</div>
--->
-=======
 
->>>>>>> mass commit
 
     <div class="nine columns">
         <table id="routes" class="twelve" style="margin-top:14px;">
@@ -144,7 +90,7 @@
 
 
     function showRouteDetails(route) {
-        $.getJSON('?q=list_route_details&routeId=' + route, function(json) {
+        $.getJSON('?q=list_route_details&route=' + route, function(json) {
             $('#route-details').html(detailTmpl(json));
         });
     }

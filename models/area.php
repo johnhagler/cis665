@@ -11,11 +11,8 @@ require_once 'base.php'; //contains common methods
 require_once 'db.php';//contains sql connection methods
 
 
-<<<<<<< HEAD
-=======
 class Area extends BaseModel {
 
->>>>>>> mass commit
 	//declare class variables
 	public $area_id;
 	public $area_name;
@@ -30,11 +27,7 @@ class Area extends BaseModel {
 	function __construct() {
 	}
 
-<<<<<<< HEAD
-	//method to retrieve a list of areas from the database
-=======
 	//method to retrieve a list of areas from the database - all areas stored in db
->>>>>>> mass commit
 	public function list_areas() {
 
 		//execute a sql query to return area data from the database
