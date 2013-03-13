@@ -20,7 +20,7 @@ class Controller {
 
 		session_start();
 		
-		$secured = array('planit','climbit');
+		$secured = array('planit','climbit','log_attempt');
 		
 		$q = (isset($_REQUEST['q'])) ? $_REQUEST['q'] : '';
 		

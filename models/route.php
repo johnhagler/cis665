@@ -122,7 +122,10 @@ class Route extends Crag {
 	function list_route_details($routeId) {
 
 		//execute sql query on the database
-		$sql = "select a.RouteID, a.RouteName,a.RouteDescr, a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate
+		$sql = "select 
+				a.RouteID, a.RouteName,a.RouteDescr, 
+				a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate,
+				c.AreaName, b.CragName
 				from Route a, Crag b, Area c
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
@@ -134,13 +137,15 @@ class Route extends Crag {
 
 		foreach ($result as $result) {
 			$route = array (
-				'routeId' => $result['RouteID'],
-				'routeName' => $result['RouteName'],
-				'routeDescr' => $result['RouteDescr'],
-				'grade' => $result['Grade'],
-				'pitches' => $result['Pitches'],
-				'height' => $result['Height'],
-				'addDate' => $result['AddDate']
+				'routeId' 		=> $result['RouteID'],
+				'routeName' 	=> $result['RouteName'],
+				'routeDescr' 	=> $result['RouteDescr'],
+				'areaName' 		=> $result['AreaName'],
+				'cragName' 		=> $result['CragName'],
+				'grade' 		=> $result['Grade'],
+				'pitches' 		=> $result['Pitches'],
+				'height' 		=> $result['Height'],
+				'addDate' 		=> $result['AddDate']
 				);
 
 		}//end of foreach
