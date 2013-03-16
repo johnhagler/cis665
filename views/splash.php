@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="twelve columns panel radius">
-		<h1>Hello!</h1>
+		<h1>Welcome to ClimbIt!</h1>
         <h2 class="subheader left"><small id="user_name"></small></h2>
         <h3 class="subheading right"><small id="user_id"></small></h3>
 	</div>
@@ -24,7 +24,16 @@
 
         <div class="row">
             <div class="eight columns">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus est modi veritatis ducimus beatae labore culpa voluptate corporis dicta consectetur adipisci eos ut ea blanditiis inventore assumenda maiores nostrum praesentium.</p>
+                <p>
+                    <!--<h1> <strong>Welcome to ClimbIt! </strong></h1> -->
+                    <br>
+                       <p> <strong>Are you a climbing enthusiast? Then you are at the right place! </strong></p>
+                        Whether you are a beginner or expert, competitive or laid-back, our site provides a centralized place for climbers to 
+                        search for great new routes to climb and crags to visit, discover new projects, plan your climbing trips, record your climbing 
+                        experiences and track your progress over time. Hope you enjoy it!
+                        <br>
+                </p>
+                <p> <strong>Climb on!!!</strong> </p>
             </div>
             <div class="four columns">
                 <a href="?q=signup" class="large button radius">Sign up NOW</a>
@@ -72,4 +81,3 @@
         directionalNav: false
     });
 </script>
-
