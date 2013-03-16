@@ -73,47 +73,97 @@ class Route extends Crag {
 
 
 
-	//#################################################################################################
-	//###################################  NEED TO COMPLETE ###########################################
 
 	//method to produce a listing of all routes by crag name
 	function new_routes() {
 
 		//execute sql query on the DB to get route data
-		$sql = "select "; 
+		$sql = "select TOP 3 a.RouteID, a.RouteName, a.Grade, a.AddDate, c.AreaName, b.CragName
+				from Route a, Crag b, Area c
+				where a.CragID = b.CragID
+				and b.AreaID = c.AreaID
+				Order by AddDate DESC"; 
 
 
 		$db = new Data(); //create connection object
 
 		$results = $db->run($sql); //execute the sql query and assign the results of the query to 'results' variable
 
-		$routes = array();//create "routes" array
+		$newroutes = array();//create "routes" array
 
 
 		//loop through the query results to create a md array "route"
 		foreach ($results as $result) {
 
-			$route = array (
+			$newroute = array (
+				'areaName' => $result['AreaName'],
+				'cragName' => $result['CragName'],
 				'routeId' => $result['RouteID'],
 				'routeName' => $result['RouteName'],
-				'routeDescr' => $result['RouteDescr'],
 				'grade' => $result['Grade'],
-				'pitches' => $result['Pitches'],
-				'height' => $result['Height'],
 				'addDate' => $result['AddDate']
 				);
 
-			array_push($routes, $route);//stack the array
+			array_push($newroutes, $newroute);//stack the array
 
 		}//close foreach loop
 
 
-		$data = array('routes' => $routes); //assign "routes" array to a $data object
+		$data = array('newroutes' => $newroutes); //assign "routes" array to a $data object
 
 		header('Content-type: application/json'); //designate the content to be in JSON format
 		echo json_encode($data); //display routes data in JSON format
 
 	}//close new_routes() method
+
+
+
+
+
+	//method to produce a listing of all routes by crag name
+	function popular_routes() {
+
+		//execute sql query on the DB to get route data
+		$sql = "select TOP 3 a.RouteID, a.RouteName, a.Grade, c.AreaName, b.CragName, a.Rating
+				from Route a, Crag b, Area c
+				where a.CragID = b.CragID
+				and b.AreaID = c.AreaID
+				Order by Rating DESC"; 
+
+
+		$db = new Data(); //create connection object
+
+		$results = $db->run($sql); //execute the sql query and assign the results of the query to 'results' variable
+
+		$poproutes = array();//create "routes" array
+
+
+		//loop through the query results to create a md array "route"
+		foreach ($results as $result) {
+
+			$poproute = array (
+				'areaName' => $result['AreaName'],
+				'cragName' => $result['CragName'],
+				'routeId' => $result['RouteID'],
+				'routeName' => $result['RouteName'],
+				'grade' => $result['Grade'],
+				'rating' => $result['Rating']
+				);
+
+			array_push($poproutes, $poproute);//stack the array
+
+		}//close foreach loop
+
+
+		$data = array('poproutes' => $poproutes); //assign "routes" array to a $data object
+
+		header('Content-type: application/json'); //designate the content to be in JSON format
+		echo json_encode($data); //display routes data in JSON format
+
+	}//close popular_routes() method
+
+
+
 
 
 
@@ -302,9 +352,6 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 		return $results = $db->run($sql);
 
 	}//end of search_routes_by_name method
-
-
-
 
 }//end of Route class
 
