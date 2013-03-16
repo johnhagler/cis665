@@ -12,6 +12,13 @@
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
+nav li.name a {
+	font-family: 'Pacifico', cursive;
+}
+nav li.name a:hover {
+	background-color:#2284a1;
+
+}
 
 
 

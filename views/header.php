@@ -42,7 +42,7 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
     <link rel="stylesheet" href="stylesheets/general_foundicons.css">
-
+    <link href='http://fonts.googleapis.com/css?family=Damion|Pacifico' rel='stylesheet' type='text/css'>
     <script src="javascripts/modernizr.foundation.js"></script>
     <script src="javascripts/foundation.min.js"></script>
     <script src="javascripts/app.js"></script>
