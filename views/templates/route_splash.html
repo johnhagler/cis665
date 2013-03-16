@@ -1,8 +1,18 @@
 <ul class="disc">
-{{#routes}}
+{{#newroutes}}
     <li>
-        <h5 style="margin:0 0 -8px 0;"><a href="?q=route_details&routeId={{route}}">{{route}}</a></h5>
-        <p style="margin:0;">{{area}}, {{crag}}</p>
+        <h5 style="margin:0 0 -8px 0;"><a href="?q=route_details&routeId={{route}}">{{routeName}}</a></h5>
+        <p style="margin:0;">{{areaName}}, {{cragName}}, {{grade}}, {{addDate}}</p>
     </li>
-{{/routes}}
+{{/newroutes}}
+</ul>
+
+
+<ul class="disc">
+{{#poproutes}}
+    <li>
+        <h5 style="margin:0 0 -8px 0;"><a href="?q=route_details&routeId={{route}}">{{routeName}}</a></h5>
+        <p style="margin:0;">{{areaName}}, {{cragName}}, {{grade}}, Rating {{rating}}</p>
+    </li>
+{{/poproutes}}
 </ul>
