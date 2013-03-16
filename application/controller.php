@@ -8,7 +8,6 @@ require_once 'models/crag.php';
 require_once 'models/area.php';
 require_once 'models/route.php';
 
-
 class Controller {
 
 	public $user;
