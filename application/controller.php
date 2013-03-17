@@ -71,14 +71,16 @@ class Controller {
 
 		} else if ($q == 'search_routes') { //search page - display of routes by user's multi-criteria input
 
-      		$route = isset($_REQUEST['route']) ? $_REQUEST['route'] : '';
       		$area = isset($_REQUEST['area']) ? $_REQUEST['area'] : '';
 			$crag = isset($_REQUEST['crag']) ? $_REQUEST['crag'] : '';
+			$stonetype = isset($_REQUEST['stonetype']) ? $_REQUEST['stonetype'] : '';		
+      		$route = isset($_REQUEST['route']) ? $_REQUEST['route'] : '';
 			$grade = isset($_REQUEST['grade']) ? $_REQUEST['grade'] : '';
+			$pitches = isset($_REQUEST['pitches']) ? $_REQUEST['pitches'] : '';
 			$rating = isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '';
 
 			$r = new Route();
-			$r->search_routes_multi($route, $area, $crag, $grade, $rating);	
+			$r->search_routes_multi($route, $area, $crag, $stonetype, $grade, $pitches, $rating);	
 
 		
 		} else if ($q == 'route_details') {

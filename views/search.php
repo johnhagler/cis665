@@ -40,29 +40,34 @@
                 </div>
 
                 <div class="nine mobile-three columns">
+                    <label for ="stonetype">Stone Type</label>
+                    <input type="text" name="stonetype" />
+                </div>
+
+                <div class="nine mobile-three columns">
                     <label for ="grade">Grade</label>
                     <input type="text" name="grade" />
                 </div>
+
+                <div class="nine mobile-three columns">
+                    <label for ="pitches">Pitches</label>
+                    <input type="text" name="pitches" />
+                </div>
+
 
                 <div class="nine mobile-three columns">
                     <label for ="rating">Rating</label>
                     <input type="text" name="rating" />
                 </div>
 
-                <div class="three mobile-one columns">
-                  <a class="button expand postfix">Search</a>       
-                    <input type="submit" name="search" value="Search"/>   
+                <div class="nine mobile-one columns">        
+                    <input type="submit" name="search" value="Search" class="button button-large even radius">
+                    </a>  
                 </div>
             </div>
         </form>
     </div>
 </section>
-
-      
-
-
-
-
 
 
 

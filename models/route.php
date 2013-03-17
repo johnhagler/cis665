@@ -16,15 +16,6 @@ require_once 'db.php'; //contains sql connection methods
 
 class Route extends Crag {
 
-	public $route_id; 
-	public $route_name;
-	public $route_descr;
-	public $route_type;
-	public $pitches;
-	public $grade;
-	public $height;
-	public $add_date;
-
 	
 	//class constructor
 	function __construct() {
@@ -57,6 +48,7 @@ class Route extends Crag {
 				'grade' => $result['Grade'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
+				'rating' => $result['Rating'],
 				'addDate' => $result['AddDate']
 				);
 
@@ -183,9 +175,9 @@ class Route extends Crag {
 
 		$db = new Data();//create new data/connect object
 
-		$result = $db -> run($sql);
+		$results = $db -> run($sql);
 
-		foreach ($result as $result) {
+		foreach ($results as $result) {
 			$route = array (
 				'routeId' 		=> $result['RouteID'],
 				'routeName' 	=> $result['RouteName'],
@@ -195,6 +187,7 @@ class Route extends Crag {
 				'grade' 		=> $result['Grade'],
 				'pitches' 		=> $result['Pitches'],
 				'height' 		=> $result['Height'],
+				'rating'		=> $result['Rating'],
 				'addDate' 		=> $result['AddDate']
 				);
 
@@ -208,7 +201,7 @@ class Route extends Crag {
 
 
 
-function search_routes_multi ($route, $area, $crag, $grade, $rating) {
+function search_routes_multi ($route, $area, $crag, $stonetype, $grade, $pitches, $rating) {
 
 		$sql = "select a.RouteID, c.AreaName, b.CragName, a.RouteName, a.RouteDescr, a.Grade, a.Pitches, 
 				a.Height, a.Rating, a.AddDate, d.StoneTypeName, c.ApproachTime
@@ -232,15 +225,25 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 			$sql .= " and b.CragName like '%$crag%'";
 		}//end of crag if clause
 
+		if ($stonetype != '')
+		{
+			$sql .= " and d.StoneTypeName like '%$stonetype%'";
+		}//end of stonetype if clause
+
 		if ($grade != '')
 		{
 			$sql .= " and a.Grade like '%$grade%'";
 		}//end of grade if clause
 
+		if ($pitches != '')
+		{
+			$sql .= " and a.Pitches like '%$pitches%'";
+		}//end of pitches if clause
+
 		if ($rating != '')
 		{
-			$sql .= " and a.Rating like '%$rating%'";
-		}
+			$sql .= " and a.Rating like '$rating%'";
+		}//end of "rating" if clause
 
 
 		$sql .= " order by a.RouteName, b.CragName, C.AreaName"; 
@@ -252,6 +255,24 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 
 		$result = $db -> run($sql);//execute the sql query and assign the results of the query to 'results' variable
 
+		
+		$resultc = count($result);//determine if any records were returned from the search query
+
+
+		//if no records were returned, display an "search error" message 
+		if ($resultc == '0') {
+
+			$cols = array('title'=>"SEARCH ERROR:");
+
+			$row = array('routeName' => "Oops...sorry, we could not find any routes matching your search criteria. Please try again...");
+
+			$data = array('cols' => $cols, 'rows' => $row);
+		}//end of "if" clause for no matching search records
+
+
+		//Otherwise, if matching search records were found
+		else
+		{
 // build columns array
 		$cols = 
 			array(
@@ -266,7 +287,7 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'stoneType',
+					'name' => 'stonetype',
 					'title' => 'Stone Type',
 					'sortStyle' => 'alpha'
 				),
@@ -276,8 +297,18 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'approachTime',
-					'title' => 'Time to Approach',
+					'name' => 'grade',
+					'title' => 'Grade',
+					'sortStyle' => 'numeric'
+				),
+				array(
+					'name' => 'pitches',
+					'title' => 'Pitches',
+					'sortStyle' => 'numeric'
+				),
+				array(
+					'name' => 'rating',
+					'title' => 'Rating',
 					'sortStyle' => 'numeric'
 				)
 			);
@@ -291,25 +322,29 @@ function search_routes_multi ($route, $area, $crag, $grade, $rating) {
 				'routeId' => $result['RouteID'],
 				'areaName' => $result['AreaName'],
 				'cragName' => $result['CragName'],
-				'stoneType' => $result['StoneTypeName'],
+				'stonetype' => $result['StoneTypeName'],
 				'routeName' => $result['RouteName'],
 				'routeDescr' => $result['RouteDescr'],
 				'approachTime' => $result['ApproachTime'],
 				'grade' => $result['Grade'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
+				'rating' => $result['Rating'],
 				'addDate' => $result['AddDate']
 				);
 
 			array_push($routes, $route);//stack the array
 		}//end of foreach
-		
 
-		$data = array('cols' => $cols, 'rows' => $routes); //execute query and assign results to $data
+	$data = array('cols' => $cols, 'rows' => $routes); //execute query and assign results to $data
 
 
-		header('Content-type: application/json'); //designate the content to be in JSON format
-		echo json_encode($data); //display route details data in JSON format
+	}//end of if/else for match results
+
+	
+	header('Content-type: application/json'); //designate the content to be in JSON format
+	echo json_encode($data); //display route details data in JSON format
+
 
 	}//end of "search_routes_multi" method
 
