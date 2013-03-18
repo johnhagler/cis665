@@ -167,7 +167,7 @@ class Route extends Crag {
 		$sql = "select 
 				a.RouteID, a.RouteName,a.RouteDescr, 
 				a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate,
-				c.AreaName, b.CragName
+				c.AreaName, b.CragName, c.AreaImage
 				from Route a, Crag b, Area c
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
@@ -188,7 +188,8 @@ class Route extends Crag {
 				'pitches' 		=> $result['Pitches'],
 				'height' 		=> $result['Height'],
 				'rating'		=> $result['Rating'],
-				'addDate' 		=> $result['AddDate']
+				'addDate' 		=> $result['AddDate'],
+				'areaImage' 	=> $result['AreaImage']
 				);
 
 		}//end of foreach
