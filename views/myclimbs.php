@@ -17,11 +17,21 @@ a.remove:hover {
 				<th><a href="#">Area</a></th>
 				<th><a href="#">Crag</a></th>
 				<th><a href="#">Route</a></th>
+<<<<<<< HEAD
 				<th><a href="#">Difficulty</a></th>
+=======
+				<th><a href="#">Type</a></th>
+				<th><a href="#">Grade</a></th>
+				<th><a href="#">Attempts</a></th>
+				<th><a href="#">Summits</a></th>
+>>>>>>> changes to search - display route details
 				<th><a href="#">Rating</a></th>
 				<th></th>
 			</tr>
+
+			{{#attempts}}
 			<tr>
+<<<<<<< HEAD
 				<td></td>
 				<td></td>
 				<td></td>
@@ -100,16 +110,33 @@ a.remove:hover {
 						</a></li>
 					</ul>
 				</td>
+=======
+				<td>{{areaName}}</td>
+				<td>{{cragName}}</td>
+				<td><a href='#' data-id="{{routeId}}" >{{routeName}}</a></td> 
+				<td>{{routeType}}</td>
+				<td>{{grade}}</td>
+				<td>{{attemptId}}</td>
+				<td>{{attemptStatus}}</td>
+				<td>{{effortRating}}</td>
+				<td>{{startdatetime}}</td>
+>>>>>>> changes to search - display route details
 			</tr>
+			{{/attempts}}
+
 		</table>
 	</div>
 </div>
 
 
+<<<<<<< HEAD
 <script>
 	$('a.remove').click(function(){
 		$(this).parents('tr').remove();
 		return false;
 	});
+=======
+
+>>>>>>> changes to search - display route details
 
 </script>

@@ -94,8 +94,8 @@
     });
 
 
-    function showRouteDetails(route) {
-        $.getJSON('?q=list_route_details&route=' + route, function(json) {
+    function showRouteDetails(routeId) {
+        $.getJSON('?q=list_route_details&routeId=' + routeId, function(json) {
             $('#route-details').html(detailTmpl(json));
         });
     }
@@ -148,7 +148,8 @@
                 });
                 
                 $("#routes td a").click(function (){
-                    showRouteDetails($(this).html());
+                    var routeId = $(this).data('route-id');
+                    showRouteDetails(routeId);
                 });
 
             });

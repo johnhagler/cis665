@@ -1,0 +1,23 @@
+<!--This template is used to define fields for displaying user's climbing attempts-->
+
+<tr>
+	<th>Route Name</th>
+	<th>Route Type</th>
+	<th>Grade</th>
+	<th>Attempt ID</th>
+	<th>Started On</th>	
+	<th>Attempt Status</th>
+	<th>Effort Rating</th>
+</tr>
+{{#attempts}}
+<tr>
+	<td><a href='#' data-id="{{routeId}}" >{{routeName}}</a></td> <!--display area names as hyperlinks-->
+	<td>{{routeType}}</td>
+	<td>{{grade}}</td>
+	<td>{{attemptId}}</td>
+	<td>{{startdatetime}}</td>
+	<td>{{attemptStatus}}</td>
+	<td>{{effortRating}}</td>
+</tr>
+{{/attempts}}
+

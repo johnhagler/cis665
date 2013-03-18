@@ -92,7 +92,8 @@ class Controller {
 			$this->list_areas();
 
 		} else if ($q == 'attempt') {
-			$this->attempt();
+			$attempt = new Attempt();
+			$attempt->list_attempts_by_user($_REQUEST['userId']);
 
 		} else if ($q == 'log_attempt') {
 			$this->log_attempt();
