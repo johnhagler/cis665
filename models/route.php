@@ -168,7 +168,7 @@ class Route extends Crag {
 				a.RouteID, a.RouteName,a.RouteDescr, 
 				a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate,
 				c.AreaName, b.CragName, c.AreaImage
-				from Route a, Crag b, Area c
+				from RouteRating a, Crag b, Area c
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
 				and a.RouteID = $routeId";
@@ -206,7 +206,7 @@ function search_routes_multi ($route, $area, $crag, $stonetype, $grade, $pitches
 
 		$sql = "select a.RouteID, c.AreaName, b.CragName, a.RouteName, a.RouteDescr, a.Grade, a.Pitches, 
 				a.Height, a.Rating, a.AddDate, d.StoneTypeName, c.ApproachTime
-				from Route a, Crag b, Area c, StoneType d
+				from RouteRating a, Crag b, Area c, StoneType d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
 				and c.StoneTypeID = d.StoneTypeID";
