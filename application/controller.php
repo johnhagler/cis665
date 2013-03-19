@@ -91,9 +91,12 @@ class Controller {
 		} else if ($q == 'list_areas') {
 			$this->list_areas();
 
-		} else if ($q == 'attempt') {
+		} else if ($q == 'list_attempts') {
+			
+			$user = $_SESSION['user'];
+			
 			$attempt = new Attempt();
-			$attempt->list_attempts_by_user($_REQUEST['userId']);
+			$attempt->list_attempts_by_user($user->user_id);
 
 		} else if ($q == 'log_attempt') {
 			$this->log_attempt();

@@ -12,100 +12,8 @@ a.remove:hover {
 
 <div class="row">
 	<div class="twelve columns">
-		<table class="twelve">
-			<tr>
-				<th><a href="#">Area</a></th>
-				<th><a href="#">Crag</a></th>
-				<th><a href="#">Route</a></th>
-				<th><a href="#">Difficulty</a></th>
-				<th><a href="#">Type</a></th>
-				<th><a href="#">Grade</a></th>
-				<th><a href="#">Attempts</a></th>
-				<th><a href="#">Summits</a></th>
-				<th><a href="#">Rating</a></th>
-				<th></th>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td style="padding:0;" >
-					<ul class="button-group radius" style="margin:0;">
-						<li><a href="" class="button tiny secondary">
-							<i class="foundicon-flag"></i>
-						</a></li>
-						<li><a href="" class="button tiny alert">
-							<i class="foundicon-error"></i>
-						</a></li>
-						<li><a href="" class="button tiny secondary remove">
-							<i class="foundicon-remove"></i>
-						</a></li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td style="padding:0;" >
-					<ul class="button-group radius" style="margin:0;">
-						<li><a href="" class="button tiny secondary">
-							<i class="foundicon-flag"></i>
-						</a></li>
-						<li><a href="" class="button tiny alert">
-							<i class="foundicon-error"></i>
-						</a></li>
-						<li><a href="" class="button tiny secondary remove">
-							<i class="foundicon-remove"></i>
-						</a></li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td style="padding:0;" >
-					<ul class="button-group radius" style="margin:0;">
-						<li><a href="" class="button tiny secondary">
-							<i class="foundicon-flag"></i>
-						</a></li>
-						<li><a href="" class="button tiny alert">
-							<i class="foundicon-error"></i>
-						</a></li>
-						<li><a href="" class="button tiny secondary remove">
-							<i class="foundicon-remove"></i>
-						</a></li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td style="padding:0;" >
-					<ul class="button-group radius" style="margin:0;">
-						<li><a href="" class="button tiny secondary">
-							<i class="foundicon-flag"></i>
-						</a></li>
-						<li><a href="" class="button tiny alert">
-							<i class="foundicon-error"></i>
-						</a></li>
-						<li><a href="" class="button tiny secondary remove">
-							<i class="foundicon-remove"></i>
-						</a></li>
-					</ul>
-				</td>
-
+		<table class="twelve" id="list-attempts">
+			
 
 		</table>
 	</div>
@@ -113,10 +21,41 @@ a.remove:hover {
 
 
 <script>
-	$('a.remove').click(function(){
-		$(this).parents('tr').remove();
-		return false;
+
+(function(){
+	
+	$.getJSON('?q=list_attempts', function(json) {
+
+		$.get('views/templates/list_attempts.html', function(data) {
+			var detailTmpl = Handlebars.compile(data);
+			$('#list-attempts').html(detailTmpl(json));
+			$('.remove').click(removeHandler);
+			updateStatus();
+		});
+
 	});
+})();
+
+var removeHandler = function () {
+	$(this).parents('tr').remove();
+	return false;
+}
+
+var updateStatus = function () {
+	$('#list-attempts tbody tr td[data-attempt-status]').each( function (){
+		var status = $(this).data('attempt-status');
+
+		if (status == 'nogo') {
+			$(this).find('.' + status).removeClass('secondary').addClass('alert');
+		} else if (status == 'summit') {
+			$(this).find('.' + status).removeClass('secondary').addClass('success');
+		}
+		
+		
+
+	});
+}
+
 
 
 </script>

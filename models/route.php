@@ -278,12 +278,12 @@ function search_routes_multi ($route, $area, $crag, $stonetype, $grade, $pitches
 		$cols = 
 			array(
 				array(
-					'name' => 'area',
+					'name' => 'areaName',
 					'title' => 'Area',
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'crag',
+					'name' => 'cragName',
 					'title' => 'Crag',
 					'sortStyle' => 'alpha'
 				),
@@ -293,14 +293,14 @@ function search_routes_multi ($route, $area, $crag, $stonetype, $grade, $pitches
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'route',
+					'name' => 'routeName',
 					'title' => 'Route',
 					'sortStyle' => 'alpha'
 				),
 				array(
 					'name' => 'grade',
 					'title' => 'Grade',
-					'sortStyle' => 'numeric'
+					'sortStyle' => 'alpha'
 				),
 				array(
 					'name' => 'pitches',

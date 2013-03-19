@@ -1,23 +1,42 @@
 <!--This template is used to define fields for displaying user's climbing attempts-->
-
-<tr>
-	<th>Route Name</th>
-	<th>Route Type</th>
-	<th>Grade</th>
-	<th>Attempt ID</th>
-	<th>Started On</th>	
-	<th>Attempt Status</th>
-	<th>Effort Rating</th>
-</tr>
+<thead>
+	<tr>
+		<th>Route Name</th>
+		<th>Route Type</th>
+		<th>Grade</th>
+		<th>Started On</th>	
+		<th>Effort Rating</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
 {{#attempts}}
-<tr>
-	<td><a href='#' data-id="{{routeId}}" >{{routeName}}</a></td> <!--display area names as hyperlinks-->
-	<td>{{routeType}}</td>
-	<td>{{grade}}</td>
-	<td>{{attemptId}}</td>
-	<td>{{startdatetime}}</td>
-	<td>{{attemptStatus}}</td>
-	<td>{{effortRating}}</td>
-</tr>
+	<tr>
+		<td><a href='?q=route_details&routeId={{routeId}}'>{{routeName}}</a></td> <!--display route names as hyperlinks-->
+		<td>{{routeType}}</td>
+		<td>{{grade}}</td>
+		<td>{{startDateTime}}</td>
+		<td>{{effortRating}}</td>
+		<td style="padding:0;" data-attempt-status="{{attemptStatus}}">
+			<ul class="button-group radius" style="margin:0;">
+				<li class="button tiny secondary summit">
+					<i class="foundicon-flag"></i>
+				</li>
+				<li class="button tiny secondary nogo">
+					<i class="foundicon-error"></i>
+				</li>
+			</ul>
+		</td>
+		<td style="padding:0;">
+			<ul class="button-group radius" style="margin:0;">
+				<li class="button tiny secondary remove">
+					<i class="foundicon-remove"></i>
+				</li>
+			</ul>
+			
+		</td>
+	</tr>
 {{/attempts}}
+</tbody>
 

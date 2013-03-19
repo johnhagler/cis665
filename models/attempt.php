@@ -57,18 +57,27 @@ class Attempt extends BaseModel {
 	function list_attempts_by_user($user) {
 
 		//execute sql query on the DB to get route data
-		$sql = "select a.AttemptID, a.UserID, a.RouteID, a.StartDateTime, a.EffortRating, a.AttemptStatus,
+		$sql = "select a.AttemptID, a.UserID, a.RouteID, 
+						convert(varchar, a.StartDateTime, 100) as StartDateTime,
+						
+						a.EffortRating, a.AttemptStatus,
 						CONCAT(b.FirstName, ' ', b.LastName) AS UserName, 
 						c.RouteName, c.RouteType, c.Grade,
 						d.CragName, e.AreaName
-				from Attempt a, User b, Route c, Crag d, Area e 
-				where e.AreaID = d.AreaID
-				and d.CragID = c.CragID
+				from 
+					Attempt a, [User] b, Route c, Crag d, Area e 
+				where 
+				    e.AreaID  = d.AreaID
+				and d.CragID  = c.CragID
 				and c.RouteID = a.RouteID
-				and a.UserID = b.UserID 
-				and userID = $user";
+				and a.UserID  = b.UserID 
+				and a.UserID  = '$user'
 
+				order by
+					a.StartDateTime DESC
+				";
 
+				
 		$db = new Data(); //create connection object
 
 		$results = $db->run($sql); //execute the sql query and assign the results of the query to 'results' variable
