@@ -70,8 +70,14 @@ class Attempt extends BaseModel {
 				    e.AreaID  = d.AreaID
 				and d.CragID  = c.CragID
 				and c.RouteID = a.RouteID
+<<<<<<< HEAD
 				and a.UserID  = b.UserID 
 				and a.UserID  = '$user'
+=======
+				and a.UserID = b.UserID 
+				and userID = $user
+				Order by a.StartDateTime DESC";
+>>>>>>> changes from 3/17
 
 				order by
 					a.StartDateTime DESC
