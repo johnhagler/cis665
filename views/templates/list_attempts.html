@@ -5,20 +5,20 @@
 		<th>Route Type</th>
 		<th>Grade</th>
 		<th>Started On</th>	
-		<th>Effort Rating</th>
+		<th>My Rating</th>
 		<th>Status</th>
 		<th></th>
 	</tr>
 </thead>
 <tbody>
 {{#attempts}}
-	<tr>
+	<tr data-attempt-id="{{attemptId}}" >
 		<td><a href='?q=route_details&routeId={{routeId}}'>{{routeName}}</a></td> <!--display route names as hyperlinks-->
 		<td>{{routeType}}</td>
 		<td>{{grade}}</td>
 		<td>{{startDateTime}}</td>
 		<td>{{effortRating}}</td>
-		<td style="padding:0;" data-attempt-status="{{attemptStatus}}" data-attempt-id="{{attemptId}}">
+		<td style="padding:0;" data-attempt-status="{{attemptStatus}}" >
 			<ul class="button-group radius" style="margin:0;">
 				<li class="button tiny secondary summit">
 					<i class="foundicon-flag"></i>

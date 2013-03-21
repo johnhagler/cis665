@@ -23,20 +23,12 @@
         </div>
 
         <div class="row">
-            <div class="eight columns">
-                <p>
-                    <!--<h1> <strong>Welcome to ClimbIt! </strong></h1> -->
-                    <br>
-                       <p> <strong>Are you a climbing enthusiast? Then you are at the right place! </strong></p>
-                        Whether you are a beginner or expert, competitive or laid-back, our site provides a centralized place for climbers to 
-                        search for great new routes to climb and crags to visit, discover new projects, plan your climbing trips, record your climbing 
-                        experiences and track your progress over time. Hope you enjoy it!
-                        <br>
-                </p>
-                <p> <strong>Climb on!!!</strong> </p>
-            </div>
-            <div class="four columns">
-                <a href="?q=signup" class="large button radius">Sign up NOW</a>
+            <div class="twelve columns">
+                <p class="byline">Are you a climbing enthusiast? <br> Then you are at the right place! </p>
+                <p>Whether you are a beginner or expert, competitive or laid-back, our site provides a centralized place for climbers to 
+                    search for great new routes to climb and crags to visit, discover new projects, plan your climbing trips, record your climbing 
+                    experiences and track your progress over time. Hope you enjoy it!
+                <p class="signoff"> &mdash; Climb on! </p>
             </div>
         </div>
     </div>

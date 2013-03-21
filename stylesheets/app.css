@@ -4,7 +4,7 @@
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
-:: Page Name 1
+:: splash.php
 :: Page Name 2
 */
 
@@ -23,8 +23,20 @@ nav li.name a:hover {
 
 
 /* -----------------------------------------
-   Page Name 1
+   splash.php
 ----------------------------------------- */
+.byline {
+	text-align: center;
+	font-size: 1.5em;
+	font-style: italic;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.signoff {
+	font-family: 'Pacifico', cursive;
+	text-align: right;
+	font-size: 4em;
+}
 
 
 

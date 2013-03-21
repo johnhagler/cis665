@@ -37,9 +37,25 @@ a.remove:hover {
 	});
 })();
 
+
 var removeHandler = function () {
-	$(this).parents('tr').remove();
-	return false;
+
+	var self = this;
+
+	var id = $(this).parents('tr').data('attempt-id');
+
+	var url = '?q=remove_attempt&attempt_id=' + id;
+
+	$.post(url, function(data){
+
+		if (data.success) {
+			$(self).parents('tr').remove();	
+		} else {
+			alert('sorry, the server is down AGAIN!!!!!');
+		}
+
+	});
+
 }
 
 
@@ -68,7 +84,7 @@ var highlightIndividualStatus = function (el) {
 var updateStatusHandler = function () {
 	var td = $(this).parents('td');
 	var status = $(td).data('attempt-status');
-	var id = $(td).data('attempt-id');
+	var id = $(td).parent('tr').data('attempt-id');
 
 	var newStatus = status == 'summit' ? 'nogo' : 'summit';
 	$(td).data('attempt-status', newStatus);

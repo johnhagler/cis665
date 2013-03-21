@@ -92,14 +92,20 @@ class Attempt extends BaseModel {
 
 
 	//method to delete attempt report from user's climbs
-	function delete_attempt($attemptId) {
+	function remove_attempt() {
 
-		$sql = "delete from Attempt where AttemptID = $attemptId";
+		$sql = "delete from Attempt where AttemptID = $this->attempt_id";
 
 		$db = new Data();
 		$db->run($sql);
 
-	}//end of delete_attempt() method
+		$data = array('success' => true);
+
+		header('Content-type: application/json'); //designate the content to be in JSON format
+		echo json_encode($data); //display routes data in JSON format
+
+	}//end of remove_attempt() method
+
 
 
 
@@ -116,9 +122,7 @@ class Attempt extends BaseModel {
 		$db = new Data();
 		$db -> run($sql);
 
-
 		$data = array('success' => true);
-
 
 		header('Content-type: application/json'); //designate the content to be in JSON format
 		echo json_encode($data); //display routes data in JSON format

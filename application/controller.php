@@ -106,10 +106,9 @@ class Controller {
 		} else if ($q == 'update_attempt') {
 			$this->update_attempt();
 
-		} else if ($q == 'delete_attempt') {
-			$this->attempt->delete_attempt();
-		
-		//&&&&&&&&&&&&&&&&&&&&&&&&&
+		} else if ($q == 'remove_attempt') {
+			$this->remove_attempt();
+
 
 
 		} else if ($q == 'climbit') {
@@ -255,6 +254,15 @@ class Controller {
 	}
 
 
+	function remove_attempt() {
+
+		$attempt = new Attempt();
+		$attempt->populate();
+
+		$attempt->remove_attempt();
+	}
+
+
 
 	function myclimbs() {
 		Load::view('myclimbs.php');
@@ -274,9 +282,8 @@ class Controller {
 			
 		}
 		
-		
-
 	}
+
 
 	function unauthorized() {
 		Load::view('unauthorized.php');
