@@ -17,7 +17,7 @@
 
 
 	<div class="row">
-		<div class="twleve columns">
+		<div class="twelve columns">
 			<div class="row collapse">
 			      <div class="four mobile-one columns">
 			        <span class="prefix">Climb Date</span>

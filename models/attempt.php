@@ -53,6 +53,74 @@ class Attempt extends BaseModel {
 
 
 
+	//get attempt details by attemptId
+	function get_attempt_details ($attemptId) {
+
+		//execute sql query on the database
+		$sql = "select 
+					a.UserID, a.AttemptID, a.RouteId, b.RouteName, 
+					a.StartDateTime, a.EffortRating, a.AttemptStatus
+				from 
+					Attempt a, Route b
+				where 
+					a.RouteID = b.RouteID
+				and a.AttemptID = $attemptId";
+
+		$db = new Data();//create new data/connect object
+
+		$results = $db -> run($sql);
+
+		foreach ($results as $result) {
+			$attempt = array (
+				'routeId' 		=> $result['RouteID'],
+				'attemptId' 	=> $result['AttemptID'],
+				'userId' 		=> $result['UserID'],
+				'routeName' 	=> $result['RouteName'],
+				'startDateTime' => $result['StartDateTime'],
+				'effortRatng' 	=> $result['EffortRating'],
+				'status' 		=> $result['AttemptStatus']
+				);
+
+		}//end of foreach
+		
+		header('Content-type: application/json'); //designate the content to be in JSON format
+		echo json_encode($attempt); //display attempt details data in JSON format
+
+	}//end of get_attempt_details() method
+
+
+
+
+	//method to delete attempt report from user's climbs
+	function delete_attempt($attemptId) {
+
+		$sql = "delete from Attempt where AttemptID = $attemptId";
+
+		$db = new Data();
+		$db->run($sql);
+
+	}//end of delete_attempt() method
+
+
+
+	function update_attempt($attemptId, $startDateTime, $effortRating, $status) {
+
+		$sql = "Update 
+					Attempt 
+				Set 
+					StartDateTime = '$startDateTime',
+					EffortRating = '$effortRating',
+					AttemptStatus = '$status'
+				Where 
+					AttemptID = '$attemptId'
+				";
+
+		$db = new Data();
+		$db -> run($sql);
+	}//end of update_attempt() method
+
+
+
 	//method to produce a listing of all user attempts by user ID
 	function list_attempts_by_user($user) {
 
@@ -70,18 +138,9 @@ class Attempt extends BaseModel {
 				    e.AreaID  = d.AreaID
 				and d.CragID  = c.CragID
 				and c.RouteID = a.RouteID
-<<<<<<< HEAD
 				and a.UserID  = b.UserID 
 				and a.UserID  = '$user'
-=======
-				and a.UserID = b.UserID 
-				and userID = $user
 				Order by a.StartDateTime DESC";
->>>>>>> changes from 3/17
-
-				order by
-					a.StartDateTime DESC
-				";
 
 				
 		$db = new Data(); //create connection object

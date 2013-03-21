@@ -57,12 +57,12 @@ class Controller {
 		}
 
 
-
 		if ($q == '' || $q == 'home') {
 			$this->home();	
 
 		} else if ($q == 'user_details') {
 			$this->user_details();
+
 		} else if ($q == 'findit') {
 			$this->findit();
 		
@@ -100,9 +100,22 @@ class Controller {
 
 		} else if ($q == 'log_attempt') {
 			$this->log_attempt();
+			
+
+		//&&&&&&&&&&&&&&&&&&&&&&&&&
+		} else if ($q == 'update_attempt') {
+			$this->update_attempt();
+
+		} else if ($q == 'delete_attempt') {
+			$this->attempt->delete_attempt();
+		}
+		//&&&&&&&&&&&&&&&&&&&&&&&&&
+
 
 		} else if ($q == 'climbit') {
 			$this->myclimbs();
+
+
 
 		} else if ($q == 'signup') {
 			$this->signup();
@@ -178,11 +191,10 @@ class Controller {
 			$json = null;
 		}
 		
-		
-		
 		header('Content-type: application/json');
 		echo $json;
 	}
+
 
 	function findit() {
 		Load::view('findit.php');
@@ -205,11 +217,6 @@ class Controller {
 	function route_details() {
 		Load::view('route_details.php');
 	}
-
-/*
-	function list_route_details() {
-		Load::view('route_details.php');
-	} */
 
 
 	function browse() {
@@ -235,6 +242,19 @@ class Controller {
 		}
 
 	}
+
+	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+	function update_attempt() {
+
+		$attempt = new Attempt();
+		if(isset($_POST['attemptId'])) {
+			$attempt->update_attempt($_POST['attemptId'], $_POST['startDateTime'], $_POST['effortRating'], $_POST['status']);
+		}
+	}
+
+
+	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
 
 	function myclimbs() {
 		Load::view('myclimbs.php');
