@@ -108,7 +108,7 @@ class Controller {
 
 		} else if ($q == 'delete_attempt') {
 			$this->attempt->delete_attempt();
-		}
+		
 		//&&&&&&&&&&&&&&&&&&&&&&&&&
 
 
@@ -243,17 +243,17 @@ class Controller {
 
 	}
 
-	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+	
 	function update_attempt() {
 
 		$attempt = new Attempt();
-		if(isset($_POST['attemptId'])) {
-			$attempt->update_attempt($_POST['attemptId'], $_POST['startDateTime'], $_POST['effortRating'], $_POST['status']);
+		if(isset($_REQUEST['attemptId'])) {
+			
+			$attempt->update_attempt($_REQUEST['attemptId'],  $_REQUEST['status']);
+
 		}
 	}
 
-
-	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 
 	function myclimbs() {

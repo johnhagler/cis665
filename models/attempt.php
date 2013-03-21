@@ -103,13 +103,11 @@ class Attempt extends BaseModel {
 
 
 
-	function update_attempt($attemptId, $startDateTime, $effortRating, $status) {
+	function update_attempt($attemptId, $status) {
 
 		$sql = "Update 
 					Attempt 
 				Set 
-					StartDateTime = '$startDateTime',
-					EffortRating = '$effortRating',
 					AttemptStatus = '$status'
 				Where 
 					AttemptID = '$attemptId'
@@ -117,6 +115,14 @@ class Attempt extends BaseModel {
 
 		$db = new Data();
 		$db -> run($sql);
+
+
+		$data = array('success' => true);
+
+
+		header('Content-type: application/json'); //designate the content to be in JSON format
+		echo json_encode($data); //display routes data in JSON format
+
 	}//end of update_attempt() method
 
 
