@@ -1,5 +1,5 @@
 <!--This template is used to define fields displayed for Route List-->
-
+<thead>
 <tr>
 	<th>Route Name</th>
 	<th>Grade</th>
@@ -7,6 +7,8 @@
 	<th>Height</th>
 	<th>Rating</th>
 </tr>
+</thead>
+<tbody>
 {{#routes}}
 <tr>
 	<td><a href='#' data-id="{{routeId}}" >{{routeName}}</a></td> <!--display route names as hyperlinks-->
@@ -16,7 +18,4 @@
 	<td class="text-center">{{rating}}</td>
 </tr>
 {{/routes}}
-
-
-
-
+</tbody>

@@ -98,7 +98,7 @@
 
                 <div class="nine mobile-three columns">
                     <label for ="rating">Rating</label>
-                    <input type="text" name="rating" />
+                    <input type="number" step="0.1" min="0" max="5" name="rating" />
                 </div>
 
                 <div class="nine mobile-one columns">        

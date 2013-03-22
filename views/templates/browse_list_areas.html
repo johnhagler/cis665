@@ -1,5 +1,5 @@
 <!--This template is used to define fields displayed for Area List-->
-
+<thead>
 <tr>
 	<th>Area</th>
 	<th>Description</th>
@@ -8,13 +8,16 @@
 	<th>Stone Type</th>
 	<th>Approach Time</th>
 </tr>
+</thead>
+<tbody>
 {{#areas}}
 <tr>
 	<td><a href='#' data-id="{{areaId}}" >{{name}}</a></td> <!--display area names as hyperlinks-->
-	<td>{{descr}}</td>
+	<td class="description">{{descr}}</td>
 	<td>{{city}}</td>
 	<td>{{state}}</td>
 	<td>{{stoneType}}</td>
 	<td>{{approachTime}}</td>
 </tr>
 {{/areas}}
+</tbody>

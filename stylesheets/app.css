@@ -45,14 +45,99 @@ h1, h2, h3, h4, h5, h6, th {
 }
 
 #user-target h2, #user-target h3 {
-		margin-bottom: 0;
-	}
+	margin-bottom: 0;
 }
 
 
 
 /* -----------------------------------------
-   Page Name 2
+   browse.php
 ----------------------------------------- */
+	#panels td.description {
+		max-width:400px;
+	}
+
+	#panels td p {
+		line-height:.8em;
+	}
+
+	#panels td a {
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+
+	#panels td {
+		vertical-align: top;
+	}
+
+	#panels {
+		overflow: hidden;
+	}
+
+	#panels section {
+		width:100%; position: absolute;
+		-webkit-transition: 0.25s all ease-in; 
+		-moz-transition: 0.25s all ease-in; 
+		-o-transition: 0.25s all ease-in; 
+		transition: 0.25s all ease-in; 
+
+	}
+
+	#panels.section-1 #section-1 {
+		margin-left:0; 
+		position: relative;
+	}
+	#panels.section-1 #section-2 {
+		margin-left:150%; 
+	}
+	#panels.section-1 #section-3 {
+		margin-left:250%; 
+	}
+	#panels.section-1 #section-4 {
+		margin-left:350%; 
+	}
+
+	#panels.section-2 #section-1 {
+		margin-left:-150%; 
+	}
+	#panels.section-2 #section-2  {
+		margin-left:0; 
+		position: relative;
+	}
+	#panels.section-2 #section-3 {
+		margin-left:150%; 
+	}
+	#panels.section-2 #section-4 {
+		margin-left:250%; 
+	}
+
+	#panels.section-3 #section-1 {
+		margin-left:-250%; 
+	}
+	#panels.section-3 #section-2  {
+		margin-left:-150%; 
+	}
+	#panels.section-3 #section-3 {
+		margin-left:0; 
+		position: relative;
+	}
+	#panels.section-3 #section-4 {
+		margin-left:150%; 
+	}
+
+	#panels.section-4 #section-1 {
+		margin-left:-350%; 
+	}
+	#panels.section-4 #section-2  {
+		margin-left:-250%; 
+	}
+	#panels.section-4 #section-3 {
+		margin-left:-150%; 
+	}
+	#panels.section-4 #section-4 {
+		margin-left:0; 
+		position: relative;
+	}
+
 
 

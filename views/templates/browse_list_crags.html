@@ -1,15 +1,16 @@
 <!--This template is used to define fields displayed for Crag listing and list crags displayed as hyperlinks-->
-
+<thead>
 <tr>
 	<th>Crag</th>
 	<th>Description</th>
-
-
 </tr>
+</thead>
+<tbody>
 {{#crags}}
 <tr>
 	<td><a href='#' data-id="{{cragId}}" >{{cragName}}</a></td> <!--display crag names as hyperlinks-->
-	<td>{{cragDescr}}</td>
+	<td class="description">{{cragDescr}}</td>
 
 </tr>
 {{/crags}}
+</tbody>

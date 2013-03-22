@@ -206,7 +206,7 @@ class Route extends Crag {
 
 
 
-function search_routes_multi () {
+	function search_routes_multi () {
 
 		$sql = "select a.RouteID, c.AreaName, b.CragName, a.RouteName, a.RouteDescr, a.Grade, a.Pitches, 
 				a.Height, a.Rating, a.AddDate, d.StoneTypeName, c.ApproachTime
@@ -215,39 +215,32 @@ function search_routes_multi () {
 				and b.AreaID = c.AreaID
 				and c.StoneTypeID = d.StoneTypeID";
 
-		if ($this->route != '')
-		{
+		if ($this->route != '') {
 			$sql .= " and a.RouteName like '%$this->route%'";
 		}//end of routeName if clause
 
-		if ($this->area != '')
-		{
+		if ($this->area != '') {
 			$sql .= " and c.AreaName like '%$this->area%'";
 		}//end of area if clause
 
-		if ($this->crag != '')
-		{
+		if ($this->crag != '') {
 			$sql .= " and b.CragName like '%$this->crag%'";
 		}//end of crag if clause
 
-		if ($this->stonetype != '')
-		{
+		if ($this->stonetype != '') {
 			$sql .= " and d.StoneTypeName like '%$this->stonetype%'";
 		}//end of stonetype if clause
 
-		if ($this->grade != '')
-		{
+		if ($this->grade != '') {
 			$sql .= " and a.Grade like '%$this->grade%'";
 		}//end of grade if clause
 
-		if ($this->pitches != '')
-		{
+		if ($this->pitches != '') {
 			$sql .= " and a.Pitches like '%$this->pitches%'";
 		}//end of pitches if clause
 
-		if ($this->rating != '')
-		{
-			$sql .= " and a.Rating like '%$this->rating%'";
+		if ($this->rating != '') {
+			$sql .= " and a.Rating = $this->rating";
 		}//end of "rating" if clause
 
 
