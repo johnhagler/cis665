@@ -12,17 +12,21 @@ class Controller {
 
 	public $user;
 
-	function __construct() {
+	function route($q) {
+		$reflectionMethod = new ReflectionMethod('Controller', $q);
+		$reflectionMethod->invoke($this, null);	
+	}
+
+	function run_app() {
 
 
 		$this->user = new User();
 
 		session_start();
 		
-		$secured = array('planit','climbit','log_attempt');
-		
+		$secured = array('myclimbs','log_attempt');
+
 		$q = (isset($_REQUEST['q'])) ? $_REQUEST['q'] : '';
-		
 
 		if ( $this->user->isAuthenticated() ) {
 			//cool beans...
@@ -37,147 +41,60 @@ class Controller {
 
 		} 
 
-		if ($q == 'login') {
+		
 
-			$success = $this->login();
-
-			if ($success) {
-				$q = $_REQUEST['forward'];
-				if ($q == 'logout') {
-					$q = 'home';
-				}
-			} else {
-				Load::view('login.php');
-			}
-			
-
-		} else if ($q == 'logout') {
-			$this->logout();
+		if ($q == '') {
+			//set default query parm
 			$q = 'home';
-		}
-
-
-		if ($q == '' || $q == 'home') {
-			$this->home();	
-
-		} else if ($q == 'user_details') {
-			$this->user_details();
-
-		} else if ($q == 'findit') {
-			$this->findit();
-		
-		} else if ($q == 'search') {
-			$this->search();
-
-		} else if ($q == 'search_routes') { //search page - display of routes by user's multi-criteria input
-
-      		$area = isset($_REQUEST['area']) ? $_REQUEST['area'] : '';
-			$crag = isset($_REQUEST['crag']) ? $_REQUEST['crag'] : '';
-			$stonetype = isset($_REQUEST['stonetype']) ? $_REQUEST['stonetype'] : '';		
-      		$route = isset($_REQUEST['route']) ? $_REQUEST['route'] : '';
-			$grade = isset($_REQUEST['grade']) ? $_REQUEST['grade'] : '';
-			$pitches = isset($_REQUEST['pitches']) ? $_REQUEST['pitches'] : '';
-			$rating = isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '';
-
-			$r = new Route();
-			$r->search_routes_multi($route, $area, $crag, $stonetype, $grade, $pitches, $rating);	
-
-		
-		} else if ($q == 'route_details') {
-			$this->route_details();
-
-		} else if ($q == 'browse') {
-			$this->browse();
-		} else if ($q == 'list_areas') {
-			$this->list_areas();
-
-		} else if ($q == 'list_attempts') {
-			
-			$user = $_SESSION['user'];
-			
-			$attempt = new Attempt();
-			$attempt->list_attempts_by_user($user->user_id);
-
-		} else if ($q == 'log_attempt') {
-			$this->log_attempt();
-			
-
-		//&&&&&&&&&&&&&&&&&&&&&&&&&
-		} else if ($q == 'update_attempt') {
-			$this->update_attempt();
-
-		} else if ($q == 'remove_attempt') {
-			$this->remove_attempt();
-
-
-
-		} else if ($q == 'climbit') {
-			$this->myclimbs();
-
-
-
-		} else if ($q == 'signup') {
-			$this->signup();
-
-		} else if ($q == 'user_check_unique') {
-			$this->user_check_unique();
-
-		} else if($q == 'new_routes') {
-			$route = new Route();
-			$route->new_routes();
-
-		} else if($q == 'popular_routes') {
-			$route = new Route();
-			$route->popular_routes();
-
-		} else if($q == 'list_routes') {
-			$route = new Route();
-			$route -> list_routes();
-
-		} else if($q == 'list_crags_by_area') { //browse page - second panel - listing of routes by area
-			$crag = new Crag();
-			$crag -> list_crags_by_area($_REQUEST['areaId']);
-
-		} else if($q == 'list_routes_by_crag') {//browse page - third panel - listing of routes by crag
-			$route = new Route();
-			$route -> list_routes_by_crag($_REQUEST['cragId']);
-
-		} else if($q == 'list_route_details') { //browse page - forth pane - listing of route details by routeid
-			$route = new Route();
-			$route -> list_route_details($_REQUEST['routeId']);
-
-		} else if($q == 'echo') {
-			echo json_encode($_REQUEST);
-
-		} else if($q == 'remote') {
-			$db = new Data();
-			echo $db->remote($_REQUEST['sql']);
-
 		} 
 
+		//route to the appropriate function
+		$this->route($q);
 
 	}
 
 	
+
+
+
+	//------------------------------------------------
+	// Login/logout functions
 	function login() {
 
 		$authenticated = $this->user->login();
 
-		// if the authentication attempt is unsuccessful, to to the full login page
-		return $authenticated;
+		if ($authenticated) {
+			$q = $_REQUEST['forward'];
+			if ($q == 'logout') {
+				$this->home();
+			} else {
+				$this->route($q);
+			}
+			
+		} else {
+			Load::view('login.php');
+		}
 
 	}
-
-
 
 	function logout() {
 		$this->user->logout();
-
+		$this->home();
 	}
 
+	function unauthorized() {
+		Load::view('unauthorized.php');
+	}
+
+	//------------------------------------------------
+
+
+
+
+	//------------------------------------------------
+	// Home (Splash) Page
 	function home() {
 		Load::view('splash.php');
-
 	}
 
 	function user_details() {
@@ -195,16 +112,64 @@ class Controller {
 		echo $json;
 	}
 
+	function route_details() {
+		Load::view('route_details.php');
+	}
 
+	function new_routes() {
+		$route = new Route();
+		$route->new_routes();
+	}
+
+	function popular_routes() {
+		$route = new Route();
+		$route->popular_routes();
+	}
+
+	//------------------------------------------------
+
+
+
+
+
+
+	//------------------------------------------------
+	// Find a Route (choose Search or Browse)
 	function findit() {
 		Load::view('findit.php');
 
 	}
+	//------------------------------------------------
 
 
+
+
+
+
+	//------------------------------------------------
+	// Search Page
 	function search() { 
 		Load::view('search.php');
 
+	}
+
+	function search_routes() {
+		$route = new Route();
+		$route -> populate();
+		$route -> search_routes_multi();	
+
+	}
+	//------------------------------------------------
+
+
+
+
+
+
+	//------------------------------------------------
+	// Browse Page
+	function browse() {
+		Load::view('browse.php');
 	}
 
 	function list_areas() {
@@ -213,17 +178,40 @@ class Controller {
 
 	}
 
-
-	function route_details() {
-		Load::view('route_details.php');
+	function list_crags_by_area() {
+		$crag = new Crag();
+		$crag -> populate();
+		$crag -> list_crags_by_area($_REQUEST['areaId']);
 	}
 
+	function list_routes_by_crag() {
+		$route = new Route();
+		$route -> populate();
+		$route -> list_routes_by_crag($_REQUEST['cragId']);
+	}		
+	//------------------------------------------------
 
-	function browse() {
-		Load::view('browse.php');
 
+
+
+
+
+	//------------------------------------------------
+	// Shared functions
+	function list_route_details() {
+		//browse page - forth pane - listing of route details by routeid
+		$route = new Route();
+		$route -> populate();
+		$route -> list_route_details($_REQUEST['routeId']);
 	}
+	//------------------------------------------------
 
+
+
+
+
+	//------------------------------------------------
+	// Attempts (My Climbs)
 	function attempt() {
 		Load::view('attempt.php');
 
@@ -256,10 +244,8 @@ class Controller {
 
 
 	function remove_attempt() {
-
 		$attempt = new Attempt();
 		$attempt->populate();
-
 		$attempt->remove_attempt();
 	}
 
@@ -270,6 +256,18 @@ class Controller {
 
 	}
 
+	function list_attempts() {
+		$user = $_SESSION['user'];
+		$attempt = new Attempt();
+		$attempt->list_attempts_by_user($user->user_id);
+
+	}
+	//------------------------------------------------
+
+
+
+	//------------------------------------------------
+	// Signup
 	function signup() {
 		$user = new User();
 		$user->populate();
@@ -285,10 +283,6 @@ class Controller {
 		
 	}
 
-
-	function unauthorized() {
-		Load::view('unauthorized.php');
-	}
 
 	//move this method to user.php
 	function user_check_unique() {

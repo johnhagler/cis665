@@ -8,7 +8,7 @@ $signup = '';
 
 if ($file_name == 'findit.php') {
   $findit = 'active';
-} else if ($file_name == 'climbit.php') {
+} else if ($file_name == 'myclimbs.php') {
   $climbit = 'active';
 } else if ($file_name == 'signup.php') {
     $signup = 'active';
@@ -64,7 +64,7 @@ if (isset($_SESSION['user'])) {
                     <ul class="left">
                         <li class="divider"></li>
                         <li class="<?php echo $findit ?>"><a href="?q=findit">Find a Route</a></li>
-                        <li class="<?php echo $climbit ?>"><a href="?q=climbit">My Climbs</a></li>
+                        <li class="<?php echo $climbit ?>"><a href="?q=myclimbs">My Climbs</a></li>
                     </ul>
                         <ul class="right">
                         <li class="divider"></li>

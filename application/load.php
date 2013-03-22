@@ -1,9 +1,7 @@
 <?php
 class Load {
-	public static function view($file_name, $data = null) {
-		if ( is_array($data) ) {
-			//extract($data);
-		}
+	
+	public static function view($file_name) {
 
 		include 'views/header.php';
 		include 'views/' . $file_name;

@@ -252,7 +252,7 @@
         }
         
         // remove all table rows
-        $("#routes tr>td").parent().remove();
+        $("#routes tbody").remove();
 
         $("#routes").append(rowsTmpl(data));
 

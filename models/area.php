@@ -14,13 +14,8 @@ require_once 'db.php';//contains sql connection methods
 class Area extends BaseModel {
 
 	//declare class variables
-	public $area_id;
-	public $area_name;
-	public $area_descr_short;
-	public $area_descr_long;
-	public $area_state;
-	public $area_city; 
-	public $approach_time;
+	public $area;
+	public $stonetype;
 
 
 	//class constructor method

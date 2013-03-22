@@ -17,6 +17,7 @@ require_once 'db.php'; //contains sql connection methods
 
 class Crag extends Area {
 
+	public $crag;
 
 	//class constructor
 	function __construct() { 

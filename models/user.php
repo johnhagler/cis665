@@ -21,10 +21,6 @@ class User extends BaseModel {
 	public $submit;
 
 
-	function __construct() {
-	}
-
-
 	public function get_user_info ($user_id) {
 
 		$user = new User();
