@@ -1,8 +1,13 @@
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>Welcome to ClimbIt!</h1>
-        <h2 class="subheader left"><small id="user_name"></small></h2>
-        <h3 class="subheading right"><small id="user_id"></small></h3>
+        <script id="user" type="x-template">
+            {{#user}}
+            <h2 class="subheader left"><small>{{first_name}} {{last_name}}</small></h2>
+            <h3 class="subheading right"><small>{{user_id}}</small></h3>
+            {{/user}}
+        </script>
+        <div id="user-target"></div>
 	</div>
 </div>
 
@@ -25,7 +30,7 @@
         <div class="row">
             <div class="twelve columns">
                 <p class="byline">Are you a climbing enthusiast? <br> Then you are at the right place! </p>
-                <p>Whether you are a beginner or expert, competitive or laid-back, our site provides a centralized place for climbers to 
+                <p class="intro">Whether you are a beginner or expert, competitive or laid-back, our site provides a centralized place for climbers to 
                     search for great new routes to climb and crags to visit, discover new projects, plan your climbing trips, record your climbing 
                     experiences and track your progress over time. Hope you enjoy it!
                 <p class="signoff"> &mdash; Climb on! </p>
@@ -57,13 +62,17 @@
     );
 
     
-    //get user info
-    $.getJSON('?q=user_details', function(user) {
-        if (user) {
-            $('#user_name').html(user.first_name + ' ' + user.last_name);
-            $('#user_id').html(user.user_id);
+    (function (){
+        var data = getUserDetails();
+        if (data != undefined) {
+            var userTmpl = Handlebars.compile($('#user').html());
+            var out = userTmpl(data);
+            $('#user-target').html(out);
         }
-    });
+    })();
+    
+    
+
 
     //setup image carosel
 	$("#featured").orbit({

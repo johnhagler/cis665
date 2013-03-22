@@ -182,12 +182,13 @@ class Controller {
 
 	function user_details() {
 		$json;
+
 		if (isset($_SESSION['user'])) {
 			$user = $_SESSION['user'];
 			$user->get_user_info($user->user_id);
-			$json = json_encode($user);
+			$json = json_encode(array('user'=>$user));
 		} else {
-			$json = null;
+			$json = json_encode(array('user'=>null));
 		}
 		
 		header('Content-type: application/json');

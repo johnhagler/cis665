@@ -36,20 +36,55 @@ var number_comparator = function (param_name) {
 }
 
 function getUrlParams(){
-        var obj = {};
-        var url = location.href.split("?");
+    var obj = {};
+    var url = location.href.split("?");
 
-        if (url.length > 1) {
-            var hash = url[1],
-            split = hash.split('&');
+    if (url.length > 1) {
+        var hash = url[1],
+        split = hash.split('&');
 
-            
-            for(var i = 0; i < split.length; i++){
-                var kv = split[i].split('=');
-                obj[kv[0]] = decodeURIComponent(kv[1] ? kv[1].replace(/\+/g, ' ') : kv[1]);
-            }
+        
+        for(var i = 0; i < split.length; i++){
+            var kv = split[i].split('=');
+            obj[kv[0]] = decodeURIComponent(kv[1] ? kv[1].replace(/\+/g, ' ') : kv[1]);
         }
+    }
+    
+    return obj;
+    
+};
+
+
+
+
+
+var getUserDetails = function () {
+    
+    var data;
+    var dataStr = sessionStorage.getItem('user');
+
+    if (dataStr == null || dataStr == 'undefined') {
         
-        return obj;
-        
-    };
+        $.ajax({
+            url: '?q=user_details', 
+            async: false,
+            success: function (dataRtn) {
+                if (dataRtn.user) {
+                    data = dataRtn;    
+                }
+            }
+        });
+
+        sessionStorage.setItem('user',JSON.stringify(data));
+
+    } else {
+        data = JSON.parse(dataStr);
+    }
+
+    return data;
+    
+}
+
+var userLogout = function () {
+    sessionStorage.removeItem('user');
+}

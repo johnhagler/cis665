@@ -39,7 +39,7 @@ if (isset($_SESSION['user'])) {
     <title>ClimbIt!</title>
 
     <!-- Included CSS Files (Compressed) -->
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu|Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300italic|Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
     <link rel="stylesheet" href="stylesheets/general_foundicons.css">
@@ -68,9 +68,21 @@ if (isset($_SESSION['user'])) {
                     </ul>
                         <ul class="right">
                         <li class="divider"></li>
-                        <li><a href="?q=<?php echo $login ?>"  id="<?php echo $login ?>"><?php echo ucwords($login) ?></a></li>
-                        <?php if (!isset($_SESSION['user'])) { ?> 
-                        <li class="<?php echo $signup ?>"><a href="?q=signup">Sign up</a></li>
+
+                        <?php if (isset($_SESSION['user'])) { ?> 
+
+                        <li>
+                            <a href="?q=logout" id="logout" onclick="userLogout()">Logout</a>
+                        </li>
+
+                        <?php } else { ?>
+                        
+                        <li>
+                            <a href="?q=login" id="login">Login</a>
+                        </li>
+                        <li class="<?php echo $signup ?>">
+                            <a href="?q=signup">Sign up</a>
+                        </li>
                         <?php } ?>
 
                     </ul>
