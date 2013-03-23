@@ -304,9 +304,9 @@ class Route extends Crag {
 					'sortStyle' => 'alpha'
 				),
 				array(
-					'name' => 'grade',
+					'name' => 'gradeId',
 					'title' => 'Grade',
-					'sortStyle' => 'alpha'
+					'sortStyle' => 'numeric'
 				),
 				array(
 					'name' => 'pitches',
