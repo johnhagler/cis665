@@ -31,8 +31,9 @@ class Route extends Crag {
 
 		//execute sql query on the DB to get route data
 		$sql = "select *
-				from Route
-				where cragId = $crag";
+				from Route a, Grade b
+				where a.cragId = $crag
+				and 'a.GradeID = b.GradeID";
 
 
 		$db = new Data(); //create connection object
@@ -50,6 +51,7 @@ class Route extends Crag {
 				'routeName' => $result['RouteName'],
 				'routeDescr' => $result['RouteDescr'],
 				'grade' => $result['Grade'],
+				'gradeId' => $result['GradeID'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
 				'rating' => $result['Rating'],
@@ -74,10 +76,11 @@ class Route extends Crag {
 	function new_routes() {
 
 		//execute sql query on the DB to get route data
-		$sql = "select TOP 3 a.RouteID, a.RouteName, a.Grade, a.AddDate, c.AreaName, b.CragName
-				from Route a, Crag b, Area c
+		$sql = "select TOP 3 a.RouteID, a.RouteName, a.GradeID, d.Grade, a.AddDate, c.AreaName, b.CragName
+				from Route a, Crag b, Area c, Grade d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
+				and a.GradeID = d.GradeID
 				Order by AddDate DESC"; 
 
 
@@ -96,6 +99,7 @@ class Route extends Crag {
 				'cragName' => $result['CragName'],
 				'routeId' => $result['RouteID'],
 				'routeName' => $result['RouteName'],
+				'gradeId' => $result['GradeID'],
 				'grade' => $result['Grade'],
 				'addDate' => $result['AddDate']
 				);
@@ -120,10 +124,11 @@ class Route extends Crag {
 	function popular_routes() {
 
 		//execute sql query on the DB to get route data
-		$sql = "select TOP 3 a.RouteID, a.RouteName, a.Grade, c.AreaName, b.CragName, a.Rating
-				from Route a, Crag b, Area c
+		$sql = "select TOP 3 a.RouteID, a.RouteName, a.GradeID, d.Grade, c.AreaName, b.CragName, a.Rating
+				from Route a, Crag b, Area c, Grade d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
+				and a.GradeID = d.GradeID
 				Order by Rating DESC"; 
 
 
@@ -142,6 +147,7 @@ class Route extends Crag {
 				'cragName' => $result['CragName'],
 				'routeId' => $result['RouteID'],
 				'routeName' => $result['RouteName'],
+				'gradeId' => $result['GradeID'],
 				'grade' => $result['Grade'],
 				'rating' => $result['Rating']
 				);
@@ -170,11 +176,12 @@ class Route extends Crag {
 		//execute sql query on the database
 		$sql = "select 
 				a.RouteID, a.RouteName,a.RouteDescr, 
-				a.Grade, a.Pitches, a.Height, a.Rating, a.AddDate,
+				a.GradeID, d.Grade, a.Pitches, a.Height, a.Rating, a.AddDate,
 				c.AreaName, b.CragName, c.AreaImage
-				from RouteRating a, Crag b, Area c
+				from RouteRating a, Crag b, Area c, Grade d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
+				and a.GradeID = d.GradeID
 				and a.RouteID = $routeId";
 
 		$db = new Data();//create new data/connect object
@@ -188,6 +195,7 @@ class Route extends Crag {
 				'routeDescr' 	=> $result['RouteDescr'],
 				'areaName' 		=> $result['AreaName'],
 				'cragName' 		=> $result['CragName'],
+				'gradeId'		=> $result['GradeID'],
 				'grade' 		=> $result['Grade'],
 				'pitches' 		=> $result['Pitches'],
 				'height' 		=> $result['Height'],
@@ -208,11 +216,12 @@ class Route extends Crag {
 
 	function search_routes_multi () {
 
-		$sql = "select a.RouteID, c.AreaName, b.CragName, a.RouteName, a.RouteDescr, a.Grade, a.Pitches, 
+		$sql = "select a.RouteID, c.AreaName, b.CragName, a.RouteName, a.RouteDescr, a.GradeID, e.Grade, a.Pitches, 
 				a.Height, a.Rating, a.AddDate, d.StoneTypeName, c.ApproachTime
-				from RouteRating a, Crag b, Area c, StoneType d
+				from RouteRating a, Crag b, Area c, StoneType d, Grade e
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
+				and a.GradeID = e.GradeID
 				and c.StoneTypeID = d.StoneTypeID";
 
 		if ($this->route != '') {
@@ -232,7 +241,7 @@ class Route extends Crag {
 		}//end of stonetype if clause
 
 		if ($this->grade != '') {
-			$sql .= " and a.Grade like '%$this->grade%'";
+			$sql .= " and e.Grade like '%$this->grade%'";
 		}//end of grade if clause
 
 		if ($this->pitches != '') {
@@ -324,6 +333,7 @@ class Route extends Crag {
 				'routeName' => $result['RouteName'],
 				'routeDescr' => $result['RouteDescr'],
 				'approachTime' => $result['ApproachTime'],
+				'gradeId' 	=> $result['GradeID'],
 				'grade' => $result['Grade'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
@@ -353,10 +363,11 @@ class Route extends Crag {
 	//method to search routes by route name
 	function search_routes_by_name($route_name) {
 
-		$sql = "select c.AreaName, b.CragName, a.RouteName,a.Grade, a.Pitches, a.Height, a.Rating
-				from Route a, Crag b, Area c
+		$sql = "select c.AreaName, b.CragName, a.RouteName,a.GradeID, d. Grade, a.Pitches, a.Height, a.Rating
+				from Route a, Crag b, Area c, Grade d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
+				and a.Route = d.Grade
 				and a.RouteName like '%$route_name%'
 				Order By a.RouteName, b.CragName, c.AreaName";
 
@@ -373,12 +384,12 @@ class Route extends Crag {
 	//method to search routes by route name  
 	function search_routes_by_grade($grade) {
 
-		$sql = "select c.AreaName, b.CragName, a.RouteName,a.Grade, a.Pitches, a.Height, a.Rating
-				from Route a, Crag b, Area c
+		$sql = "select c.AreaName, b.CragName, a.RouteName,a.GradeId, d.Grade, a.Pitches, a.Height, a.Rating
+				from Route a, Crag b, Area c, Grade d
 				where a.CragID = b.CragID
 				and b.AreaID = c.AreaID
 				and a.Grade like '%$grade%'
-				Order By a.Grade, a.RouteName";
+				Order By d.Grade, a.RouteName";
 
 		$db = new Data();//
 
