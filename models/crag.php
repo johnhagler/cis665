@@ -40,7 +40,7 @@ class Crag extends Area {
 			$crag = array (
 				'cragId' => $result['CragID'],
 				'cragName' => $result['CragName'],
-				'cragDescr' => $result['CragDescr']
+				'cragDescr' => $result['CragDescrShort']
 				);
 
 		array_push($crags, $crag); //stack the array

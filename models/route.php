@@ -33,7 +33,7 @@ class Route extends Crag {
 		$sql = "select *
 				from Route a, Grade b
 				where a.cragId = $crag
-				and 'a.GradeID = b.GradeID";
+				and a.GradeID = b.GradeID";
 
 
 		$db = new Data(); //create connection object
@@ -189,6 +189,10 @@ class Route extends Crag {
 		$results = $db -> run($sql);
 
 		foreach ($results as $result) {
+			$rating = $result['Rating'];
+			if ($rating == 0) {
+				$rating = '--';
+			}
 			$route = array (
 				'routeId' 		=> $result['RouteID'],
 				'routeName' 	=> $result['RouteName'],
@@ -199,7 +203,8 @@ class Route extends Crag {
 				'grade' 		=> $result['Grade'],
 				'pitches' 		=> $result['Pitches'],
 				'height' 		=> $result['Height'],
-				'rating'		=> $result['Rating'],
+				'rating'		=> $rating,
+				'ratingNum'		=> $result['Rating'],
 				'addDate' 		=> $result['AddDate'],
 				'areaImage' 	=> $result['AreaImage']
 				);
@@ -314,7 +319,7 @@ class Route extends Crag {
 					'sortStyle' => 'numeric'
 				),
 				array(
-					'name' => 'rating',
+					'name' => 'ratingNum',
 					'title' => 'Rating',
 					'sortStyle' => 'numeric'
 				)
@@ -325,7 +330,15 @@ class Route extends Crag {
 		$routes = array();
 
 		foreach ($result as $result) {
+
+			$rating = $result['Rating'];
+
+			if ($rating == 0) {
+				$rating = '--';
+			}
+
 			$route = array (
+
 				'routeId' => $result['RouteID'],
 				'areaName' => $result['AreaName'],
 				'cragName' => $result['CragName'],
@@ -337,7 +350,8 @@ class Route extends Crag {
 				'grade' => $result['Grade'],
 				'pitches' => $result['Pitches'],
 				'height' => $result['Height'],
-				'rating' => $result['Rating'],
+				'rating' => $rating,
+				'ratingNum' => $result['Rating'],
 				'addDate' => $result['AddDate']
 				);
 
