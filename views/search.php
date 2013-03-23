@@ -257,7 +257,8 @@
         $("#routes").append(rowsTmpl(data));
 
         $("#routes td a").click(function (){
-            showRouteDetails($(this).html());
+            var routeId = $(this).data('route-id');
+            showRouteDetails(routeId);
         });
         
     }

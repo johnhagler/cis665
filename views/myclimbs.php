@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="twelve columns panel radius">
 		<h1>My Climbs</h1>
-		<h3><small>Look at all that climbing you did!  You ROCK!</small></h3>
+		<h3><small id="message"></small></h3>
 	</div>
 </div>
 <style>
@@ -16,6 +16,7 @@ a.remove:hover {
 			
 
 		</table>
+
 	</div>
 </div>
 
@@ -25,14 +26,20 @@ a.remove:hover {
 (function(){
 	
 	$.getJSON('?q=list_attempts', function(json) {
+		
+		$('#message').html(json.message);
 
-		$.get('views/templates/list_attempts.html', function(data) {
-			var detailTmpl = Handlebars.compile(data);
-			$('#list-attempts').html(detailTmpl(json));
-			$('#list-attempts tbody tr td li.remove').click(removeHandler);
-			$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
-			highlightStatus();
-		});
+		if (json.attempts.length > 0) {
+
+			$.get('views/templates/list_attempts.html', function(data) {
+				var detailTmpl = Handlebars.compile(data);
+				$('#list-attempts').html(detailTmpl(json));
+				$('#list-attempts tbody tr td li.remove').click(removeHandler);
+				$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
+				highlightStatus();
+			});
+
+		}
 
 	});
 })();

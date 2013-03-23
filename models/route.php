@@ -183,7 +183,7 @@ class Route extends Crag {
 				and b.AreaID = c.AreaID
 				and a.GradeID = d.GradeID
 				and a.RouteID = $routeId";
-
+				
 		$db = new Data();//create new data/connect object
 
 		$results = $db -> run($sql);

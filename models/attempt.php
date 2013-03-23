@@ -140,15 +140,16 @@ class Attempt extends BaseModel {
 						
 						a.EffortRating, a.AttemptStatus,
 						CONCAT(b.FirstName, ' ', b.LastName) AS UserName, 
-						c.RouteName, c.RouteType, c.Grade,
+						c.RouteName, c.RouteType, f.Grade,
 						d.CragName, e.AreaName
 				from 
-					Attempt a, [User] b, Route c, Crag d, Area e 
+					Attempt a, [User] b, Route c, Crag d, Area e, Grade f
 				where 
 				    e.AreaID  = d.AreaID
 				and d.CragID  = c.CragID
 				and c.RouteID = a.RouteID
 				and a.UserID  = b.UserID 
+				and c.GradeID = f.GradeID
 				and a.UserID  = '$user'
 				Order by a.StartDateTime DESC";
 
@@ -159,6 +160,12 @@ class Attempt extends BaseModel {
 
 		$attempts = array();//create "attempts" array
 
+		$message = '';
+		if (count($results) == 0) {
+			$message = 'You haven\'t done any climbing yet.  Get to it!';
+		} else {
+			$message = 'Look at all that climbing you did.  You rock!';
+		}
 
 		//loop through the query results to create an array "attempt"
 		foreach ($results as $result) {
@@ -182,7 +189,10 @@ class Attempt extends BaseModel {
 
 		}//close foreach loop
 
-		$data = array('attempts' => $attempts); //assign "attempts" array to a $data object
+		$data = array(
+			'attempts' => $attempts,   //assign "attempts" array to a $data object
+			'message' => $message
+			); 
 
 		header('Content-type: application/json'); //designate the content to be in JSON format
 		echo json_encode($data); //display routes data in JSON format

@@ -33,11 +33,11 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="four columns">
-			<label for="">Rating</label>
+	<div class="row" style="margin-bottom:1em;">
+		<div class="four mobile-one columns">
+			<h3 style="margin-top:6px;">Rating</h3>
 		</div>
-		<div class="eight columns">
+		<div class="eight mobile-three centered columns">
 			<style>
 				#rate {
 					color:#ddd;
