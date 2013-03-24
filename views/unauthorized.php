@@ -7,14 +7,28 @@
 <div class="row">
 	<div class="six columns">
 		<h3>Already signed up?</h3>
-		<? include 'views/signinform.php'; ?>
+		<form id="login-modal" action="?" method="post">
+			<input type="hidden" name="q" value="login">
+			<input type="hidden" name="forward">
+			<input type="hidden" name="route_id">
+			<input type="email" name="user" placeholder="Email Address">
+			<input type="password" name="password" placeholder="Password">
+			<input type="submit" class="button button medium radius" value="Login">
+		</form>
 	</div>
 	<div class="six columns">
 		<h3>You new around here?</h3>
 		<div class="text-center">
 			
-			<a href="?q=signup" class="button button-large radius">Sign up now!</a>
+			<a href="?q=signup" class="button large radius">Sign up now!</a>
 			
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	(function (){
+		var params = App.getUrlParams();
+		$('input[name=forward]').val(params.q);
+		$('input[name=route_id]').val(params.route_id);
+   	})();
+</script>

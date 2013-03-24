@@ -9,7 +9,7 @@
 <script>
 
 (function(){
-	var vars = getUrlParams();
+	var vars = App.getUrlParams();
 
 	$.getJSON('?q=list_route_details&routeId=' + vars.routeId, function(json) {
 

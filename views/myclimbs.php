@@ -5,18 +5,12 @@
 	</div>
 </div>
 <style>
-a.remove:hover {
-	color:#c60f13;
-}
+
 </style>
 
 <div class="row">
 	<div class="twelve columns">
-		<table class="twelve" id="list-attempts">
-			
-
-		</table>
-
+		<table class="twelve" id="list-attempts"></table>
 	</div>
 </div>
 

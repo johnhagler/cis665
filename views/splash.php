@@ -63,7 +63,7 @@
 
     
     (function (){
-        var data = getUserDetails();
+        var data = App.getUserDetails();
         if (data != undefined) {
             var userTmpl = Handlebars.compile($('#user').html());
             var out = userTmpl(data);

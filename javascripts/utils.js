@@ -35,54 +35,58 @@ var number_comparator = function (param_name) {
     }
 }
 
-function getUrlParams(){
-    var obj = {};
-    var url = location.href.split("?");
-
-    if (url.length > 1) {
-        var hash = url[1],
-        split = hash.split('&');
-
-        
-        for(var i = 0; i < split.length; i++){
-            var kv = split[i].split('=');
-            obj[kv[0]] = decodeURIComponent(kv[1] ? kv[1].replace(/\+/g, ' ') : kv[1]);
-        }
-    }
-    
-    return obj;
-    
-};
 
 
 
 
+var App =  {
 
-var getUserDetails = function () {
-    
-    var data;
-    var dataStr = sessionStorage.getItem('user');
+    getUrlParams: function (){
+        var obj = {};
+        var url = location.href.split("?");
 
-    if (dataStr == null || dataStr == 'undefined') {
-        
-        $.ajax({
-            url: '?q=user_details', 
-            async: false,
-            success: function (dataRtn) {
-                if (dataRtn.user) {
-                    data = dataRtn;    
-                }
+        if (url.length > 1) {
+            var hash = url[1],
+            split = hash.split('&');
+
+            
+            for(var i = 0; i < split.length; i++){
+                var kv = split[i].split('=');
+                obj[kv[0]] = decodeURIComponent(kv[1] ? kv[1].replace(/\+/g, ' ') : kv[1]);
             }
-        });
+        }
+        
+        return obj;
+        
+    },
 
-        sessionStorage.setItem('user',JSON.stringify(data));
+    getUserDetails : function () {
+        
+        var data;
+        var dataStr = sessionStorage.getItem('user');
 
-    } else {
-        data = JSON.parse(dataStr);
+        if (dataStr == null || dataStr == 'undefined') {
+            
+            $.ajax({
+                url: '?q=user_details', 
+                async: false,
+                success: function (dataRtn) {
+                    if (dataRtn.user) {
+                        data = dataRtn;    
+                    }
+                }
+            });
+
+            sessionStorage.setItem('user',JSON.stringify(data));
+
+        } else {
+            data = JSON.parse(dataStr);
+        }
+
+        return data;
+        
     }
 
-    return data;
-    
 }
 
 var userLogout = function () {

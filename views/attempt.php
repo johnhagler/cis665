@@ -179,7 +179,7 @@
 	
 
 	(function(){
-		vars = getUrlParams();	
+		vars = App.getUrlParams();	
 		$.getJSON('?q=list_route_details&routeId=' + vars.route_id, function(json) {
 			$('#route-name').html(json.routeName);
 			$('#location').html(json.areaName + ', ' + json.cragName);

@@ -13,8 +13,13 @@ class Controller {
 	public $user;
 
 	function route($q) {
-		$reflectionMethod = new ReflectionMethod('Controller', $q);
-		$reflectionMethod->invoke($this, null);	
+		try {
+			$reflectionMethod = new ReflectionMethod('Controller', $q);
+			$reflectionMethod->invoke($this, null);	
+		} catch (Exception $e) {
+			$this->home();
+		}
+
 	}
 
 	function run_app() {
@@ -105,7 +110,7 @@ class Controller {
 			$user->get_user_info($user->user_id);
 			$json = json_encode(array('user'=>$user));
 		} else {
-			$json = json_encode(array('user'=>null));
+			$json = json_encode(array('user'=> null));
 		}
 		
 		header('Content-type: application/json');

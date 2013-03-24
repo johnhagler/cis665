@@ -139,5 +139,10 @@ h1, h2, h3, h4, h5, h6, th {
 		position: relative;
 	}
 
+/* -----------------------------------------
+   myclimbs.php
+----------------------------------------- */
 
-
+#list-attempts li.remove:hover {
+	color:#c60f13;
+}
