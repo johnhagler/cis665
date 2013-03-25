@@ -12,17 +12,17 @@
 
 class Data {
 
-	$serverName;
-	$uName;
-	$pWord
-	$db;
+	private $_serverName;
+	private $_uName;
+	private $_pWord;
+	private $_db;
 
 	public function __construct() {
 
-		$this->serverName = 'bussql2012-cis';
-	    $this->uName = 'climber';
-	    $this->pWord = 'secret';
-	    $this->db = 'ClimbItDB';		
+		$this->_serverName = 'bussql2012-cis';
+	    $this->_uName = 'climber';
+	    $this->_pWord = 'secret';
+	    $this->_db = 'ClimbItDB';		
 
 	}
 
@@ -38,11 +38,11 @@ class Data {
 	    
 	    try {
 	        //instantiate a PDO object and set connection properties
-	        $conn_string = "sqlsrv:Server=$this->serverName; Database=$this->db";
+	        $conn_string = "sqlsrv:Server=$this->_serverName; Database=$this->_db";
 	        $conn = new PDO(
 	        	$conn_string, 
-	        	$this->uName, 
-	        	$this->pWord, 
+	        	$this->_uName, 
+	        	$this->_pWord, 
 	        	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 	        
 	        //return connection object
