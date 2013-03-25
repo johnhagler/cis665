@@ -38,6 +38,16 @@ module.exports = function(grunt) {
           'stylesheets/<%= pkg.name %>.min.css': 'stylesheets/main.scss'
         }
       }
+    },
+
+    watch: {
+      scripts: {
+        files: ['**/*.scss'],
+        tasks: ['sass'],
+        options: {
+          nospawn: true
+        }
+      }
     }
 
 
@@ -46,6 +56,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.registerTask('default', ['concat', 'uglify','sass']);
 

@@ -11,6 +11,10 @@
   "readmeFilename": "README.md",
   "gitHead": "51445287e4881b8aa449984dfa679429c4af71f3",
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-sass": "~0.2.2",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-concat": "~0.1.3"
   }
 }
