@@ -135,7 +135,15 @@ class Controller {
 
 
 
-
+	//------------------------------------------------
+	// About us and Contact pages
+	function about() {
+		Load::view('about.php');
+	}
+	function contact() {
+		Load::view('contact.php');	
+	}
+	//------------------------------------------------
 
 
 	//------------------------------------------------

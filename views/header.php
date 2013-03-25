@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
     <link rel="stylesheet" href="stylesheets/general_foundicons.css">
+    <link rel="stylesheet" href="stylesheets/social_foundicons.css">
     <!--<script src="javascripts/modernizr.foundation.js"></script>-->
     <script src="javascripts/foundation.min.js"></script>
     <script src="javascripts/app.js"></script>
