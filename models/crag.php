@@ -11,7 +11,7 @@
 */
 
 
-require_once 'base.php'; //contains common methods
+require_once 'area.php'; 
 require_once 'db.php'; //contains sql connection methods
 
 
