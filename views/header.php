@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>ClimbIt!</title>
+    <title><?=$title ?></title>
 
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300italic|Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="stylesheets/climbit.min.css">

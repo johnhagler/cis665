@@ -15,6 +15,7 @@
 
 		$.get('views/templates/route_details.html', function(data) {
 			var detailTmpl = Handlebars.compile(data);
+			$('title').html(json.routeName);
 			$('#route-details').html(detailTmpl(json));
 		});
 

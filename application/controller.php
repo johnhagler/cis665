@@ -76,8 +76,9 @@ class Controller {
 				$this->route($q);
 			}
 			
+			
 		} else {
-			Load::view('login.php');
+			Load::view('login.php', 'Login');
 		}
 
 	}
@@ -88,7 +89,7 @@ class Controller {
 	}
 
 	function unauthorized() {
-		Load::view('unauthorized.php');
+		Load::view('unauthorized.php', 'Unauthorized');
 	}
 
 	//------------------------------------------------
@@ -99,7 +100,7 @@ class Controller {
 	//------------------------------------------------
 	// Home (Splash) Page
 	function home() {
-		Load::view('splash.php');
+		Load::view('splash.php', 'ClimbIt!');
 	}
 
 	function user_details() {
@@ -118,7 +119,7 @@ class Controller {
 	}
 
 	function route_details() {
-		Load::view('route_details.php');
+		Load::view('route_details.php', 'Route Details');
 	}
 
 	function new_routes() {
@@ -138,10 +139,10 @@ class Controller {
 	//------------------------------------------------
 	// About us and Contact pages
 	function about() {
-		Load::view('about.php');
+		Load::view('about.php', 'About Us');
 	}
 	function contact() {
-		Load::view('contact.php');	
+		Load::view('contact.php', 'Contact Us');	
 	}
 	//------------------------------------------------
 
@@ -149,7 +150,7 @@ class Controller {
 	//------------------------------------------------
 	// Find a Route (choose Search or Browse)
 	function findit() {
-		Load::view('findit.php');
+		Load::view('findit.php', 'Find a Route');
 
 	}
 	//------------------------------------------------
@@ -162,7 +163,7 @@ class Controller {
 	//------------------------------------------------
 	// Search Page
 	function search() { 
-		Load::view('search.php');
+		Load::view('search.php', 'Search for a Route');
 
 	}
 
@@ -182,7 +183,7 @@ class Controller {
 	//------------------------------------------------
 	// Browse Page
 	function browse() {
-		Load::view('browse.php');
+		Load::view('browse.php', 'Browse for a Route');
 	}
 
 	function list_areas() {
@@ -226,7 +227,7 @@ class Controller {
 	//------------------------------------------------
 	// Attempts (My Climbs)
 	function attempt() {
-		Load::view('attempt.php');
+		Load::view('attempt.php', 'Log an Attempt');
 
 	}
 
@@ -237,9 +238,9 @@ class Controller {
 
 		if (isset($attempt->status)) {
 			$attempt->log();
-			Load::view('myclimbs.php');
+			Load::view('myclimbs.php', 'My Climbs');
 		} else {
-			Load::view('attempt.php');
+			Load::view('attempt.php', 'Log an Attempt');
 		}
 
 	}
@@ -265,7 +266,7 @@ class Controller {
 
 
 	function myclimbs() {
-		Load::view('myclimbs.php');
+		Load::view('myclimbs.php', 'My Climbs');
 
 	}
 
@@ -287,10 +288,10 @@ class Controller {
 
 		if ($user->submit != '') {
 			$user->create_new();
-			Load::view('splash.php');	
+			Load::view('splash.php', 'ClimbIt!');	
 
 		} else {
-			Load::view('signup.php');	
+			Load::view('signup.php', 'Sign Up');	
 			
 		}
 		

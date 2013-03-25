@@ -137,6 +137,7 @@
 	function showNextPanel(elem) {
 
 		var request = elem.data('id');
+		$('title').html($(elem).html());
 		
 		var s = $('#panels').attr('class');		
 		var num = Number(s.substring(8,s.length)) + 1;
