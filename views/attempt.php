@@ -33,19 +33,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="twelve columns">
-			<div class="row collapse">
-				<div class="four mobile-one columns">
-					<span class="prefix">Notes</span>
-				</div>
-				<div class="four mobile-one columns">
-					<input type="text" name="user_notes">
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="row" style="margin-bottom:1em;">
 		<div class="four mobile-one columns">
 			<h3 style="margin-top:6px;">Rating</h3>
