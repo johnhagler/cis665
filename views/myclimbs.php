@@ -4,9 +4,23 @@
 		<h3><small id="message"></small></h3>
 	</div>
 </div>
-<style>
 
-</style>
+<div class="row" id="stats">
+	<script type="x-template" id="stats-template">
+		<div class="three columns text-centered" id="stats">
+			{{thirtyDays}} climbs in last 30 days
+		</div>
+		<div class="three columns text-centered" id="stats">
+			{{sixtyDays}} climbs in last 60 days
+		</div>
+		<div class="three columns text-centered" id="stats">
+			{{allTime}} climbs overall
+		</div>
+		<div class="three columns text-centered" id="stats">
+			{{summits}} climbs summited, {{summitPct}} success!
+		</div>
+	</script>
+</div>
 
 <div class="row">
 	<div class="twelve columns">
@@ -17,30 +31,23 @@
 
 <script>
 
-(function(){
+
+
+
+
+
+var statsTmpl;
+
+var getStats = function () {
 	
-	$.getJSON('?q=list_attempts', function(json) {
-		
-		$('#message').html(json.message);
-
-		if (json.attempts.length > 0) {
-
-			$.get('views/templates/list_attempts.html', function(data) {
-				var detailTmpl = Handlebars.compile(data);
-				$('#list-attempts').html(detailTmpl(json));
-				$('#list-attempts tbody tr td[data-rating] span').click(updateRatingHandler);
-				$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
-				$('#list-attempts tbody tr td li.remove').click(removeHandler);
-				
-				highlightStatus();
-				highlightRating();
-			});
-
+	$.getJSON('?q=get_attempt_statistics', function(json) {
+		if (statsTmpl === undefined) {
+			statsTmpl = Handlebars.compile($('#stats-template').html());
 		}
+		$('#stats').html(statsTmpl(json));
 
 	});
-})();
-
+}
 
 var removeHandler = function () {
 
@@ -54,6 +61,7 @@ var removeHandler = function () {
 
 		if (data.success) {
 			$(self).parents('tr').remove();	
+			getStats();
 		} else {
 			alert('sorry, the server is down AGAIN!!!!!');
 		}
@@ -94,11 +102,12 @@ var updateStatusHandler = function () {
 	$(td).data('attempt-status', newStatus);
 
 
-	var url = '?q=update_attempt&attemptId=' + id + '&status=' + newStatus;
+	var url = '?q=update_attempt&attempt_id=' + id + '&status=' + newStatus;
 	$.post(url, function(data){
 	
 		if (data.success) {
 			highlightIndividualStatus($(td));	
+			getStats();
 		} else {
 			alert('sorry, the server is down AGAIN!!!!!');
 		}
@@ -148,8 +157,8 @@ var updateRatingHandler = function () {
 
 	highlightIndividualRating($(td));	
 
-	/*
-	var url = '?q=update_attempt&attemptId=' + id + '&rating=' + rating;
+	
+	var url = '?q=update_attempt&attempt_id=' + id + '&effort=' + rating;
 	$.post(url, function(data){
 	
 		if (data.success) {
@@ -160,8 +169,34 @@ var updateRatingHandler = function () {
 	
 
 	});
-	*/
+	
 
 }
+
+
+
+getStats();
+
+$.getJSON('?q=list_attempts', function(json) {
+	
+	$('#message').html(json.message);
+
+	if (json.attempts.length > 0) {
+
+		$.get('views/templates/list_attempts.html', function(data) {
+			var detailTmpl = Handlebars.compile(data);
+			$('#list-attempts').html(detailTmpl(json));
+			$('#list-attempts tbody tr td[data-rating] span').click(updateRatingHandler);
+			$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
+			$('#list-attempts tbody tr td li.remove').click(removeHandler);
+			
+			highlightStatus();
+			highlightRating();
+		});
+
+	}
+
+});
+
 
 </script>

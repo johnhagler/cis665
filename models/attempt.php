@@ -112,20 +112,34 @@ class Attempt extends BaseModel {
 
 
 
-	function update_attempt($attemptId, $status, $startDateTime, $rating, $userNotes) {
+	function update_attempt() {
+
 
 		$sql = "Update 
 					Attempt 
-				Set 
-					AttemptStatus = '$status',
-					StartDateTime = '$startDateTime', 
-					Rating = '$rating',
-					UserNotes = '$userNotes'
-				Where 
-					AttemptID = '$attemptId'
-				";
+				Set ";
+
+		if ($this->status != '') {
+			$sql .= " AttemptStatus = '$this->status',";
+		}
+		if ($this->attempt_date != '' || $this->attempt_time != '') {
+			$sql .= " StartDateTime = '$this->attempt_date $this->attempt_time',";
+		}		
+		if ($this->effort != '') {
+			$sql .= " EffortRating = '$this->effort',";
+		}			
+		if ($this->user_notes != '') {
+			$sql .= " UserNotes = '$this->user_notes',";
+		}			
+		
+		//strip off the last comma
+		$sql = substr_replace($sql, '', -1, strlen($sql));
+
+		$sql .= " Where  AttemptID = '$this->attempt_id' ";
 
 		$db = new Data();
+		
+
 		$db -> run($sql);
 
 		$data = array('success' => true);
@@ -205,6 +219,50 @@ class Attempt extends BaseModel {
 		echo json_encode($data); //display routes data in JSON format
 
 	}//close list_attempts_by_user() method
+
+	function get_attempt_statistics($user_id) {
+
+		$sql = "
+			select
+			sum(THIRTY) as THIRTY,
+			sum(SIXTY) as SIXTY,
+			sum(ALLTIME) as ALLTIME,
+			sum(SUMMITS) AS SUMMITS,
+
+			cast(sum(SUMMITS) as decimal) /
+			cast(sum(ALLTIME) as decimal) * 100 as SUMMIT_PCT
+
+			from (
+			select
+			case when startdatetime > (getdate() - 30) then 1 else 0 end as THIRTY,
+			case when startdatetime > (getdate() - 60) then 1 else 0 end as SIXTY,
+			1 as ALLTIME,
+			case when AttemptStatus = 'summit' then 1 else 0 end as SUMMITS
+			from attempt
+			where UserID = '$user_id'
+			) as a
+
+		";
+		
+		$db = new Data();
+
+		$results = $db->run($sql);
+
+		foreach ($results as $result) {
+
+			$data = array (
+				'thirtyDays' => number_format($result['THIRTY'],0,'.',','),
+				'sixtyDays' => number_format($result['SIXTY'],0,'.',','),
+				'allTime' => number_format($result['ALLTIME'],0,'.',','),
+				'summits' => number_format($result['SUMMITS'],0,'.',','),
+				'summitPct' => number_format($result['SUMMIT_PCT'],0,'.',',') . '%'
+				);
+		}
+
+
+		header('Content-type: application/json'); //designate the content to be in JSON format
+		echo json_encode($data); //display routes data in JSON format
+	}
 
 
 

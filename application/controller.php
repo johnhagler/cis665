@@ -76,7 +76,7 @@ class Controller {
 				$this->route($q);
 			}
 			
-			
+
 		} else {
 			Load::view('login.php', 'Login');
 		}
@@ -249,11 +249,9 @@ class Controller {
 	function update_attempt() {
 
 		$attempt = new Attempt();
-		if(isset($_REQUEST['attemptId'])) {
-			
-			$attempt->update_attempt($_REQUEST['attemptId'],  $_REQUEST['status']);
-
-		}
+		$attempt->populate();	
+		$attempt->update_attempt();
+		
 	}
 
 
@@ -276,6 +274,14 @@ class Controller {
 		$attempt->list_attempts_by_user($user->user_id);
 
 	}
+
+	function get_attempt_statistics() {
+		$user = $_SESSION['user'];
+		$attempt = new Attempt();
+		$attempt->get_attempt_statistics($user->user_id);
+	}
+
+
 	//------------------------------------------------
 
 
