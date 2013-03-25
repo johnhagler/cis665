@@ -34,8 +34,11 @@
 				<img src="images/john.jpg" alt="John Hagler">
 				<h3>John</h3>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nesciunt architecto ratione voluptates officiis. Nemo iure doloribus optio laudantium nihil accusantium excepturi. Aliquid consectetur sit laborum unde quod adipisci quo.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto officia laborum iste enim sunt cumque cupiditate voluptatem maxime quis a laudantium perspiciatis expedita aliquid dicta dolorum ipsum culpa blanditiis tenetur!
+					Hailing from the Pacific Northwest, I hold down the fort on the technical side, relying
+					on Anna's spot on ideas on the content and user experience.  When I'm not heads-down coding
+					until my eyes water, I enjoy the outdoors and training for triathlons.  However, I'm thinking
+					about getting into rock climbing for cross training, and because it looks super fun.  And now I'll
+					have an easy to use way to track my progress!  Looking forward to joining you all out on the rock!
 				</p>
 			</div>
 		</div>
