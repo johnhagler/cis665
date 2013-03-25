@@ -38,7 +38,7 @@
 			<h3 style="margin-top:6px;">Rating</h3>
 		</div>
 		<div class="eight mobile-three centered columns">
-			<div class="rate">
+			<div id="rate" class="rating">
 				<input type="hidden" name="effort" value="0">
 				<span data-rate="1">&#9733;</span>
 				<span data-rate="2">&#9733;</span>
@@ -46,6 +46,15 @@
 				<span data-rate="4">&#9733;</span>
 				<span data-rate="5">&#9733;</span>
 			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="four columns">
+			<h3>How'd it go?</h3>
+		</div>
+		<div class="eight columns">
+			<textarea name="notes" id="notes" cols="30" rows="4"></textarea>
 		</div>
 	</div>
 
@@ -100,29 +109,19 @@
 
 		$('span[data-rate]').removeClass('rate-active');
 		
-		if (rate == 1) {
+		if (rate >= 1) {
 			$('#rate span[data-rate=1]').addClass('rate-active');
 		}
-		if (rate == 2) {
-			$('#rate span[data-rate=1]').addClass('rate-active');
+		if (rate >= 2) {
 			$('#rate span[data-rate=2]').addClass('rate-active');
 		}
-		if (rate == 3) {
-			$('#rate span[data-rate=1]').addClass('rate-active');
-			$('#rate span[data-rate=2]').addClass('rate-active');
+		if (rate >= 3) {
 			$('#rate span[data-rate=3]').addClass('rate-active');
 		}
-		if (rate == 4) {
-			$('#rate span[data-rate=1]').addClass('rate-active');
-			$('#rate span[data-rate=2]').addClass('rate-active');
-			$('#rate span[data-rate=3]').addClass('rate-active');
+		if (rate >= 4) {
 			$('#rate span[data-rate=4]').addClass('rate-active');
 		}
 		if (rate == 5) {
-			$('#rate span[data-rate=1]').addClass('rate-active');
-			$('#rate span[data-rate=2]').addClass('rate-active');
-			$('#rate span[data-rate=3]').addClass('rate-active');
-			$('#rate span[data-rate=4]').addClass('rate-active');
 			$('#rate span[data-rate=5]').addClass('rate-active');
 		}
 	});
@@ -132,29 +131,19 @@
 
 		//$('span[data-rate]').removeClass('rate-hover');
 		
-		if (rate == 1) {
+		if (rate >= 1) {
 			$('#rate span[data-rate=1]').toggleClass('rate-hover');
 		}
-		if (rate == 2) {
-			$('#rate span[data-rate=1]').toggleClass('rate-hover');
+		if (rate >= 2) {
 			$('#rate span[data-rate=2]').toggleClass('rate-hover');
 		}
-		if (rate == 3) {
-			$('#rate span[data-rate=1]').toggleClass('rate-hover');
-			$('#rate span[data-rate=2]').toggleClass('rate-hover');
+		if (rate >= 3) {
 			$('#rate span[data-rate=3]').toggleClass('rate-hover');
 		}
-		if (rate == 4) {
-			$('#rate span[data-rate=1]').toggleClass('rate-hover');
-			$('#rate span[data-rate=2]').toggleClass('rate-hover');
-			$('#rate span[data-rate=3]').toggleClass('rate-hover');
+		if (rate >= 4) {
 			$('#rate span[data-rate=4]').toggleClass('rate-hover');
 		}
 		if (rate == 5) {
-			$('#rate span[data-rate=1]').toggleClass('rate-hover');
-			$('#rate span[data-rate=2]').toggleClass('rate-hover');
-			$('#rate span[data-rate=3]').toggleClass('rate-hover');
-			$('#rate span[data-rate=4]').toggleClass('rate-hover');
 			$('#rate span[data-rate=5]').toggleClass('rate-hover');
 		}
 	});
