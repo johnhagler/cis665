@@ -22,6 +22,7 @@ class Attempt extends BaseModel {
 	public $attempt_time;
 	public $effort;
 	public $status;
+	public $user_notes;
 
 	public function __construct() {
 		$user = $_SESSION['user'];
@@ -34,14 +35,15 @@ class Attempt extends BaseModel {
 		$attempt_datetime = $this->attempt_date . ' ' . $this->attempt_time;		
 
 		$sql = "insert into Attempt 
-			(RouteID, UserID, StartDateTime, EffortRating, AttemptStatus)
+			(RouteID, UserID, StartDateTime, EffortRating, AttemptStatus, UserNotes)
 			
 			values (
 				'$this->route_id', 
 				'$this->user_id', 
 				'$attempt_datetime', 
 				'$this->effort', 
-				'$this->status'
+				'$this->status',
+				'$this->user_notes'
 			)
 
 		";
@@ -59,7 +61,7 @@ class Attempt extends BaseModel {
 		//execute sql query on the database
 		$sql = "select 
 					a.UserID, a.AttemptID, a.RouteId, b.RouteName, 
-					a.StartDateTime, a.EffortRating, a.AttemptStatus
+					a.StartDateTime, a.EffortRating, a.AttemptStatus, a.UserNotes
 				from 
 					Attempt a, Route b
 				where 
@@ -78,7 +80,8 @@ class Attempt extends BaseModel {
 				'routeName' 	=> $result['RouteName'],
 				'startDateTime' => $result['StartDateTime'],
 				'effortRatng' 	=> $result['EffortRating'],
-				'status' 		=> $result['AttemptStatus']
+				'status' 		=> $result['AttemptStatus'],
+				'userNotes'		=> $result['UserNotes']
 				);
 
 		}//end of foreach
@@ -109,12 +112,15 @@ class Attempt extends BaseModel {
 
 
 
-	function update_attempt($attemptId, $status) {
+	function update_attempt($attemptId, $status, $startDateTime, $rating, $userNotes) {
 
 		$sql = "Update 
 					Attempt 
 				Set 
-					AttemptStatus = '$status'
+					AttemptStatus = '$status',
+					StartDateTime = '$startDateTime', 
+					Rating = '$rating',
+					UserNotes = '$userNotes'
 				Where 
 					AttemptID = '$attemptId'
 				";
@@ -138,7 +144,7 @@ class Attempt extends BaseModel {
 		$sql = "select a.AttemptID, a.UserID, a.RouteID, 
 						convert(varchar, a.StartDateTime, 100) as StartDateTime,
 						
-						a.EffortRating, a.AttemptStatus,
+						a.EffortRating, a.AttemptStatus, a.UserNotes,
 						CONCAT(b.FirstName, ' ', b.LastName) AS UserName, 
 						c.RouteName, c.RouteType, f.Grade,
 						d.CragName, e.AreaName
@@ -183,6 +189,7 @@ class Attempt extends BaseModel {
 				'startDateTime' => $result['StartDateTime'],
 				'effortRating' => $result['EffortRating'],
 				'attemptStatus' => $result['AttemptStatus'],
+				'userNotes' 	=> $result['UserNotes']
 				);
 
 			array_push($attempts, $attempt);//stack the array
