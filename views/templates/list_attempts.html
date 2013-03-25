@@ -4,7 +4,8 @@
 		<th>Route Name</th>
 		<th>Route Type</th>
 		<th>Grade</th>
-		<th>Started On</th>	
+		<th>Climbed On</th>
+		<th>Notes</th>
 		<th>My Rating</th>
 		<th>Status</th>
 		<th></th>
@@ -17,7 +18,16 @@
 		<td>{{routeType}}</td>
 		<td>{{grade}}</td>
 		<td>{{startDateTime}}</td>
-		<td>{{effortRating}}</td>
+		<td>{{notes}}</td>
+		<td data-rating="{{effortRating}}">
+			<div class="rating">
+				<span data-rate="1">&#9733;</span>
+				<span data-rate="2">&#9733;</span>
+				<span data-rate="3">&#9733;</span>
+				<span data-rate="4">&#9733;</span>
+				<span data-rate="5">&#9733;</span>
+			</div>
+		</td>
 		<td style="padding:0;" data-attempt-status="{{attemptStatus}}" >
 			<ul class="button-group radius" style="margin:0;">
 				<li class="button tiny secondary summit">

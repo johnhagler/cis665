@@ -7,6 +7,7 @@
 :: contact.php
 :: browse.php
 :: myclimbs.php
+:: attempt.php
 */
 
 
@@ -195,6 +196,37 @@ h1, h2, h3, h4, h5, h6, th {
    myclimbs.php
 ----------------------------------------- */
 
-#list-attempts li.remove:hover {
-	color:#c60f13;
+#list-attempts {
+	li.remove:hover {
+		color:#c60f13;
+	}
 }
+
+
+/* -----------------------------------------
+   attempt.php
+----------------------------------------- */
+
+#attempt-form {
+	.rate {
+		font-size:3em;
+	}
+}
+
+.rating {
+	color:#ddd;
+	
+	span[data-rate]:hover {
+		cursor:pointer;
+	}
+
+	.rate-active {
+		color:#2ba6cb;
+	}
+	.rate-hover {
+		text-shadow:1px 1px #222;
+	}
+}
+
+
+

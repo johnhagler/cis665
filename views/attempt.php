@@ -38,23 +38,7 @@
 			<h3 style="margin-top:6px;">Rating</h3>
 		</div>
 		<div class="eight mobile-three centered columns">
-			<style>
-				#rate {
-					color:#ddd;
-					font-size:3em;
-				}
-				#rate span[data-rate]:hover {
-					cursor:pointer;
-				}
-				.rate-active {
-					color:#2ba6cb;
-				}
-				.rate-hover {
-					text-shadow:1px 1px #222;
-				}
-
-			</style>
-			<div id="rate">
+			<div class="rate">
 				<input type="hidden" name="effort" value="0">
 				<span data-rate="1">&#9733;</span>
 				<span data-rate="2">&#9733;</span>

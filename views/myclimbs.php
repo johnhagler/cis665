@@ -28,9 +28,12 @@
 			$.get('views/templates/list_attempts.html', function(data) {
 				var detailTmpl = Handlebars.compile(data);
 				$('#list-attempts').html(detailTmpl(json));
-				$('#list-attempts tbody tr td li.remove').click(removeHandler);
+				$('#list-attempts tbody tr td[data-rating] span').click(updateRatingHandler);
 				$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
+				$('#list-attempts tbody tr td li.remove').click(removeHandler);
+				
 				highlightStatus();
+				highlightRating();
 			});
 
 		}
@@ -103,10 +106,62 @@ var updateStatusHandler = function () {
 
 	});
 
-
-
 }
 
+var highlightRating = function () {
+	$('#list-attempts tbody tr td[data-rating]').each( function (){
+		
+		highlightIndividualRating(this);
 
+	});
+}
+
+var highlightIndividualRating = function (el) {
+	var rating = $(el).data('rating');
+
+	$(el).find('[data-rate]').removeClass('rate-active');
+
+	if (rating >= 1) {
+		$(el).find('[data-rate=1]').addClass('rate-active');
+	}
+	if (rating >= 2) {
+		$(el).find('[data-rate=2]').addClass('rate-active');
+	}
+	if (rating >= 3) {
+		$(el).find('[data-rate=3]').addClass('rate-active');
+	}
+	if (rating >= 4) {
+		$(el).find('[data-rate=4]').addClass('rate-active');
+	}
+	if (rating == 5) {
+		$(el).find('[data-rate=5]').addClass('rate-active');
+	}
+}
+
+var updateRatingHandler = function () {
+	var td = $(this).parents('td');
+	var rating = $(this).data('rate');
+	var id = $(td).parent('tr').data('attempt-id');
+
+	
+	$(td).data('rating', rating);
+
+	highlightIndividualRating($(td));	
+
+	/*
+	var url = '?q=update_attempt&attemptId=' + id + '&rating=' + rating;
+	$.post(url, function(data){
+	
+		if (data.success) {
+			highlightIndividualRating($(td));	
+		} else {
+			alert('sorry, the server is down AGAIN!!!!!');
+		}
+	
+
+	});
+	*/
+
+}
 
 </script>
