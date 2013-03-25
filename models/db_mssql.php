@@ -1,0 +1,104 @@
+<?php
+
+
+/* CIS665 - PHP Project - ClimbIt Application
+*	Team: John Hagler, Anna Chernyavskaya
+* 	Date: March 24, 2013
+*	Purpose: db.php - Data class - contains methods to connect to sql and retrieve data from the ClimbItDB database
+*/
+
+
+
+
+class Data {
+
+	$serverName;
+	$uName;
+	$pWord
+	$db;
+
+	public function __construct() {
+
+		$this->serverName = 'bussql2012-cis';
+	    $this->uName = 'climber';
+	    $this->pWord = 'secret';
+	    $this->db = 'ClimbItDB';		
+
+	}
+
+	public function run($sql) {
+
+		return $this->_executeQuery($sql);
+
+	} //end of run() method
+
+
+	private function _dbConnect() {
+
+	    
+	    try {
+	        //instantiate a PDO object and set connection properties
+	        $conn_string = "sqlsrv:Server=$this->serverName; Database=$this->db";
+	        $conn = new PDO(
+	        	$conn_string, 
+	        	$this->uName, 
+	        	$this->pWord, 
+	        	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	        
+	        //return connection object
+
+	        return $conn;
+	    }
+	    // if connection fails
+	    
+	    catch (PDOException $e) {
+	        die('Connection failed: ' . $e->getMessage());
+	    }
+	}
+
+	//method to execute a query - the SQL statement to be executed, is passed to it
+
+	private function _executeQuery($query) {
+	    // call the dbConnect function
+
+	    $conn = $this->_dbConnect();
+
+	    try {
+	        // execute query and assign results to a PDOStatement object
+
+	        $stmt = $conn->query($query);
+
+	        do {
+	            if ($stmt->columnCount() > 0)  // if rows with columns are returned
+	            {
+	                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);  //retreive the rows as an associative array
+	            }
+	        } 
+	        while ($stmt->nextRowset());  // if multiple queries are executed, repeat the process for each set of results
+
+
+	        $this->_dbDisconnect($conn);
+
+	        return $results;
+	    }
+
+	    catch (PDOException $e) {
+	        //if execution fails
+	        $this->_dbDisconnect($conn);
+	        die ('Query failed: ' . $e->getMessage());
+	    }
+	}
+
+
+	private function _dbDisconnect($conn) {
+	    // closes the specfied connection and releases associated resources
+
+	    $conn = null;
+	    
+	}
+
+
+
+} //end of class Data
+
+?>

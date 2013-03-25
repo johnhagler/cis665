@@ -1,0 +1,200 @@
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: splash.php
+:: about.php
+:: contact.php
+:: browse.php
+:: myclimbs.php
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+nav li.name {
+	a {
+		font-family: 'Pacifico', cursive;
+	}
+	a:hover {
+		background-color:#2284a1;
+	}
+}
+
+h1, h2, h3, h4, h5, h6, th {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+/* -----------------------------------------
+   splash.php
+----------------------------------------- */
+.byline {
+	text-align: center;
+	font-size: 1.5em;
+	font-style: italic;
+	font-family: 'Ubuntu', sans-serif;
+	letter-spacing:.125em;
+}
+.intro {
+	text-indent: 1.5em;
+	line-height: 2em;
+}
+.signoff {
+	font-family: 'Pacifico', cursive;
+	text-align: right;
+	font-size: 4em;
+}
+
+#user-target {
+	h2, h3 {
+		margin-bottom: 0;
+	}
+}
+
+
+/* -----------------------------------------
+   about.php
+----------------------------------------- */
+#who-we-are {
+	img {
+		float:left;
+		margin:0 14px 14px 0;
+	}
+	h3 {
+		margin-top:0;
+		margin-bottom:6px;
+	}
+	p {
+		text-indent: 1.5em;
+	}
+}
+
+
+
+/* -----------------------------------------
+   contact.php
+----------------------------------------- */
+#contact {
+	list-style-type: none;
+
+	li {
+		font-size:2em;
+		font-weight:bold;
+	}
+}
+
+
+
+
+
+/* -----------------------------------------
+   browse.php
+----------------------------------------- */
+#panels {
+	overflow: hidden;
+
+	td.description {
+		max-width:400px;
+	}
+
+	td {
+		vertical-align: top;
+
+		p {
+			line-height:.8em;
+		}
+
+		a {
+			font-size: 1.25em;
+			font-weight: bold;
+		}
+	}
+
+	section {
+		width:100%; position: absolute;
+		-webkit-transition: 0.25s all ease-in; 
+		-moz-transition: 0.25s all ease-in; 
+		-o-transition: 0.25s all ease-in; 
+		transition: 0.25s all ease-in; 
+
+	}
+}
+
+#panels.section-1 {
+	#section-1 {
+		margin-left:0; 
+		position: relative;
+	}
+	#section-2 {
+		margin-left:150%; 
+	}
+	#section-3 {
+		margin-left:250%; 
+	}
+	#section-4 {
+		margin-left:350%; 
+	}
+}
+
+
+#panels.section-2 {
+	#section-1 {
+		margin-left:-150%; 
+	}
+	#section-2  {
+		margin-left:0; 
+		position: relative;
+	}
+	#section-3 {
+		margin-left:150%; 
+	}
+	#section-4 {
+		margin-left:250%; 
+	}
+}
+
+
+
+#panels.section-3 {
+	#section-1 {
+		margin-left:-250%; 
+	}
+	#section-2  {
+		margin-left:-150%; 
+	}
+	#section-3 {
+		margin-left:0; 
+		position: relative;
+	}
+	#section-4 {
+		margin-left:150%; 
+	}
+}
+
+
+
+#panels.section-4 {
+	#section-1 {
+		margin-left:-350%; 
+	}
+	#section-2  {
+		margin-left:-250%; 
+	}
+	#section-3 {
+		margin-left:-150%; 
+	}
+	#section-4 {
+		margin-left:0; 
+		position: relative;
+	}
+}
+
+
+/* -----------------------------------------
+   myclimbs.php
+----------------------------------------- */
+
+#list-attempts li.remove:hover {
+	color:#c60f13;
+}

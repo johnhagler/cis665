@@ -7,19 +7,9 @@
 
     <title>ClimbIt!</title>
 
-    <!-- Included CSS Files (Compressed) -->
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300italic|Pacifico' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="stylesheets/foundation.min.css">
-    <link rel="stylesheet" href="stylesheets/app.css">
-    <link rel="stylesheet" href="stylesheets/general_foundicons.css">
-    <link rel="stylesheet" href="stylesheets/social_foundicons.css">
-    <!--<script src="javascripts/modernizr.foundation.js"></script>-->
-    <script src="javascripts/foundation.min.js"></script>
-    <script src="javascripts/app.js"></script>
-    <script src="javascripts/utils.js"></script>
-    
-    <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.2/handlebars.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/climbit.min.css">
+    <script src="javascripts/dist/climbit.min.js"></script>
 
 </head>
 <body>
