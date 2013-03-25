@@ -16,7 +16,7 @@
 
 <div class="row" id="who-we-are">
 	<div class="twelve columns">
-		<h2>Who we are...</h2>
+		<h2>East and West</h2>
 
 
 		<div class="row">
@@ -31,11 +31,11 @@
 			</div>
 
 			<div class="six columns">
-				<img src="http://placehold.it/125x125" alt="">
+				<img src="images/john.jpg" alt="John Hagler">
 				<h3>John</h3>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium inventore fugit itaque minus corporis reprehenderit nisi est autem enim doloribus accusantium consequuntur dolorem doloremque laudantium iure nam deleniti ut incidunt.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium inventore fugit itaque minus corporis reprehenderit nisi est autem enim doloribus accusantium consequuntur dolorem doloremque laudantium iure nam deleniti ut incidunt.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nesciunt architecto ratione voluptates officiis. Nemo iure doloribus optio laudantium nihil accusantium excepturi. Aliquid consectetur sit laborum unde quod adipisci quo.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto officia laborum iste enim sunt cumque cupiditate voluptatem maxime quis a laudantium perspiciatis expedita aliquid dicta dolorum ipsum culpa blanditiis tenetur!
 				</p>
 			</div>
 		</div>
