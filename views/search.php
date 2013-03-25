@@ -246,9 +246,9 @@
 
         
         if (sortStyle == 'alpha') {
-            data.rows = _.sortBy(data.rows, string_comparator(sortby + col,5));
+            data.rows = _.sortBy(data.rows, App.string_comparator(sortby + col,5));
         } else if (sortStyle == 'numeric') {
-            data.rows = _.sortBy(data.rows, number_comparator(sortby + col));
+            data.rows = _.sortBy(data.rows, App.number_comparator(sortby + col));
         }
         
         // remove all table rows

@@ -42,6 +42,13 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
+        files: ['javascripts/src/*.js'],
+        tasks: ['concat','uglify'],
+        options: {
+          nospawn: true
+        }
+      },
+      css: {
         files: ['**/*.scss'],
         tasks: ['sass'],
         options: {
@@ -49,7 +56,6 @@ module.exports = function(grunt) {
         }
       }
     }
-
 
   });
 

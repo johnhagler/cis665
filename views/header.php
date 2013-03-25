@@ -33,7 +33,7 @@
 
                         {{#user}}
                         <li>
-                            <a href="?q=logout" id="logout" onclick="userLogout()">Logout</a>
+                            <a href="?q=logout" id="logout" onclick="App.userLogout()">Logout</a>
                         </li>
                         {{/user}}
 

@@ -70,7 +70,7 @@ class Controller {
 
 		if ($authenticated) {
 			$q = $_REQUEST['forward'];
-			if ($q == 'logout') {
+			if ($q == 'logout' || $q == 'signup') {
 				$this->home();
 			} else {
 				$this->route($q);

@@ -12,15 +12,17 @@
 			<input type="hidden" name="q" value="signup">
 			<div class="row">
 				<div class="two mobile-one columns">
-					<label class="right inline">Name:</label>
+					<label class="right inline">Name</label>
 				</div>
 				<div class="ten mobile-three columns">
 					<div class="row">
 						<div class="four columns">
-							<input type="text" name="first_name" placeholder="First name" autofocus>
+							<label for="first_name" style="display:none">First Name</label>
+							<input type="text" id="first_name" name="first_name" placeholder="First name" autofocus>
 						</div>
 						<div class="four columns end">
-							<input type="text" name="last_name" placeholder="Last name">
+							<label for="first_name" style="display:none">Last Name</label>
+							<input type="text" id="last_name" name="last_name" placeholder="Last name">
 						</div>
 					</div>
 					
@@ -29,19 +31,19 @@
 			</div>
 			<div class="row">
 			    <div class="two mobile-one columns">
-			      <label class="right inline">Email:</label>
+			      <label for="user_id" class="right inline">Email</label>
 			    </div>
 			    <div id="email" class="ten mobile-three columns">
-			      <input type="email" name="user_id" class="eight" />
+			      <input type="email" id="user_id" name="user_id" class="eight" />
 			      <small style="display:none" class="error eight"></small>
 			    </div>
 			 </div>
 			 <div class="row">
 			    <div class="two mobile-one columns">
-			      <label class="right inline">Password:</label>
+			      <label for="password" class="right inline">Password</label>
 			    </div>
 			    <div class="five mobile-three columns end">
-			      <input type="password" name="password" class="eight" />
+			      <input type="password" id="password" name="password" class="eight" />
 			    </div>
 			 </div>
 			 <div class="row">
@@ -61,31 +63,65 @@ $(document).ready(function() {
 });
 	
 	var submit = true;
+
+	var validate = function () {
+		submit = true;
+		submit = App.Validate.required($('input[name=first_name]'));
+		submit = App.Validate.required($('input[name=last_name]'));
+		submit = App.Validate.required($('input[name=user_id]'));
+		submit = App.Validate.minLength($('input[name=password]'), 6);
+		return submit;
+	}
+
+	var disableSubmit = function () {
+		$("#signup input[type=submit]").prop('disabled',false);
+	}
+	var enableSubmit = function () {
+		$("#signup input[type=submit]").prop('disabled',true);
+	}
+
+
 	
 	$("form#signup").submit(function (){
-		return submit;
+		return validate();
 	});
 
 	$("input[name=user_id]").change(function(){
 		var user_id = $(this).val();
+		
+		if ((submit = App.Validate.required($(this)))) {
 
-		$.getJSON('?q=user_check_unique&user_id=' + user_id, function(user) {
+			$.getJSON('?q=user_check_unique&user_id=' + user_id, function(user) {
 
-			if (!user.unique) {
-				$("#email input").addClass("error");
-				$("#email small").html(user_id + ' is already being used').show();
-				$("#signup input[type=submit]").prop('disabled',true);
-				submit = false;
-			} else {
-				$("#email input").removeClass("error");
-				$("#email small").html('').hide();
-				$("#signup input[type=submit]").prop('disabled',false);
-				submit = true;
-			}
+				if (!user.unique) {
+					$("#email input").addClass("error");
+					$("#email small").html(user_id + ' is already being used').show();
+					enableSubmit();
+					submit = false;
+				} else {
+					$("#email input").removeClass("error");
+					$("#email small").html('').hide();
+					disableSubmit();
+					submit = true;
+				}
 
-	    });
+		    });
+		} else {
+			submit = false;
+		}
 
 	});
+
+	$('input[name=first_name], input[name=last_name]').change(function() {
+		submit = App.Validate.required($(this));
+	});
+
+	$('input[name=password]').change(function (){
+		submit = App.Validate.minLength($(this),6);
+	});
+
+
+
 
 	
 </script>
