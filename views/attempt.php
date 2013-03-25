@@ -54,7 +54,7 @@
 			<h3>How'd it go?</h3>
 		</div>
 		<div class="eight columns">
-			<textarea name="notes" id="notes" cols="30" rows="4"></textarea>
+			<textarea name="user_notes" id="notes" cols="30" rows="4"></textarea>
 		</div>
 	</div>
 
