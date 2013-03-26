@@ -174,7 +174,6 @@ var updateRatingHandler = function () {
 }
 
 
-
 getStats();
 
 $.getJSON('?q=list_attempts', function(json) {
@@ -189,6 +188,37 @@ $.getJSON('?q=list_attempts', function(json) {
 			$('#list-attempts tbody tr td[data-rating] span').click(updateRatingHandler);
 			$('#list-attempts tbody tr td[data-attempt-status] li').click(updateStatusHandler);
 			$('#list-attempts tbody tr td li.remove').click(removeHandler);
+
+			$('#list-attempts tbody tr td.notes div').click(function () {
+
+				$(this).toggle();
+				$(this).next().toggle().focus();
+
+			});
+
+			$('#list-attempts tbody tr td.notes textarea').blur(function () {
+				var self = this;
+				var id = $(this).parents('tr').data('attempt-id');
+
+				var newNote = $(this).val();
+				
+
+				var url = '?q=update_attempt&attempt_id=' + id + '&user_notes=' + newNote;
+					$.post(url, function(data){
+					
+						if (data.success) {
+							
+							$(self).toggle();
+							$(self).prev().html(newNote).toggle();
+
+						} else {
+							alert('sorry, the server is down AGAIN!!!!!');
+						}
+					
+
+					});
+
+			});
 			
 			highlightStatus();
 			highlightRating();

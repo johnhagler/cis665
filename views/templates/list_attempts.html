@@ -27,7 +27,10 @@
 				<span data-rate="5">&#9733;</span>
 			</div>
 		</td>
-		<td>{{userNotes}}</td>
+		<td class="notes">
+			<div class="notes-text">{{userNotes}}&nbsp;</div>
+			<textarea name="user_notes" style="display:none;">{{userNotes}}</textarea>
+		</td>
 		<td style="padding:0;" data-attempt-status="{{attemptStatus}}" >
 			<ul class="button-group radius" style="margin:0;">
 				<li class="button tiny secondary summit">
