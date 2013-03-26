@@ -9,6 +9,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300italic|Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="stylesheets/climbit.min.css">
+    <link rel="stylesheet" href="stylesheets/smoothness/jquery-ui-1.10.2.custom.min.css">
     <script src="javascripts/dist/climbit.min.js"></script>
 
 </head>

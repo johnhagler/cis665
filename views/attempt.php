@@ -23,10 +23,10 @@
 			        <span class="prefix">Climb Date</span>
 			      </div>
 			      <div class="four mobile-two columns">
-			        <input type="date" name="attempt_date" value="<?php echo date('Y\-m\-d') ?>">
+			        <input type="text" name="attempt_date" id="attempt_date" value="<?php echo date('Y\-m\-d') ?>">
 			      </div>
 			      <div class="four mobile-one columns">
-			        <input type="time" name="attempt_time" value="<?php echo date('H\:i\:s') ?>">
+			        <input type="text" name="attempt_time" id="attempt_time" value="<?php echo date('H\:i') ?>">
 			      </div>
 			    </div>
 			</div>
@@ -75,6 +75,9 @@
 
 
 <script>
+
+	$('#attempt_date').datepicker({ dateFormat: "yy-mm-dd" });
+	$('#attempt_time').timepicker();
 
 	var timeoutID;
  
